@@ -17,7 +17,7 @@ id | places_id | date-time | weather |
 
 caught_fish - z³owione ryby
 -------------------------------------------------------------------------------
-id | fishing_id | fishes_id | long | weight | bait_id | groundbait_id | methods_id | description | photo | date-time
+id | fishing_id | fishes_id | fishLength | weight | bait_id | groundbait_id | methods_id | description | photo | date-time
 
 bait - przynêta
 ----------------
