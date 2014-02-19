@@ -1,4 +1,4 @@
-package pl.mateusz.drozdz.fishing_essentials;
+package pl.mateusz.drozdz.fishing_essentials.core;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
