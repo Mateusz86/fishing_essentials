@@ -1,9 +1,9 @@
 fishing_essentials
 ==================
 
-fishes - ryby
+fishes - ryby(atlas)
 -------------------------------------------------------------------------------------------------
-id | name | type (“SP”/”D”) | description | food | tips | law | photos |
+id | name | type (“SP”/”D”) | description | food | tips | law(wystepowanie) | photos |
 
 
 
