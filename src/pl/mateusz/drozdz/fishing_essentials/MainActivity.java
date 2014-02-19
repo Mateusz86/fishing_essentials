@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 
 		// load data from file
 		bootsrap = new Bootstrap(this);
-		bootsrap.run();
+		//bootsrap.run();
 
 		/*
 		 *  Test correct loaded data
@@ -48,16 +48,23 @@ public class MainActivity extends Activity {
 		}
 		*/
 
-		Button btn = (Button) findViewById(R.id.mojeRekordyId);
+		
+		/*
+		 * Regulations btn
+		 */
+		Button btn = (Button) findViewById(R.id.regulations);
 		btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
-				// Intent a= new Intent(MainActivity.this,
-				// PdfReaderActivity.class);
-				// startActivity(a);
+				 Intent intent= new Intent(MainActivity.this,
+				 RegulationsActivity.class);
+				 startActivity(intent);
 			}
 		});
+		
+		
+		
 	}
 
 	@Override

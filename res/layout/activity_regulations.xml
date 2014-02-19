@@ -7,23 +7,14 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    tools:context=".RegulationsActivity" >
 
     <Button
-        android:id="@+id/regulations"
+        android:id="@+id/rapr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Regulaminy" />
+        android:text="Regulamin amatorskiego Połowu ryb" />
 
-   <!--  <EditText
-        android:id="@+id/editText1"
-        android:layout_width="285dp"
-        android:layout_height="224dp"
-        android:layout_weight="0.50"
-        android:ems="10"
-        android:inputType="textMultiLine" >
 
-        <requestFocus />
-    </EditText> -->
 
 </LinearLayout>
