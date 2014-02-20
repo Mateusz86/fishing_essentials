@@ -52,8 +52,8 @@ public class MainActivity extends Activity {
 		/*
 		 * Regulations btn
 		 */
-		Button btn = (Button) findViewById(R.id.regulations);
-		btn.setOnClickListener(new View.OnClickListener() {
+		Button regulations = (Button) findViewById(R.id.regulations);
+		regulations.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
@@ -63,7 +63,19 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		
+		/*
+		 * Regulations btn
+		 */
+		Button weather = (Button) findViewById(R.id.weather);
+		weather.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				 Intent intent= new Intent(MainActivity.this,
+				 WeatherActivity.class);
+				 startActivity(intent);
+			}
+		});
 		
 	}
 
