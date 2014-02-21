@@ -10,8 +10,6 @@ import java.io.InputStreamReader;
 import pl.mateusz.drozdz.fishing_essentials.dao.DaoSession;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishes;
 import pl.mateusz.drozdz.fishing_essentials.dao.FishesDao;
-import pl.mateusz.drozdz.fishing_essentials.dao.Photos;
-import pl.mateusz.drozdz.fishing_essentials.dao.PhotosDao;
 import android.content.Context;
 import android.util.Log;
 
@@ -48,6 +46,7 @@ public class Bootstrap {
 				fish.setFoot(f[3]);
 				fish.setTips(f[4]);
 				fish.setLaw(f[5]);
+				fish.setPhotos(f[6]);
 //				f[6]- photos
 				fishesDao.insert(fish);
 			}
