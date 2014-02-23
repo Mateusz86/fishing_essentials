@@ -65,8 +65,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		 * Regulations btn
 		 */
 		
+		
 		Button regulations = (Button) findViewById(R.id.regulations);
 		regulations.setOnClickListener(this);
+		Button fishing = (Button) findViewById(R.id.fishing);
+		fishing.setOnClickListener(this);
 		Button weather = (Button) findViewById(R.id.weather);
 		weather.setOnClickListener(this); 
 		Button records = (Button) findViewById(R.id.mojeRekordyId);
@@ -82,6 +85,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.mojeRekordyId:
 			intent= new Intent(MainActivity.this,
 					 MyRecordsActivity.class);
+					 startActivity(intent);	
+		break;	
+		case R.id.fishing:
+			intent= new Intent(MainActivity.this,
+					 FishingActivity.class);
 					 startActivity(intent);	
 		break;	
 		case R.id.weather:
