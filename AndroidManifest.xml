@@ -8,6 +8,10 @@
         android:minSdkVersion="10"
         android:targetSdkVersion="18" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -22,6 +26,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="pl.mateusz.drozdz.fishing_essentials.RegulationsActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="pl.mateusz.drozdz.fishing_essentials.HtmlViewActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="pl.mateusz.drozdz.fishing_essentials.WeatherActivity"
+            android:label="@string/app_name" >
+        </activity>     
+        <activity
+            android:name="pl.mateusz.drozdz.fishing_essentials.MyRecordsActivity"
+            android:label="@string/app_name" >
+        </activity>
+        
     </application>
 
 </manifest>
