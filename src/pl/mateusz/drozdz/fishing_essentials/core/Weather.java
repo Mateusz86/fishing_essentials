@@ -15,6 +15,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 public class Weather extends AsyncTask<String, Void, String>  {
 	private Context context;
@@ -32,7 +33,9 @@ public class Weather extends AsyncTask<String, Void, String>  {
 
 	@Override
 	protected void onPostExecute(String result) {
-		// TODO Auto-generated method stub
+		if(result==null) {
+	    	Toast.makeText(context, "sprawdz polaczenie internetowe", Toast.LENGTH_SHORT).show();       
+		}
 		super.onPostExecute(result);
 	}
 
@@ -43,10 +46,8 @@ public class Weather extends AsyncTask<String, Void, String>  {
 		r.get(params[0]);
 		r.getResponseString();
 		String textRetrieved = r.getResponseText();
-		System.out.println(textRetrieved);
 		return textRetrieved;
 	}
-
 
 	
 }

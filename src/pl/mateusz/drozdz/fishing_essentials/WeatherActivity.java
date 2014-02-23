@@ -13,28 +13,41 @@ import pl.mateusz.drozdz.fishing_essentials.core.Rest;
 import pl.mateusz.drozdz.fishing_essentials.core.Weather;
 import android.app.Activity;
 import android.content.Context;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class WeatherActivity extends Activity implements LocationListener {
 
 	private LocationManager locationManager;
 	private String latitude, longitude;
+	private String provider;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_weather);
 
-		// tymczasowe rozwi¹zanie
-		latitude = "50.0619720";
-		longitude = "19.9379100";
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-		// Weather weather = new Weather(this);
-		// weather.getWeather(latitude, longitude);
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+        Location location = locationManager.getLastKnownLocation(provider);
+
+        if (location != null) {
+          System.out.println("Provider " + provider + " has been selected.");
+          onLocationChanged(location);
+  	    locationManager.requestLocationUpdates(provider, 400, 1, this);
+
+        int lat = (int) (location.getLatitude());
+        int lng = (int) (location.getLongitude());
+        latitude = String.valueOf(lat);
+        longitude = String.valueOf(lat);
+
 
 		String urls = Property.WEATHER_API_URL.replace("{0}", latitude)
 				.replace("{1}", longitude);
@@ -47,28 +60,25 @@ public class WeatherActivity extends Activity implements LocationListener {
 			weatherView.setText(s);
 			
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 		}
+        } else {
+        	//zrobic dialoga
+        	showDialog();
+        }
+
         
-        
-        
-		// locationManager = (LocationManager) this
-		// .getSystemService(Context.LOCATION_SERVICE);
-		// locationManager.requestLocationUpdates(
-		// LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
 	}
 
 	@Override
 	public void onLocationChanged(Location location) {
-		System.out.println("location");
+		System.out.println("location --------------------------------------------");
 		System.out.println(location.toString());
-		// kurwa nie dzia³a !!! huj w dupe !!!!!!!!!
-		// biore na sztywno wspólrzêdne dla krakowa
+
 
 	}
 
@@ -87,6 +97,22 @@ public class WeatherActivity extends Activity implements LocationListener {
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		System.out.println("status change");
+
+	}
+	
+	@Override
+	protected void onResume() {
+	    super.onResume();
+	}
+
+	@Override
+	protected void onPause() {
+	    super.onPause();
+	    locationManager.removeUpdates(this);
+	}
+	
+	private void showDialog() {
+    	Toast.makeText(getApplicationContext(), "sprawdz polaczenie internetowe", Toast.LENGTH_SHORT).show();       
 
 	}
 }
