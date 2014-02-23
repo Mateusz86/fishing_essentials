@@ -2,13 +2,21 @@ package pl.mateusz.drozdz.fishing_essentials.core;
 
 import java.util.concurrent.ExecutionException;
 
+import org.apache.http.client.HttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.net.ParseException;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.widget.Toast;
 
-public class Weather {
+
+
+
+public class Weather extends AsyncTask<String, Void, String>  {
+	private Context context;
+	private HttpClient httpClient;
 	private Activity activity;
 	private JSONObject result;
 	private RestConnector connector;
@@ -28,7 +36,7 @@ public class Weather {
 	private String icon;
 	private String description;
 
-	public Weather(Activity activity) {
+	public Weather(Context context) {
 		super();
 		activity = activity;
 	}
@@ -177,4 +185,23 @@ public class Weather {
 		this.description = description;
 	}
 
+	@Override
+	protected void onPostExecute(String result) {
+		if(result==null) {
+	    	Toast.makeText(context, "sprawdz polaczenie internetowe", Toast.LENGTH_SHORT).show();       
+		}
+		super.onPostExecute(result);
+	}
+
+	@Override
+	protected String doInBackground(String... params) {
+		Rest r = new Rest();
+		System.out.println(params[0]);
+		r.get(params[0]);
+		r.getResponseString();
+		String textRetrieved = r.getResponseText();
+		return textRetrieved;
+	}
+
+	
 }

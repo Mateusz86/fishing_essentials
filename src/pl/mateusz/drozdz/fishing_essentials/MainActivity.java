@@ -14,16 +14,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
+
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener {
 
 	private Bootstrap bootsrap;
 
@@ -32,7 +35,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
 		// load data from file
 		bootsrap = new Bootstrap(this);
 		//bootsrap.run();
@@ -49,41 +52,53 @@ public class MainActivity extends Activity {
 		*/
 
 		
-		/*
-		 * Regulations btn
-		 */
-		Button regulations = (Button) findViewById(R.id.regulations);
-		regulations.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-				 Intent intent= new Intent(MainActivity.this,
-				 RegulationsActivity.class);
-				 startActivity(intent);
-			}
-		});
+/*		BaitDao baitDao = DataBase.getInstance(this).getDaoSession().getBaitDao();
 		
+		Bait bait= new Bait();
+		bait.setName("Nazwa");
+		bait.setDescription("Opis");
+		baitDao.insert(bait);
+		Log.e("bait"," "+bait.getId());*/
+		
+
 		/*
 		 * Regulations btn
 		 */
+		
+		Button regulations = (Button) findViewById(R.id.regulations);
+		regulations.setOnClickListener(this);
 		Button weather = (Button) findViewById(R.id.weather);
-		weather.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-				 Intent intent= new Intent(MainActivity.this,
-				 WeatherActivity.class);
-				 startActivity(intent);
-			}
-		});
+		weather.setOnClickListener(this); 
+		Button records = (Button) findViewById(R.id.mojeRekordyId);
+		records.setOnClickListener(this);
 		
 	}
+
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+	public void onClick(View v) {
+    	Intent intent;
+		switch(v.getId()) {
+		case R.id.mojeRekordyId:
+			intent= new Intent(MainActivity.this,
+					 MyRecordsActivity.class);
+					 startActivity(intent);	
+		break;	
+		case R.id.weather:
+		intent= new Intent(MainActivity.this,
+					 WeatherActivity.class);
+					 startActivity(intent);
+		break;
+		case R.id.regulations:
+	    intent= new Intent(MainActivity.this,
+					 RegulationsActivity.class);
+					 startActivity(intent);
+		break;
+		}
 	}
-
 }
+
+
+		
+
+
