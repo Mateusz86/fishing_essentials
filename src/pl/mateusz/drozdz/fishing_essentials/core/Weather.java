@@ -1,5 +1,4 @@
 package pl.mateusz.drozdz.fishing_essentials.core;
-
 import java.util.concurrent.ExecutionException;
 
 import org.apache.http.client.HttpClient;
@@ -38,7 +37,7 @@ public class Weather extends AsyncTask<String, Void, String>  {
 
 	public Weather(Context context) {
 		super();
-		activity = activity;
+		this.context = context;
 	}
 
 	public void getWeather(String latitude, String longitude) {
@@ -48,7 +47,7 @@ public class Weather extends AsyncTask<String, Void, String>  {
 		connector.execute(url);
 		try {
 			result = connector.get();
-
+			if(result!=null) {
 			setCity(result.getString("name"));
 			setTemp((float) result.getJSONObject("main").getDouble("temp"));
 			setTempMax((float) result.getJSONObject("main").getDouble(
@@ -69,6 +68,7 @@ public class Weather extends AsyncTask<String, Void, String>  {
 			System.out.println(result.getJSONArray("weather").getJSONObject(0).getString("icon"));
 			
 			setDescription(result.getJSONArray("weather").getJSONObject(0).getString("description"));
+			}
 
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -187,7 +187,7 @@ public class Weather extends AsyncTask<String, Void, String>  {
 
 	@Override
 	protected void onPostExecute(String result) {
-		if(result==null) {
+		if(result==null&&context!=null) {
 	    	Toast.makeText(context, "sprawdz polaczenie internetowe", Toast.LENGTH_SHORT).show();       
 		}
 		super.onPostExecute(result);

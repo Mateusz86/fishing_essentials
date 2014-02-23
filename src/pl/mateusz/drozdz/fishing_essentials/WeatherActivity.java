@@ -82,8 +82,9 @@ public class WeatherActivity extends Activity implements LocationListener {
 		
 		Weather weather = new Weather(this);
 		weather.execute(urls);
+		
         try {
-			String s = weather.get();
+			String s = weather.get()+"";
 			
 			weather.getWeather(latitude, longitude);
 			
@@ -91,7 +92,7 @@ public class WeatherActivity extends Activity implements LocationListener {
 			TextView city = (TextView) findViewById(R.id.city);
 			city.setText(weather.getCity());
 			
-			TextView temaperature = (TextView) findViewById(R.id.temperature);
+	    	TextView temaperature = (TextView) findViewById(R.id.temperature);
 			temaperature.setText(weather.getTemp().toString() + "^C");
 			
 			TextView presure = (TextView) findViewById(R.id.pressure);
@@ -101,18 +102,18 @@ public class WeatherActivity extends Activity implements LocationListener {
 			humidity.setText(weather.getHumidity().toString()+"%");
 			
 			TextView windSpeed = (TextView) findViewById(R.id.windSpeed);
-			windSpeed.setText(weather.getWindSpeed().toString());
+			windSpeed.setText(weather.getWindSpeed().toString()+"");
 			
 			TextView windDeg = (TextView) findViewById(R.id.windDeg);
-			windDeg.setText(weather.getWindDeg().toString());
+			windDeg.setText(weather.getWindDeg().toString()+"");
 			
 			TextView clouds = (TextView) findViewById(R.id.clouds);
-			clouds.setText(weather.getClouds().toString());
+			clouds.setText(weather.getClouds().toString()+"");
 			
 			ImageView icon = (ImageView) findViewById(R.id.icon);
 			icon.setImageResource(icons.get(weather.getIcon()));
-			TextView weatherView = (TextView) findViewById(R.id.weather);
-			weatherView.setText(s);
+/*			TextView weatherView = (TextView) findViewById(R.id.weather);
+			weatherView.setText(s+"");*/
 			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -120,6 +121,10 @@ public class WeatherActivity extends Activity implements LocationListener {
 			e.printStackTrace();
 
 		}
+        catch (NullPointerException e) {
+			
+		}
+        
         } else {
         	//zrobic dialoga
         	showDialog();
