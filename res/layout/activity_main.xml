@@ -8,18 +8,21 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:gravity="center"
+    android:background="@drawable/background"
     tools:context=".MainActivity" >
 	
         <Button 
         android:id="@+id/mojeRekordyId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
         android:text="Moje rekordy"/>
     
         <Button 
         android:id="@+id/fishing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
         android:text="Moje polowy"/>
         
         <Button 

@@ -28,6 +28,7 @@ public class FishingActivity extends FragmentActivity implements ChangeFragment 
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 	    FishingFragment_Form fishingFragment = new FishingFragment_Form();    	 
 	    ft.replace(R.id.fragmentContainerFishing, fishingFragment);
+	    ft.addToBackStack(null);
 	    ft.commit();
 	}
 }
