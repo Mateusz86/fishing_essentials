@@ -74,6 +74,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		weather.setOnClickListener(this); 
 		Button records = (Button) findViewById(R.id.mojeRekordyId);
 		records.setOnClickListener(this);
+		Button fishes = (Button) findViewById(R.id.fishes);
+		fishes.setOnClickListener(this);
 		
 	}
 
@@ -102,6 +104,12 @@ public class MainActivity extends Activity implements OnClickListener {
 					 RegulationsActivity.class);
 					 startActivity(intent);
 		break;
+		case R.id.fishes:
+			System.out.println("click");
+		    intent= new Intent(MainActivity.this,
+						 FishesActivity.class);
+						 startActivity(intent);
+			break;
 		}
 	}
 }

@@ -38,7 +38,7 @@
         android:text="Moje polowy" />
 
     <Button
-        android:id="@+id/atlasrybId"
+        android:id="@+id/fishes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Atlas ryb" />

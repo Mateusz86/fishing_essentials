@@ -46,6 +46,10 @@
             android:name="pl.mateusz.drozdz.fishing_essentials.FishingActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="pl.mateusz.drozdz.fishing_essentials.FishesActivity"
+            android:label="@string/app_name" >
+        </activity>
         
     </application>
 

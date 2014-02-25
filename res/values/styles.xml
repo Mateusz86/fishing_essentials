@@ -14,7 +14,6 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="android:buttonStyle">@style/button</item>
         <!-- <item name="typeface">@</item> -->
@@ -29,6 +28,7 @@
         <item name="android:shadowDy">2</item>
         <item name="android:shadowRadius">1</item>
     </style>
+
 
 <!--     <style name="buttonMyRecords" parent="button">
         <item name="android:drawableRight">@drawable/records_s</item>
