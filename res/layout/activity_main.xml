@@ -12,59 +12,142 @@
     tools:context=".MainActivity" >
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:tileMode="repeat"
-        style="@style/button">"
+        style="@style/layout">
 
         <Button
             android:id="@+id/mojeRekordyId"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="120dp"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
             android:text="Moje rekordy" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        	style="@style/imageViewRecords"
             android:layout_toRightOf="@+id/mojeRekordyId"
-            android:src="@drawable/records" />
+            />
     </RelativeLayout>
 
+  <RelativeLayout
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        style="@style/layout"
+      
+       >
     <Button
         android:id="@+id/fishing"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:text="Moje polowy" />
+    
+          <ImageView
+        	style="@style/imageViewhook"
+            android:layout_toRightOf="@+id/fishing"
+            />
+    
+    </RelativeLayout>
 
+  <RelativeLayout 
+      android:layout_width="180dp"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:layout_marginTop="10dp"
+      style="@style/layout">
     <Button
         android:id="@+id/fishes"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:text="Atlas ryb" />
 
+    	<ImageView
+        	style="@style/imageViewNote"
+            android:layout_toRightOf="@+id/fishes"
+            />
+    
+   </RelativeLayout> 
+    
+  
+    <RelativeLayout 
+      android:layout_width="180dp"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:layout_marginTop="10dp"
+      style="@style/layout">
     <Button
         android:id="@+id/regulations"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:text="Regulaminy" />
 
+    	<ImageView
+        	style="@style/imageViewRegulation"
+            android:layout_toRightOf="@+id/regulations"
+            />
+    </RelativeLayout>
+    
+       <RelativeLayout 
+      android:layout_width="180dp"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:layout_marginTop="10dp"
+      style="@style/layout"> 
     <Button
         android:id="@+id/weather"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:text="Pogoda" />
 
+        	<ImageView
+        	style="@style/imageViewWeather"
+            android:layout_toRightOf="@+id/weather"
+            />
+    </RelativeLayout>
+    
+    <RelativeLayout 
+      android:layout_width="180dp"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:layout_marginTop="10dp"
+      style="@style/layout">      
     <Button
-        android:id="@+id/ustawieniaId"
-        android:layout_width="wrap_content"
+        android:id="@+id/settingsId"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:text="Ustawienia" />
 
+        <ImageView
+        style="@style/imageViewSettings"
+        android:layout_toRightOf="@+id/settingsId"
+        />
+    </RelativeLayout>
+
+    <RelativeLayout 
+      android:layout_width="180dp"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:layout_marginTop="10dp"
+      style="@style/layout">   
     <Button
-        android:id="@+id/zamknijId"
-        android:layout_width="wrap_content"
+        android:id="@+id/closeId"
+        android:layout_centerVertical="true"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="Zamknij" />
+    <ImageView
+        style="@style/imageViewClose"
+        android:layout_toRightOf="@+id/closeId"
+        />
+    </RelativeLayout>
+    
 
 </LinearLayout>
