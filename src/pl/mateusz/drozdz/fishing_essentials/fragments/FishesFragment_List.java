@@ -14,15 +14,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
 public class FishesFragment_List extends Fragment {
 
-public interface ChangeFragment {
+    public interface ChangeFragment {
 		
 		public void changeFragment();
 	}
+    
+    private Long  pk;
 	
 	private ChangeFragment changeFragmentListener;
 	
@@ -35,12 +39,21 @@ public interface ChangeFragment {
 		if (view != null) {
 			
 			FishesDao fishesDao = DataBase.getInstance(getActivity()).getDaoSession().getFishesDao();
-			List<Fishes> fishes = fishesDao.queryBuilder().list();
+			final List<Fishes> fishes = fishesDao.queryBuilder().list();
 			ListView fishesList = (ListView) view.findViewById(R.id.fishes_list_view);
-			//fishesList.setAdapter(new FishesListAdapter(getActivity(), fishes));
-//			for (Fishes f : fishes) {
-//				fishesList.
-//			}
+			fishesList.setAdapter(new FishesListAdapter(getActivity(), fishes));
+			
+			fishesList.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					System.out.println(arg2+" "+arg3);
+					pk = fishes.get(arg2).getId();
+					changeFragmentListener.changeFragment();
+				}
+			});
+
 		}
 
 		return view;

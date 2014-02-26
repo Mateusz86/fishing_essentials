@@ -39,6 +39,15 @@ public class Bootstrap {
 			fishesDao.deleteAll();
 			while ((line = br.readLine()) != null) {
 				String[] f = line.split(cvsSplitBy);
+				System.out.println("dlugosc = "+f.length);
+				System.out.println(f[0]);
+				System.out.println(f[1]);
+				System.out.println(f[2]);
+				System.out.println(f[3]);
+				System.out.println(f[4]);
+				System.out.println(f[5]);
+//				System.out.println(f[6]);
+				
 				fish= new Fishes();
 				fish.setName(f[0]);
 				fish.setType(f[1]);
@@ -46,8 +55,9 @@ public class Bootstrap {
 				fish.setFoot(f[3]);
 				fish.setTips(f[4]);
 				fish.setLaw(f[5]);
-				fish.setPhotos(f[6]);
-//				f[6]- photos
+				if(f.length>6){
+				    fish.setPhotos(f[6]);
+				}
 				fishesDao.insert(fish);
 			}
 

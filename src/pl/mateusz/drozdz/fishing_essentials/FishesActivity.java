@@ -2,6 +2,7 @@ package pl.mateusz.drozdz.fishing_essentials;
 
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishesFragment_List;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishesFragment_List.ChangeFragment;
+import pl.mateusz.drozdz.fishing_essentials.fragments.FishesFragment_View;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -26,10 +27,10 @@ public class FishesActivity extends FragmentActivity implements ChangeFragment{
 	@Override
 	public void changeFragment() {
 		// TODO Auto-generated method stub
-//		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//		FishesFragment_List fishesFragment = new FishesFragment_List(); 
-//		ft.replace(R.id.fragmentContainerFishes, fishesFragment);
-//	    ft.commit();
+		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		FishesFragment_View fishesFragment = new FishesFragment_View(); 
+		ft.replace(R.id.fragmentContainerFishes, fishesFragment);
+	    ft.commit();
 	}
 
 }
