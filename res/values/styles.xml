@@ -15,14 +15,32 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="android:buttonStyle">@style/button</item>
+        <item name="android:buttonStyle">@style/layout</item>
         <!-- <item name="typeface">@</item> -->
     </style>
 
-    <style name="button">
+    <style name="ActivityThemeFull" parent="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+ 		<item name="android:noHistory">true</item>
+ 		<item name="android:buttonStyle">@style/button</item>
+ 		
+	</style>
+    
+    <style name="layout">
         <item name="android:background">@drawable/button_background</item>
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:padding">10dip</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:paddingRight">5dip</item>
+        <item name="android:shadowColor">#40a8ae</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+    
+        <style name="button">
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:paddingRight">5dip</item>
         <item name="android:shadowColor">#40a8ae</item>
         <item name="android:shadowDx">2</item>
         <item name="android:shadowDy">2</item>
@@ -30,9 +48,65 @@
     </style>
 
 
-<!--     <style name="buttonMyRecords" parent="button">
-        <item name="android:drawableRight">@drawable/records_s</item>
-        <item name="android:scaleType">fitCenter</item>
-    </style> -->
+  	<style name="imageViewRecords">     
+    <item name="android:layout_width">40dp</item>     
+    <item name="android:layout_height">40dp</item>     
+    <item name="android:src">@drawable/records_s</item> 
+	<item name="android:paddingBottom">2dp</item>
+    <item name="android:paddingTop">2dp</item> 
+	</style> 
 
+  	<style name="imageViewhook">     
+    <item name="android:layout_width">40dp</item>     
+    <item name="android:layout_height">40dp</item>     
+    <item name="android:src">@drawable/hook</item> 
+	<item name="android:paddingBottom">3dp</item>
+    <item name="android:paddingTop">3dp</item> 
+	</style> 
+  	
+  	<style name="imageViewNote">     
+    <item name="android:layout_width">40dp</item>     
+    <item name="android:layout_height">40dp</item>     
+    <item name="android:src">@drawable/note</item> 
+	<item name="android:paddingBottom">4dp</item>
+    <item name="android:paddingTop">4dp</item> 
+	</style> 
+	
+  	<style name="imageViewRegulation">     
+    <item name="android:layout_width">40dp</item>     
+    <item name="android:layout_height">40dp</item>     
+    <item name="android:src">@drawable/paragraph</item> 
+	<item name="android:paddingBottom">4dp</item>
+    <item name="android:paddingTop">4dp</item> 
+	</style> 
+	
+	<style name="imageViewWeather">     
+    <item name="android:layout_width">40dp</item>     
+    <item name="android:layout_height">40dp</item>     
+    <item name="android:src">@drawable/sun</item> 
+	<item name="android:paddingBottom">3dp</item>
+    <item name="android:paddingTop">3dp</item> 
+	</style> 
+  	
+    <style name="imageViewSettings">     
+    <item name="android:layout_width">40dp</item>     
+    <item name="android:layout_height">40dp</item>    
+    <item name="android:paddingBottom">2dp</item>
+    <item name="android:paddingTop">2dp</item>  
+    <item name="android:src">@drawable/settings</item> 
+	</style> 
+	
+    <style name="imageViewClose">     
+    <item name="android:layout_width">40dp</item>     
+    <item name="android:layout_height">40dp</item>    
+    <item name="android:paddingBottom">2dp</item>
+    <item name="android:paddingTop">2dp</item> 
+    <item name="android:src">@drawable/close</item> 
+	</style>
+	
+    <style name="CloseDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    
 </resources>
