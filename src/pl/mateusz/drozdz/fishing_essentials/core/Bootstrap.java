@@ -2,7 +2,6 @@ package pl.mateusz.drozdz.fishing_essentials.core;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,7 +10,6 @@ import pl.mateusz.drozdz.fishing_essentials.dao.DaoSession;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishes;
 import pl.mateusz.drozdz.fishing_essentials.dao.FishesDao;
 import android.content.Context;
-import android.util.Log;
 
 public class Bootstrap {
 

@@ -19,7 +19,24 @@
         <!-- <item name="typeface">@</item> -->
     </style>
 
+    <style name="ActivityThemeFull" parent="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+ 		<item name="android:noHistory">true</item>
+ 		<item name="android:buttonStyle">@style/button</item>
+ 		
+	</style>
+    
     <style name="layout">
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:paddingRight">5dip</item>
+        <item name="android:shadowColor">#40a8ae</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+    
+        <style name="button">
         <item name="android:background">@drawable/button_background</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:paddingLeft">5dip</item>
@@ -86,4 +103,10 @@
     <item name="android:paddingTop">2dp</item> 
     <item name="android:src">@drawable/close</item> 
 	</style>
+	
+    <style name="CloseDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    
 </resources>

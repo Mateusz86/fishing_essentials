@@ -1,30 +1,15 @@
 package pl.mateusz.drozdz.fishing_essentials;
 
-import java.io.File;
-import java.util.List;
 
+import pl.mateusz.drozdz.fishing_essantials.dialog.CloseDialog;
 import pl.mateusz.drozdz.fishing_essentials.core.Bootstrap;
-import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
-import pl.mateusz.drozdz.fishing_essentials.dao.Bait;
-import pl.mateusz.drozdz.fishing_essentials.dao.BaitDao;
-import pl.mateusz.drozdz.fishing_essentials.dao.DaoSession;
-import pl.mateusz.drozdz.fishing_essentials.dao.Fishes;
-import pl.mateusz.drozdz.fishing_essentials.dao.FishesDao;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.app.Activity;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -66,16 +51,18 @@ public class MainActivity extends Activity implements OnClickListener {
 		 */
 		
 		
-		Button regulations = (Button) findViewById(R.id.regulations);
+		RelativeLayout regulations = (RelativeLayout) findViewById(R.id.regulations);
 		regulations.setOnClickListener(this);
-		Button fishing = (Button) findViewById(R.id.fishing);
+		RelativeLayout fishing = (RelativeLayout) findViewById(R.id.fishing);
 		fishing.setOnClickListener(this);
-		Button weather = (Button) findViewById(R.id.weather);
+		RelativeLayout weather = (RelativeLayout) findViewById(R.id.weather);
 		weather.setOnClickListener(this); 
-		Button records = (Button) findViewById(R.id.mojeRekordyId);
+		RelativeLayout records = (RelativeLayout) findViewById(R.id.mojeRekordyId);
 		records.setOnClickListener(this);
-		Button fishes = (Button) findViewById(R.id.fishes);
+		RelativeLayout fishes = (RelativeLayout) findViewById(R.id.fishes);
 		fishes.setOnClickListener(this);
+		RelativeLayout close = (RelativeLayout) findViewById(R.id.closeId);
+		close.setOnClickListener(this);
 		
 	}
 
@@ -110,6 +97,12 @@ public class MainActivity extends Activity implements OnClickListener {
 						 FishesActivity.class);
 						 startActivity(intent);
 			break;
+		case R.id.closeId:
+			CloseDialog dialog = new CloseDialog(
+					MainActivity.this, "Czy na pewno chcesz zamknaæ aplikacjê?",MainActivity.this);
+			dialog.show();
+			
+	    break;	
 		}
 	}
 }

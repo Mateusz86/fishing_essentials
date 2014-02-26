@@ -1,20 +1,16 @@
 package pl.mateusz.drozdz.fishing_essentials.fragments;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishes;
 import pl.mateusz.drozdz.fishing_essentials.dao.FishesDao;
-import pl.mateusz.drozdz.fishing_essentials.fragments.FishesFragment_List.ChangeFragment;
-import pl.mateusz.drozdz.fishing_essentials.list_adapter.FishesListAdapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 
 public class FishesFragment_List extends Fragment {
