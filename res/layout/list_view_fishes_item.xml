@@ -4,15 +4,24 @@
     android:layout_height="wrap_content"
     android:minHeight="50dp"
     android:orientation="horizontal"
-    android:padding="5dip" >
- 
+    android:padding="5dip" 
+    android:background="#ffffff">
+    
+    <ImageView 
+        android:id="@+id/fish_item_photo"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:background="#ffffff"/>
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:layout_alignTop="@+id/fish_item_photo"
+        android:layout_toRightOf="@+id/fish_item_photo"
+        android:text="nazwa ryby"
         android:textStyle="bold"
         android:typeface="sans" />
-
  
 </RelativeLayout>

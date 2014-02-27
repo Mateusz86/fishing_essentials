@@ -23,7 +23,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		// load data from file
 		bootsrap = new Bootstrap(this);
-		//bootsrap.run();
+		bootsrap.run();
+		//bootsrap.initDevepoData();
 
 		/*
 		 *  Test correct loaded data
