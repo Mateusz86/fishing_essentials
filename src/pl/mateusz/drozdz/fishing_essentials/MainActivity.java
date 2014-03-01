@@ -14,13 +14,13 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		BaitDao baitDao = DataBase.getInstance(this).getDaoSession().getBaitDao();
+/*		BaitDao baitDao = DataBase.getInstance(this).getDaoSession().getBaitDao();
 		
 		Bait bait= new Bait();
 		bait.setName("Nazwa");
 		bait.setDescription("Opis");
 		baitDao.insert(bait);
-		Log.e("bait"," "+bait.getId());
+		Log.e("bait"," "+bait.getId());*/
 		
 		
 	}
