@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Date;
 import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -17,6 +18,8 @@ import pl.mateusz.drozdz.fishing_essentials.dao.Fishes;
 import pl.mateusz.drozdz.fishing_essentials.dao.FishesDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishing;
 import pl.mateusz.drozdz.fishing_essentials.dao.FishingDao;
+import pl.mateusz.drozdz.fishing_essentials.dao.Places;
+import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.factory.FishingFactory;
 import android.content.Context;
 
@@ -90,25 +93,63 @@ public class Bootstrap {
 		 * Generate fishings
 		 */
 		DaoSession daoSession = DataBase.getInstance(context).getDaoSession();
-		FishesDao fishesDao = daoSession.getFishesDao(); // atlas ryb
-		FishingDao fishingDao = daoSession.getFishingDao(); // moje po³owy
-		CaughtFishDao aughtFishDao = daoSession.getCaughtFishDao(); // z³apane ryby
 		
-		FishingFactory fishingFactory = new FishingFactory(context);
-		fishingFactory.setPlacesName("Wis³a");
-		fishingFactory.setPlacesDescription("Pod drzewem na zakrêcie");
-		fishingFactory.setWeather("£adnie");
-		Fishing fishing = fishingFactory.getFishing();
+		PlacesDao placesDao = daoSession.getPlacesDao();
+		placesDao.deleteAll();
+		Places places = null;
 		
-		fishingDao.insert(fishing);
+		places = new Places();
+		places.setName("Wis³a");
+		places.setDescription("Pod mostem");
+		places.setLatitude("50.052649");
+		places.setLongitude("19.998777");
+		places.setDate(new Date());
+		placesDao.insert(places);
+		
+		places = new Places();
+		places.setName("wis³a");
+		places.setDescription("Ko³o drogi");
+		places.setLatitude("51.052649");
+		places.setLongitude("19.998777");
+		places.setDate(new Date());
+		placesDao.insert(places);
+		
+		places = new Places();
+		places.setName("Wis³a");
+		places.setDescription("Pod wawelem");
+		places.setLatitude("50.052649");
+		places.setLongitude("19.098777");
+		places.setDate(new Date());
+		placesDao.insert(places);
+		
+		places = new Places();
+		places.setName("Przylasek Rusiecki");
+		places.setDescription("Staw nr 15");
+		places.setLatitude("50.054895");
+		places.setLongitude("20.156825");
+		places.setDate(new Date());
+		placesDao.insert(places);
+		
+		
+//		FishesDao fishesDao = daoSession.getFishesDao(); // atlas ryb
+//		FishingDao fishingDao = daoSession.getFishingDao(); // moje po³owy
+//		CaughtFishDao aughtFishDao = daoSession.getCaughtFishDao(); // z³apane ryby
+		
+//		FishingFactory fishingFactory = new FishingFactory(context);
+//		fishingFactory.setPlacesName("Wis³a");
+//		fishingFactory.setPlacesDescription("Pod drzewem na zakrêcie");
+//		fishingFactory.setWeather("£adnie");
+//		Fishing fishing = fishingFactory.getFishing();
+//		
+//		fishingDao.insert(fishing);
 		
 		
 		
 		// test
-		List<Fishing> fishingest = fishingDao.queryBuilder().list();
-		for (Fishing f : fishingest) {
-			System.out.println(f.getPlaces().getName()+" "+f.getPlaces().getDescription()+" "+f.getWeather());
-		}
+//		List<Fishing> fishingest = fishingDao.queryBuilder().list();
+//		for (Fishing f : fishingest) {
+//			System.out.println(f.getPlaces().getName()+" "+f.getPlaces().getDescription()+" "+f.getWeather());
+//		}
 		
 		
 	}
