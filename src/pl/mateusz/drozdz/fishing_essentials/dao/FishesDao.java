@@ -47,7 +47,7 @@ public class FishesDao extends AbstractDao<Fishes, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'FISHES' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
-                "'NAME' TEXT NOT NULL ," + // 1: name
+                "'NAME' TEXT NOT NULL UNIQUE ," + // 1: name
                 "'TYPE' TEXT," + // 2: type
                 "'DESCRIPTION' TEXT," + // 3: description
                 "'FOOT' TEXT," + // 4: foot

@@ -42,7 +42,7 @@ public class BaitDao extends AbstractDao<Bait, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'BAIT' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
-                "'NAME' TEXT NOT NULL ," + // 1: name
+                "'NAME' TEXT NOT NULL UNIQUE ," + // 1: name
                 "'DESCRIPTION' TEXT);"); // 2: description
     }
 

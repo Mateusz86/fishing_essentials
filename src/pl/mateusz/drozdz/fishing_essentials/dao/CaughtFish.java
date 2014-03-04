@@ -17,6 +17,7 @@ public class CaughtFish {
     private Long baitId;
     private Long groundBaitId;
     private Long methodsBaitId;
+    private java.util.Date date;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -47,7 +48,7 @@ public class CaughtFish {
         this.id = id;
     }
 
-    public CaughtFish(Long id, Integer fishLength, Double weight, Long fishingId, Long fishesId, Long baitId, Long groundBaitId, Long methodsBaitId) {
+    public CaughtFish(Long id, Integer fishLength, Double weight, Long fishingId, Long fishesId, Long baitId, Long groundBaitId, Long methodsBaitId, java.util.Date date) {
         this.id = id;
         this.fishLength = fishLength;
         this.weight = weight;
@@ -56,6 +57,7 @@ public class CaughtFish {
         this.baitId = baitId;
         this.groundBaitId = groundBaitId;
         this.methodsBaitId = methodsBaitId;
+        this.date = date;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -126,6 +128,14 @@ public class CaughtFish {
 
     public void setMethodsBaitId(Long methodsBaitId) {
         this.methodsBaitId = methodsBaitId;
+    }
+
+    public java.util.Date getDate() {
+        return date;
+    }
+
+    public void setDate(java.util.Date date) {
+        this.date = date;
     }
 
     /** To-one relationship, resolved on first access. */
