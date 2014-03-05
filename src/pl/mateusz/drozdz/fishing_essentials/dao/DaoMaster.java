@@ -83,13 +83,11 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(CaughtFishDao.class);
     }
     
-    @Override
-	public DaoSession newSession() {
+    public DaoSession newSession() {
         return new DaoSession(db, IdentityScopeType.Session, daoConfigMap);
     }
     
-    @Override
-	public DaoSession newSession(IdentityScopeType type) {
+    public DaoSession newSession(IdentityScopeType type) {
         return new DaoSession(db, type, daoConfigMap);
     }
     

@@ -109,4 +109,12 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
     
+     <style name="imageViewPlus">     
+    <item name="android:layout_width">40dp</item>     
+    <item name="android:layout_height">40dp</item>     
+    <item name="android:src">@drawable/plus</item> 
+	<item name="android:paddingBottom">2dp</item>
+    <item name="android:paddingTop">2dp</item> 
+	</style> 
+    
 </resources>

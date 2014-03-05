@@ -24,6 +24,14 @@ import android.widget.TextView;
 
 public class FishesFragment_View extends Fragment {
 
+	
+//	 jakby dalej gdy beda istniec zdiecia sie nie ladowaly to trzeba lisntnera ktory updotowal liste
+	public interface CallFragmentListClickedBack {
+		void refreshFishesFragmentList();
+	}
+	
+	public CallFragmentListClickedBack callFragmentListClickedBackListener;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -99,6 +107,9 @@ public class FishesFragment_View extends Fragment {
 			            Log.e("back NO", "keyCode: " + keyCode);
 			            if( keyCode == KeyEvent.KEYCODE_BACK ) {
 		                getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		                //jak widoki nie beda chcialy sie odswiezac jesli beda zdiecia istniej w bazie to odkomentowac	
+		        //        if(callFragmentListClickedBackListener!=null)
+		        //        callFragmentListClickedBackListener.refreshFishesFragmentList();
 		                return true;
 		            } else {
 		                return false;
@@ -108,6 +119,9 @@ public class FishesFragment_View extends Fragment {
 		}
 		return view;
 	}
-
+	
+	public void setCallFragmentListClickedBackListener(CallFragmentListClickedBack l) {
+		this.callFragmentListClickedBackListener=l;
+	}
 	
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 
 public class FishingFragment_List extends Fragment {
 	
@@ -26,6 +27,9 @@ public class FishingFragment_List extends Fragment {
 				false);
 		if (view != null) {
 			Button show_form = (Button) view.findViewById(R.id.show_form);
+			ListView myExpenditionList = (ListView) view.findViewById(R.id.mojeWyprawyList);
+			
+			
 			show_form.setOnClickListener(new View.OnClickListener() {
 
 				@Override

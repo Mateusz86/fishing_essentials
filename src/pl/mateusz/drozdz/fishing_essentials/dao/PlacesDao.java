@@ -45,7 +45,7 @@ public class PlacesDao extends AbstractDao<Places, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'PLACES' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
-                "'NAME' TEXT," + // 1: name
+                "'NAME' TEXT UNIQUE ," + // 1: name
                 "'DESCRIPTION' TEXT," + // 2: description
                 "'LATITUDE' TEXT," + // 3: latitude
                 "'LONGITUDE ' TEXT," + // 4: longitude 
