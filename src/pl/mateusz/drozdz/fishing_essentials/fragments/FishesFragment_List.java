@@ -19,10 +19,6 @@ import android.widget.ListView;
 
 public class FishesFragment_List extends Fragment {
 
-	public interface ChangeFragment {
-
-		public void changeFragment();
-	}
 
 	public interface OnFishesSelectedListener {
 		public void onFishSelected(Long pk);
@@ -31,7 +27,6 @@ public class FishesFragment_List extends Fragment {
 	private Long pk;
 
 	private OnFishesSelectedListener callback;
-	private ChangeFragment changeFragmentListener;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,7 +50,6 @@ public class FishesFragment_List extends Fragment {
 						int arg2, long arg3) {
 					System.out.println(arg2 + " " + arg3);
 					callback.onFishSelected(fishes.get(arg2).getId());
-					//changeFragmentListener.changeFragment();
 				}
 			});
 
@@ -73,10 +67,6 @@ public class FishesFragment_List extends Fragment {
 			throw new ClassCastException(activity.toString()
 					+ " must implement OnFishesSelectedListener");
 		}
-	}
-
-	public void setChangeFragmentListener(ChangeFragment changeFragmentListener) {
-		this.changeFragmentListener = changeFragmentListener;
 	}
 
 }
