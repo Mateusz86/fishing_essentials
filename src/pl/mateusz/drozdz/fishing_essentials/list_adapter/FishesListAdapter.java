@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
+import pl.mateusz.drozdz.fishing_essentials.core.Property;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishes;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -66,7 +67,7 @@ public class FishesListAdapter extends BaseAdapter {
 			String[] f = listData.get(position).getPhotos().split("#");
 			if (f.length >= 1) {
 				if (!f[0].equals("empty")) {
-					ims = this.context.getAssets().open("fishes/" + f[0]);
+					ims = this.context.getAssets().open(Property.FISH_PHOTO_DIR + f[0]);
 					Drawable d = Drawable.createFromStream(ims, null);
 					holder.handleImageView.setImageDrawable(d);
 					f[0]=null;
@@ -74,7 +75,6 @@ public class FishesListAdapter extends BaseAdapter {
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -199,6 +199,7 @@ public class Bootstrap {
 		ryba1.setGroundBait(groundBait);
 		ryba1.setMethods(methods);
 		ryba1.setDate(new Date());
+		ryba1.setPhotos("pobrane.jpg");
 		caughtFishDao.insert(ryba1);
 		
 		CaughtFish ryba2 = new CaughtFish();
@@ -209,6 +210,7 @@ public class Bootstrap {
 		ryba2.setBait(bait1);
 		ryba2.setMethods(methods1);
 		ryba2.setDate(new Date());
+		ryba2.setPhotos("images.jpg");
 		caughtFishDao.insert(ryba2);
 		
 		CaughtFish ryba3 = new CaughtFish();
@@ -218,6 +220,7 @@ public class Bootstrap {
 		ryba3.setWeight(1.15);
 		ryba3.setBait(bait);
 		ryba3.setDate(new Date());
+		ryba3.setPhotos("pobrane.jpg");
 		caughtFishDao.insert(ryba3);
 		
 		ryba3 = new CaughtFish();
@@ -227,6 +230,7 @@ public class Bootstrap {
 		ryba3.setWeight(1.35);
 		ryba3.setBait(bait);
 		ryba3.setDate(new Date());
+		ryba3.setPhotos("pobrane.jpg");
 		caughtFishDao.insert(ryba3);
 		
 		ryba3 = new CaughtFish();
@@ -236,6 +240,7 @@ public class Bootstrap {
 		ryba3.setWeight(1.01);
 		ryba3.setBait(bait);
 		ryba3.setDate(new Date());
+		ryba3.setPhotos("pobrane.jpg");
 		caughtFishDao.insert(ryba3);
 		
 

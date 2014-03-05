@@ -35,6 +35,7 @@ public class CaughtFishDao extends AbstractDao<CaughtFish, Long> {
         public final static Property GroundBaitId = new Property(6, Long.class, "groundBaitId", false, "GROUND_BAIT_ID");
         public final static Property MethodsBaitId = new Property(7, Long.class, "methodsBaitId", false, "METHODS_BAIT_ID");
         public final static Property Date = new Property(8, java.util.Date.class, "date", false, "DATE");
+        public final static Property Photos = new Property(9, String.class, "photos", false, "PHOTOS");
     };
 
     private DaoSession daoSession;
@@ -61,7 +62,8 @@ public class CaughtFishDao extends AbstractDao<CaughtFish, Long> {
                 "'BAIT_ID' INTEGER," + // 5: baitId
                 "'GROUND_BAIT_ID' INTEGER," + // 6: groundBaitId
                 "'METHODS_BAIT_ID' INTEGER," + // 7: methodsBaitId
-                "'DATE' INTEGER);"); // 8: date
+                "'DATE' INTEGER," + // 8: date
+                "'PHOTOS' TEXT);"); // 9: photos
     }
 
     /** Drops the underlying database table. */
@@ -119,6 +121,11 @@ public class CaughtFishDao extends AbstractDao<CaughtFish, Long> {
         if (date != null) {
             stmt.bindLong(9, date.getTime());
         }
+ 
+        String photos = entity.getPhotos();
+        if (photos != null) {
+            stmt.bindString(10, photos);
+        }
     }
 
     @Override
@@ -145,7 +152,8 @@ public class CaughtFishDao extends AbstractDao<CaughtFish, Long> {
             cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5), // baitId
             cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6), // groundBaitId
             cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7), // methodsBaitId
-            cursor.isNull(offset + 8) ? null : new java.util.Date(cursor.getLong(offset + 8)) // date
+            cursor.isNull(offset + 8) ? null : new java.util.Date(cursor.getLong(offset + 8)), // date
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // photos
         );
         return entity;
     }
@@ -162,6 +170,7 @@ public class CaughtFishDao extends AbstractDao<CaughtFish, Long> {
         entity.setGroundBaitId(cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6));
         entity.setMethodsBaitId(cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7));
         entity.setDate(cursor.isNull(offset + 8) ? null : new java.util.Date(cursor.getLong(offset + 8)));
+        entity.setPhotos(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
      }
     
     /** @inheritdoc */
