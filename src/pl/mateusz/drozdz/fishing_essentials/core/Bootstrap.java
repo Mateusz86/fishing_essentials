@@ -226,7 +226,7 @@ public class Bootstrap {
 		ryba3 = new CaughtFish();
 		ryba3.setFishes(fishes3);
 		ryba3.setFishing(fishing1);
-		ryba3.setFishLength(36);
+		ryba3.setFishLength(50);
 		ryba3.setWeight(1.35);
 		ryba3.setBait(bait);
 		ryba3.setDate(new Date());
@@ -236,7 +236,7 @@ public class Bootstrap {
 		ryba3 = new CaughtFish();
 		ryba3.setFishes(fishes3);
 		ryba3.setFishing(fishing1);
-		ryba3.setFishLength(34);
+		ryba3.setFishLength(19);
 		ryba3.setWeight(1.01);
 		ryba3.setBait(bait);
 		ryba3.setDate(new Date());

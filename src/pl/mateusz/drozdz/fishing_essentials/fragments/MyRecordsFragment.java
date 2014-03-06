@@ -4,6 +4,7 @@ import java.util.List;
 
 import de.greenrobot.dao.query.Query;
 import de.greenrobot.dao.query.QueryBuilder;
+import de.greenrobot.dao.query.WhereCondition;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.core.Property;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 
 public class MyRecordsFragment extends Fragment {
 	List<CaughtFish> coughtFishes;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -31,35 +33,50 @@ public class MyRecordsFragment extends Fragment {
 			DaoSession daoSession = DataBase.getInstance(getActivity())
 					.getDaoSession();
 			CaughtFishDao caughtFishDao = daoSession.getCaughtFishDao();
-			
-			// wszystkie ryby
-//			Query qu = caughtFishDao.queryBuilder().orderAsc(Properties.Date)
-//					.build();
-//			 = qu.list();
-//			System.out.println("all");
-//			for (CaughtFish caughtFish : coughtFishes) {
-//				System.out.println(caughtFish.getFishes().getName() + " "
-//						+ caughtFish.getFishLength() + "cm ");
-//			}
 
-			
+			// wszystkie ryby
+			Query qu = caughtFishDao.queryBuilder().orderAsc(Properties.Date)
+					.build();
+			coughtFishes = qu.list();
+			System.out.println("all");
+			for (CaughtFish caughtFish : coughtFishes) {
+				System.out.println(caughtFish.getFishes().getName() + " "
+						+ caughtFish.getFishLength() + "cm ");
+			}
+
 			// rekordy jeszce hujowo dzia³aja ale narazie moze byæ
 			try {
 
-				String sql = " GROUP BY T." + Properties.FishesId.columnName+" ORDER BY T." + Properties.FishLength.columnName
-						+ ", T." + Properties.Date.columnName
-						+ " ASC ";
+				String sql = " GROUP BY T." + Properties.FishesId.columnName
+						+ " ORDER BY T." + Properties.FishLength.columnName
+						+ ", T." + Properties.Date.columnName + " ASC ";
 
-      			coughtFishes = caughtFishDao.queryRawCreate(sql).list();
-      			
-      			ListView myRecordsListView = (ListView) view.findViewById(R.id.my_records_list_view);
-      			myRecordsListView.setAdapter(new MyFishesRecordAdapter(getActivity(), coughtFishes));
-			
+				coughtFishes = caughtFishDao.queryRawCreate(sql).list();
+				// " T.ID IN ( SELECT id FROM CAUGHT_FISH GROUP BY FISHES_ID )"
+//				coughtFishes = caughtFishDao
+//						.queryRawCreate(
+//								"WHERE  _ID IN ( SELECT _ID, MAX(FISH_LENGTH) AS FISH_LENGTH FROM CAUGHT_FISH GROUP BY FISHES_ID )")
+//						.list();
+				coughtFishes = caughtFishDao
+						.queryRawCreate(
+								"INNER JOIN ( SELECT _ID AS id, MAX(FISH_LENGTH) AS FISH_LENGTH  FROM CAUGHT_FISH GROUP BY FISHES_ID ) RECORDS ON RECORDS.id = _ID")
+								.list();
+//				coughtFishes = caughtFishDao
+//						.queryRawCreate(
+//								" GROUP BY FISHES_ID HAVING  MAX(FISH_LENGTH)")
+//								.list();
+
 				System.out.println("moje rekordy");
 				for (CaughtFish caughtFish : coughtFishes) {
 					System.out.println(caughtFish.getFishes().getName() + " "
 							+ caughtFish.getFishLength() + "cm ");
 				}
+
+				ListView myRecordsListView = (ListView) view
+						.findViewById(R.id.my_records_list_view);
+				myRecordsListView.setAdapter(new MyFishesRecordAdapter(
+						getActivity(), coughtFishes));
+
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 				e.printStackTrace();
@@ -68,5 +85,4 @@ public class MyRecordsFragment extends Fragment {
 		}
 		return view;
 	}
-
 }
