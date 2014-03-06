@@ -3,18 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:gravity="center_vertical"
-    android:background="#FF0000"
+    android:background="#FFFFFF"
+    android:padding="5dip" 
     android:orientation="vertical" >
     <TextView 
         android:layout_marginLeft="10dp"
-        android:id="@+id/name"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name"
         />
     <TextView 
         android:layout_marginLeft="10dp"
-        android:id="@+id/date"
+        android:id="@+id/records_list_data_and_places"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="date"
