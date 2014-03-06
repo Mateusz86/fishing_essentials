@@ -83,16 +83,12 @@ public class MyFishesRecordAdapter extends BaseAdapter {
 			plcesName = "";
 		}
 
-		try{
 		System.out.println(holder.dataAndPlaces);
 		
 		holder.dataAndPlaces.setText(sf.format(listData.get(position).getDate())+" "+plcesName);
 
 		holder.lengthAndWeight.setText(listData.get(position).getFishLength()
 				+ "cm " + listData.get(position).getWeight() + "kg");
-		}catch(Exception e){
-			// Pawe³ tu jest coœ zjebane holder.dataAndPlaces i holder.lengthAndWeight to null :/
-		}
 		
 		InputStream ims;
 		try {

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical" >
 
     <RelativeLayout 
@@ -37,13 +38,7 @@
                 android:typeface="sans" />
             
               <TextView
-                android:id="@+id/my_records_list_data_and_places"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="nazwa ryby"/>
-              
-               <TextView
-                android:id="@+id/my_records_list_length_and_weight"
+                android:id="@+id/records_list_data_and_places"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="nazwa ryby"/>
