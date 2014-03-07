@@ -54,7 +54,7 @@ public class MyFishesRecordAdapter extends BaseAdapter {
 		ViewHolder holder;
 		if (convertView == null) {
 			convertView = layoutInflater.inflate(
-					R.layout.list_view_fishes_item, null);
+					R.layout.list_view_records_item, null);
 			holder = new ViewHolder();
 			holder.headlineView = (TextView) convertView
 					.findViewById(R.id.title);

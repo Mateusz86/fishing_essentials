@@ -29,7 +29,24 @@
         android:text="nazwa ryby"
         android:textStyle="bold"
         android:typeface="sans" />
-
+    
+    
+        <TextView
+        android:id="@+id/my_records_list_data_and_places"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="data"
+        android:textStyle="bold"
+        android:typeface="sans" />
+        
+        <TextView
+        android:id="@+id/my_records_list_length_and_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rozmiar"
+        android:textStyle="bold"
+        android:typeface="sans" />
+        
     </LinearLayout>
 
  
