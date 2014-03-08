@@ -125,7 +125,7 @@ public class Bootstrap {
 		places.setName("Wis³a2");
 		places.setDescription("Pod wawelem");
 		places.setLatitude("50.052649");
-		places.setLongitude("19.098777");
+		places.setLongitude("18.098777");
 		places.setDate(new Date());
 		placesDao.insert(places);
 		
