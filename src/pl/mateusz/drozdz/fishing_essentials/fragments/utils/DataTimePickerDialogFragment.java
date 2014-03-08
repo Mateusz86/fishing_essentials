@@ -42,7 +42,7 @@ public class DataTimePickerDialogFragment extends DialogFragment  {
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	     super.onCreate(savedInstanceState); 
-		 setStyle(DialogFragment.STYLE_NO_TITLE, 0);
+		 setStyle(DialogFragment.STYLE_NO_TITLE,0);
 	    }
 	 
 	 @Override
