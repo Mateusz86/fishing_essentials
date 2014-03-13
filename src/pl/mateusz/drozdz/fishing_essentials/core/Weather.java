@@ -10,6 +10,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class Weather extends AsyncTask<String, Void, String> {
@@ -37,12 +39,13 @@ public class Weather extends AsyncTask<String, Void, String> {
 	private String latitude, longitude;
 	private String urls;
 	private Location location;
+	private WeatherInterface fragment;
 
-	public Weather(Context context, Activity activity,Location location) {
+	public Weather(WeatherInterface fragment, Location location) {
 		super();
-		this.activity = activity;
+		this.activity = fragment.getActivity();
 
-		this.context = context;
+		this.context = fragment.getContext();
 		if (location == null)
 			this.location = new LocationHelper(activity).getLocation();
 		else
@@ -51,20 +54,16 @@ public class Weather extends AsyncTask<String, Void, String> {
 		longitude = String.valueOf(this.location.getLongitude());
 		urls = Property.WEATHER_API_URL.replace("{0}", latitude).replace("{1}",
 				longitude);
-	}
-	
-	
 
+		this.fragment = fragment;
+	}
 
 	public void getWeather() {
-		
-		
+
 		// String url = Property.WEATHER_API_URL.replace("{0}",
 		// latitude).replace(
 		// "{1}", longitude);
-		
-		
-		
+
 		connector = new RestConnector();
 		connector.execute(urls);
 		try {
@@ -280,12 +279,28 @@ public class Weather extends AsyncTask<String, Void, String> {
 	}
 
 	@Override
+	protected void onPreExecute() {
+		super.onPreExecute();
+        fragment.getProgressBar().setVisibility(View.VISIBLE);
+	}
+
+	@Override
 	protected void onPostExecute(String result) {
 		if (result == null && context != null) {
 			Toast.makeText(context, "sprawdz polaczenie internetowe",
 					Toast.LENGTH_SHORT).show();
+			
+		} else {
+			super.onPostExecute(result);
+			getWeather();
+			EditText w = fragment.getWeaterContener();
+			String pogoda = (new StringBuilder("Temperatura: " + getTempD()
+					+ "\nCiœnieie: " + getPressureD() + "\nWiatr: "
+					+ getWindDegD() + " " + getWindSpeedD() + "\nWilgotnoœæ: "
+					+ getHumidityD() + "\n" + getDescription())).toString();
+			w.setText(pogoda);
 		}
-		super.onPostExecute(result);
+		 fragment.getProgressBar().setVisibility(View.GONE);
 	}
 
 	@Override

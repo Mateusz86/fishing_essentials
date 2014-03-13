@@ -7,18 +7,24 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import de.greenrobot.dao.query.WhereCondition;
+import pl.mateusz.drozdz.fishing_essentials.FishingActivity;
+import pl.mateusz.drozdz.fishing_essentials.MainActivity;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.core.LocationHelper;
 import pl.mateusz.drozdz.fishing_essentials.core.Property;
 import pl.mateusz.drozdz.fishing_essentials.core.Weather;
+import pl.mateusz.drozdz.fishing_essentials.core.WeatherInterface;
 import pl.mateusz.drozdz.fishing_essentials.dao.DaoSession;
+import pl.mateusz.drozdz.fishing_essentials.dao.Fishing;
 import pl.mateusz.drozdz.fishing_essentials.dao.Places;
 import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao.Properties;
 import pl.mateusz.drozdz.fishing_essentials.fragments.utils.DataTimePickerDialogFragment;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -35,24 +41,28 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class FishingFragment_Form extends Fragment implements
-		OnItemClickListener {
+		OnItemClickListener, WeatherInterface {
+	
+	private View view;
 
 	static final int DATE_PICKER_ID = 1111;
 	
 	private Weather weather;
 
 	private EditText latitude, longitude, description, weatherText;
-	private Button date;
+	private Button date,form_submit;
 	private ArrayAdapter<String> adapter;
 	private String[] existing_places_name;
 	private AutoCompleteTextView places_name;
 	private DaoSession daoSession;
 
 	private Long place_id = null;
+	
 
 	private int year;
 	private int month;
@@ -62,7 +72,7 @@ public class FishingFragment_Form extends Fragment implements
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View view = inflater.inflate(R.layout.fragment_fishing_form, container,
+		view = inflater.inflate(R.layout.fragment_fishing_form, container,
 				false);
 		if (view != null) {
 			
@@ -82,15 +92,17 @@ public class FishingFragment_Form extends Fragment implements
 					.findViewById(R.id.fishing_places_description);
 			weatherText = (EditText) view.findViewById(R.id.fishing_weather);
 			date = (Button) view.findViewById(R.id.fishing_date);
+			form_submit = (Button) view.findViewById(R.id.show_form_submit);
 			
 			
-			if(place_id== null)
+			if(place_id== null){
 				setNewPlace();
+			}
 
 			/*
 			 * prepare Autocomplete
 			 */
-			DaoSession daoSession = DataBase.getInstance(getActivity())
+			final DaoSession daoSession = DataBase.getInstance(getActivity())
 					.getDaoSession();
 			PlacesDao placesDao = daoSession.getPlacesDao();
 			List<Places> placesList = placesDao.queryBuilder().list();
@@ -109,6 +121,13 @@ public class FishingFragment_Form extends Fragment implements
 			places_name.setAdapter(adapter);
 
 			places_name.setOnItemClickListener(this);
+			places_name.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					place_id= null;
+				}
+			});
 			
 			
 
@@ -132,6 +151,38 @@ public class FishingFragment_Form extends Fragment implements
 							getFragmentManager(), "ss");
 				}
 			});
+			
+			
+			
+			form_submit.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Places place;
+					if(place_id == null){
+						place = new Places();
+						place.setName(places_name.getText().toString());
+						place.setDescription(description.toString());
+						place.setLatitude(latitude.toString());
+						place.setLongitude(longitude.toString());
+						place.setDate(new Date());
+						PlacesDao pd = daoSession.getPlacesDao();
+						pd.insert(place);
+						
+					}else{
+						place = daoSession.getPlacesDao().load(place_id);
+					}
+					Fishing fishing = new Fishing();
+					fishing.setPlaces(place);
+					fishing.setWeather(weather.toString());
+					fishing.setDate(new Date());
+					daoSession.getFishingDao().insert(fishing);
+					
+					Intent intent= new Intent(getActivity(),
+							 FishingActivity.class);
+							 startActivity(intent);	
+				}
+			}); 
 
 		}
 
@@ -147,15 +198,15 @@ public class FishingFragment_Form extends Fragment implements
 	}
 	
 	private void setWeather(Location location){
-		weather = new Weather(getActivity(), getActivity(),location);
+		weather = new Weather(this,location);
 		weather.execute();
-		weather.getWeather();
-		String pogoda = (new StringBuilder("Temperatura: " + weather.getTempD()
-				+ "\nCiœnieie: " + weather.getPressureD() + "\nWiatr: "
-				+ weather.getWindDegD() + " " + weather.getWindSpeedD()
-				+ "\nWilgotnoœæ: " + weather.getHumidityD() + "\n"
-				+ weather.getDescription())).toString();
-		weatherText.setText(pogoda);
+//		weather.getWeather();
+//		String pogoda = (new StringBuilder("Temperatura: " + weather.getTempD()
+//				+ "\nCiœnieie: " + weather.getPressureD() + "\nWiatr: "
+//				+ weather.getWindDegD() + " " + weather.getWindSpeedD()
+//				+ "\nWilgotnoœæ: " + weather.getHumidityD() + "\n"
+//				+ weather.getDescription())).toString();
+//		weatherText.setText(pogoda);
 
 	}
 
@@ -185,5 +236,30 @@ public class FishingFragment_Form extends Fragment implements
 				.show();
 
 	}
+
+	@Override
+	public EditText getWeaterContener() {
+		return (EditText) (this.weatherText == null ?  view.findViewById(R.id.fishing_weather): this.weatherText);
+	}
+
+	@Override
+	public Context getContext() {
+		return getActivity();
+	}
+
+	@Override
+	public int getWeatherType() {
+		return 0;
+	}
+
+	@Override
+	public ProgressBar getProgressBar() {
+		return (ProgressBar) view.findViewById(R.id.progressBar);
+	}
+	
+	
+	
+	
+
 
 }
