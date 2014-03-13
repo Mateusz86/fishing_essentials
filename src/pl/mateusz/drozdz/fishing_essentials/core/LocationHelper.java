@@ -30,9 +30,9 @@ public class LocationHelper implements LocationListener{
 		
 		
 		// TODO  - cos tu jest hujowo wiec ustawiam dla debuug domyœlnie
-		location = new Location("dummyprovider");
-		location.setLatitude(50.054315);
-		location.setLongitude(20.001876);
+//		location = new Location("dummyprovider");
+//		location.setLatitude(50.054315);
+//		location.setLongitude(20.001876);
 		
 		if (location != null) {
 			System.out.println("Provider " + provider + " has been selected.");
