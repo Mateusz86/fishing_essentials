@@ -12,6 +12,8 @@ import android.support.v4.app.FragmentTransaction;
 
 public class FishingActivity extends FragmentActivity  implements ChangeFragment,FishingFragment_Form.ChangeFragmenOnFragmentMap, OnExpedytionSelected {
 
+	public static final String ARG_PK = "arg_pk";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,6 +43,12 @@ public class FishingActivity extends FragmentActivity  implements ChangeFragment
 		System.out.println("Expedytion "+id);
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		OneExpedytionFragment fragment = new OneExpedytionFragment();
+
+		Bundle args = new Bundle();
+        args.putLong(FishesActivity.ARG_PK,id);
+        
+        fragment.setArguments(args);
+		
 		ft.replace(R.id.fragmentContainerFishing, fragment);
 		ft.addToBackStack(null);
 		ft.commit();
