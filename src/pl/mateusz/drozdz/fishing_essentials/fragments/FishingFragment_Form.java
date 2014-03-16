@@ -35,6 +35,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Adapter;
@@ -54,6 +55,16 @@ import android.widget.Toast;
 public class FishingFragment_Form extends Fragment implements
 		OnItemClickListener, WeatherInterface, GpsCallbackEvent {
 
+	ChangeFragmenOnFragmentMap changeFragmentOnFragmentMap;
+	
+	public interface ChangeFragmenOnFragmentMap {
+	  void changeFragmentOnFragmentMap();	
+	}
+	public void setChangeFragmentOnFragmentMap(ChangeFragmenOnFragmentMap listner) {
+		 this.changeFragmentOnFragmentMap=listner;
+	 }
+	
+	
 	private View view;
 
 	static final int DATE_PICKER_ID = 01;
@@ -203,6 +214,16 @@ public class FishingFragment_Form extends Fragment implements
 			gpsCalbackEvent();
 		}
 		setNewPlace();
+		
+		ImageButton mapButton = (ImageButton) view.findViewById(R.id.fishing_form_map_on);
+		mapButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				changeFragmentOnFragmentMap.changeFragmentOnFragmentMap();
+			}
+		});
+		
 	}
 
 	@Override

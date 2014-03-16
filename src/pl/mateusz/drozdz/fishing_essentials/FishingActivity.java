@@ -1,16 +1,21 @@
 package pl.mateusz.drozdz.fishing_essentials;
 
 
+import com.google.android.gms.maps.MapFragment;
+
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_Form;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_List;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_List.ChangeFragment;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_List.OnExpedytionSelected;
 import pl.mateusz.drozdz.fishing_essentials.fragments.OneExpedytionFragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-public class FishingActivity extends FragmentActivity implements ChangeFragment, OnExpedytionSelected {
+public class FishingActivity extends FragmentActivity  implements ChangeFragment,FishingFragment_Form.ChangeFragmenOnFragmentMap, OnExpedytionSelected {
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,7 +33,8 @@ public class FishingActivity extends FragmentActivity implements ChangeFragment,
 	@Override
 	public void changeFragment() {
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-	    FishingFragment_Form fishingFragment = new FishingFragment_Form();    	 
+	    FishingFragment_Form fishingFragment = new FishingFragment_Form(); 
+	    fishingFragment.setChangeFragmentOnFragmentMap(this);
 	    ft.replace(R.id.fragmentContainerFishing, fishingFragment);
 	    ft.addToBackStack(null);
 	    ft.commit();
@@ -44,5 +50,14 @@ public class FishingActivity extends FragmentActivity implements ChangeFragment,
 		ft.commit();
 	}
 	
-	
+
+	public void changeFragmentOnFragmentMap() {
+		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		ft.replace(R.id.fragmentContainerFishing, new pl.mateusz.drozdz.fishing_essentials.fragments.MapFragment());
+	    ft.addToBackStack(null);
+		ft.commit();
+
+
+	}
+
 }
