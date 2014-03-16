@@ -32,7 +32,7 @@
                 android:layout_width="1dp"
                 android:layout_height="45dp"
                 android:layout_marginRight="7dp"
-                android:layout_toRightOf="@+id/rapr"
+                android:layout_toRightOf="@id/regulations_rapr"
                 android:background="#40a8ae" />
 
             <ImageView
@@ -59,7 +59,7 @@
                 android:layout_width="1dp"
                 android:layout_height="45dp"
                 android:layout_marginRight="7dp"
-                android:layout_toRightOf="@+id/rapr"
+                android:layout_toRightOf="@id/regulations_uor"
                 android:background="#40a8ae" />
 
             <ImageView
@@ -86,7 +86,7 @@
                 android:layout_width="1dp"
                 android:layout_height="45dp"
                 android:layout_marginRight="7dp"
-                android:layout_toRightOf="@+id/rapr"
+                android:layout_toRightOf="@id/regulations_pw"
                 android:background="#40a8ae" />
 
             <ImageView
@@ -113,7 +113,7 @@
                 android:layout_width="1dp"
                 android:layout_height="45dp"
                 android:layout_marginRight="7dp"
-                android:layout_toRightOf="@+id/rapr"
+                android:layout_toRightOf="@id/regulations_rapr_sea"
                 android:background="#40a8ae" />
 
             <ImageView
