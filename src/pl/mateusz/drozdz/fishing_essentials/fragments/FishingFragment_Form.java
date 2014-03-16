@@ -20,12 +20,17 @@ import pl.mateusz.drozdz.fishing_essentials.dao.Fishing;
 import pl.mateusz.drozdz.fishing_essentials.dao.Places;
 import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao.Properties;
+import pl.mateusz.drozdz.fishing_essentials.dao.utils.GpsCallbackEvent;
+import pl.mateusz.drozdz.fishing_essentials.dao.utils.GpsSwitcher;
 import pl.mateusz.drozdz.fishing_essentials.fragments.utils.DataTimePickerDialogFragment;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -41,28 +46,31 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class FishingFragment_Form extends Fragment implements
-		OnItemClickListener, WeatherInterface {
-	
+		OnItemClickListener, WeatherInterface, GpsCallbackEvent {
+
 	private View view;
 
-	static final int DATE_PICKER_ID = 1111;
-	
+	static final int DATE_PICKER_ID = 01;
+	static final int TIME_PICKER_ID = 02;
+
 	private Weather weather;
 
 	private EditText latitude, longitude, description, weatherText;
-	private Button date,form_submit;
+	private Button date, form_submit;
 	private ArrayAdapter<String> adapter;
 	private String[] existing_places_name;
 	private AutoCompleteTextView places_name;
 	private DaoSession daoSession;
 
 	private Long place_id = null;
-	
+
+	private LocationHelper locationHelper;
 
 	private int year;
 	private int month;
@@ -75,9 +83,8 @@ public class FishingFragment_Form extends Fragment implements
 		view = inflater.inflate(R.layout.fragment_fishing_form, container,
 				false);
 		if (view != null) {
-			
-			
-//			weather.execute();
+
+			locationHelper = new LocationHelper(getActivity());
 
 			/*
 			 * prepare
@@ -93,11 +100,6 @@ public class FishingFragment_Form extends Fragment implements
 			weatherText = (EditText) view.findViewById(R.id.fishing_weather);
 			date = (Button) view.findViewById(R.id.fishing_date);
 			form_submit = (Button) view.findViewById(R.id.show_form_submit);
-			
-			
-			if(place_id== null){
-				setNewPlace();
-			}
 
 			/*
 			 * prepare Autocomplete
@@ -122,14 +124,12 @@ public class FishingFragment_Form extends Fragment implements
 
 			places_name.setOnItemClickListener(this);
 			places_name.setOnClickListener(new View.OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
-					place_id= null;
+					place_id = null;
 				}
 			});
-			
-			
 
 			/*
 			 * prepare Data Time picker
@@ -140,7 +140,8 @@ public class FishingFragment_Form extends Fragment implements
 			day = c.get(Calendar.DAY_OF_MONTH);
 
 			Date d = new Date();
-			date.setText(Property.DATE_FORMAT.format(d));
+			date.setText(day+"-"+month+"-"+year);
+//			date.setText(Property.DATE_FORMAT.format(d));
 
 			date.setOnClickListener(new View.OnClickListener() {
 
@@ -151,15 +152,16 @@ public class FishingFragment_Form extends Fragment implements
 							getFragmentManager(), "ss");
 				}
 			});
-			
-			
-			
+
+			/*
+			 * submit form
+			 */
 			form_submit.setOnClickListener(new View.OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
 					Places place;
-					if(place_id == null){
+					if (place_id == null) {
 						place = new Places();
 						place.setName(places_name.getText().toString());
 						place.setDescription(description.toString());
@@ -168,8 +170,8 @@ public class FishingFragment_Form extends Fragment implements
 						place.setDate(new Date());
 						PlacesDao pd = daoSession.getPlacesDao();
 						pd.insert(place);
-						
-					}else{
+
+					} else {
 						place = daoSession.getPlacesDao().load(place_id);
 					}
 					Fishing fishing = new Fishing();
@@ -177,37 +179,52 @@ public class FishingFragment_Form extends Fragment implements
 					fishing.setWeather(weather.toString());
 					fishing.setDate(new Date());
 					daoSession.getFishingDao().insert(fishing);
-					
-					Intent intent= new Intent(getActivity(),
-							 FishingActivity.class);
-							 startActivity(intent);	
+
+					Intent intent = new Intent(getActivity(),
+							FishingActivity.class);
+					startActivity(intent);
 				}
-			}); 
+			});
 
 		}
 
 		return view;
 	}
 
-	private void setNewPlace() {
-		Location location = new LocationHelper(getActivity()).getLocation();
-		latitude.setText(String.valueOf(location.getLatitude()));
-		longitude.setText(String.valueOf(location.getLongitude()));
-		
-		setWeather(location);
+	@Override
+	public void onResume() {
+		super.onResume();
+		System.out.println("restum");
+		if (place_id == null) {
+			ImageButton gps_swicher = (ImageButton) view
+					.findViewById(R.id.fishing_form_gps_on);
+			gps_swicher.setOnClickListener(new GpsSwitcher(getActivity(),
+					gps_swicher, this));
+			gpsCalbackEvent();
+		}
+		setNewPlace();
 	}
-	
-	private void setWeather(Location location){
-		weather = new Weather(this,location);
-		weather.execute();
-//		weather.getWeather();
-//		String pogoda = (new StringBuilder("Temperatura: " + weather.getTempD()
-//				+ "\nCiœnieie: " + weather.getPressureD() + "\nWiatr: "
-//				+ weather.getWindDegD() + " " + weather.getWindSpeedD()
-//				+ "\nWilgotnoœæ: " + weather.getHumidityD() + "\n"
-//				+ weather.getDescription())).toString();
-//		weatherText.setText(pogoda);
 
+	@Override
+	public void gpsCalbackEvent() {
+		setNewPlace();
+	}
+
+	private void setNewPlace() {
+		Location location = locationHelper.getLocation();
+
+		if (location != null) {
+			latitude.setText(String.valueOf(location.getLatitude()));
+			longitude.setText(String.valueOf(location.getLongitude()));
+
+			setWeather(location);
+		}
+
+	}
+
+	private void setWeather(Location location) {
+		weather = new Weather(this, location);
+		weather.execute();
 	}
 
 	@Override
@@ -221,13 +238,13 @@ public class FishingFragment_Form extends Fragment implements
 		longitude.setText(places.getLongitude());
 		description.setText(places.getDescription());
 		place_id = places.getId();
-		
+
 		Location l = new Location("");
 		l.setLatitude(Double.valueOf(places.getLatitude()));
 		l.setLongitude(Double.valueOf(places.getLongitude()));
-		
+
 		setWeather(l);
-		
+
 		InputMethodManager imm = (InputMethodManager) getActivity()
 				.getSystemService(getActivity().INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(places_name.getWindowToken(), 0);
@@ -239,7 +256,8 @@ public class FishingFragment_Form extends Fragment implements
 
 	@Override
 	public EditText getWeaterContener() {
-		return (EditText) (this.weatherText == null ?  view.findViewById(R.id.fishing_weather): this.weatherText);
+		return (EditText) (this.weatherText == null ? view
+				.findViewById(R.id.fishing_weather) : this.weatherText);
 	}
 
 	@Override
@@ -258,8 +276,5 @@ public class FishingFragment_Form extends Fragment implements
 	}
 	
 	
-	
-	
-
 
 }

@@ -1,22 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:gravity="top"
+    android:orientation="vertical"
     tools:context=".HtmlViewActivity" >
 
-    <LinearLayout 
+    <include layout="@layout/titlebar" />
+
+
+    <LinearLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" 
+        android:background="#ff0000">
 
-        
-         <WebView 
+        <WebView
+            android:id="@+id/htmlView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="#dddddd"
-            android:id="@+id/htmlView"/>
-         
+            android:background="#dddddd" />
     </LinearLayout>
 
-
-</FrameLayout>
+</LinearLayout>

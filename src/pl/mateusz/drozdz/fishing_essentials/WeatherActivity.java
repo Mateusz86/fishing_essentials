@@ -34,47 +34,47 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 			Weather weather = new Weather(this,null);
 			weather.execute();
 
-			try {
-				String s = weather.get() + "";
-
-				weather.getWeather();
-
-				TextView city = (TextView) findViewById(R.id.city);
-				city.setText(weather.getCity()+"\n"+weather.getLatitude()+" "+weather.getLongitude());
-
-				TextView temaperature = (TextView) findViewById(R.id.temperature);
-				temaperature.setText(weather.getTemp().toString() + "^C");
-
-				TextView presure = (TextView) findViewById(R.id.pressure);
-				presure.setText(weather.getPressure().toString() + "hPa");
-
-				TextView humidity = (TextView) findViewById(R.id.humidity);
-				humidity.setText(weather.getHumidity().toString() + "%");
-
-				TextView windSpeed = (TextView) findViewById(R.id.windSpeed);
-				windSpeed.setText("Prêdkoœæ wiatru: "+weather.getWindSpeed().toString() + "");
-
-				TextView windDeg = (TextView) findViewById(R.id.windDeg);
-				windDeg.setText("Kierunek Wiatru: "+weather.getWindDeg().toString() + "");
-
-				TextView clouds = (TextView) findViewById(R.id.clouds);
-				clouds.setText("Zachmurzeneie: "+weather.getClouds().toString() + "");
-
-				ImageView icon = (ImageView) findViewById(R.id.icon);
-				icon.setImageResource(Property.WEATHER_ICONS.get(weather.getIcon()));
-				/*
-				 * TextView weatherView = (TextView) findViewById(R.id.weather);
-				 * weatherView.setText(s+"");
-				 */
-
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				e.printStackTrace();
-
-			} catch (NullPointerException e) {
-
-			}
+//			try {
+//				String s = weather.get() + "";
+//
+//				weather.getWeather();
+//
+//				TextView city = (TextView) findViewById(R.id.city);
+//				city.setText(weather.getCity()+"\n"+weather.getLatitude()+" "+weather.getLongitude());
+//
+//				TextView temaperature = (TextView) findViewById(R.id.temperature);
+//				temaperature.setText(weather.getTemp().toString() + "^C");
+//
+//				TextView presure = (TextView) findViewById(R.id.pressure);
+//				presure.setText(weather.getPressure().toString() + "hPa");
+//
+//				TextView humidity = (TextView) findViewById(R.id.humidity);
+//				humidity.setText(weather.getHumidity().toString() + "%");
+//
+//				TextView windSpeed = (TextView) findViewById(R.id.windSpeed);
+//				windSpeed.setText("Prêdkoœæ wiatru: "+weather.getWindSpeed().toString() + "");
+//
+//				TextView windDeg = (TextView) findViewById(R.id.windDeg);
+//				windDeg.setText("Kierunek Wiatru: "+weather.getWindDeg().toString() + "");
+//
+//				TextView clouds = (TextView) findViewById(R.id.clouds);
+//				clouds.setText("Zachmurzeneie: "+weather.getClouds().toString() + "");
+//
+//				ImageView icon = (ImageView) findViewById(R.id.icon);
+//				icon.setImageResource(Property.WEATHER_ICONS.get(weather.getIcon()));
+//				/*
+//				 * TextView weatherView = (TextView) findViewById(R.id.weather);
+//				 * weatherView.setText(s+"");
+//				 */
+//
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			} catch (ExecutionException e) {
+//				e.printStackTrace();
+//
+//			} catch (NullPointerException e) {
+//
+//			}
 
 
 	}
@@ -104,8 +104,7 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 
 	@Override
 	public EditText getWeaterContener() {
-		// TODO Auto-generated method stub
-		return null;
+		return (EditText) findViewById(R.id.weather_wrapper);
 	}
 
 
@@ -113,8 +112,7 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 
 
@@ -123,7 +121,7 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 	@Override
 	public Activity getActivity() {
 		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 
 
@@ -141,7 +139,7 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 	@Override
 	public ProgressBar getProgressBar() {
 		// TODO Auto-generated method stub
-		return null;
+		return (ProgressBar)findViewById(R.id.progressBar);
 	}
 	
 	

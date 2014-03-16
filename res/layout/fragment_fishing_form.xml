@@ -5,7 +5,8 @@
     android:background="@drawable/background"
     android:orientation="vertical" >
 
-    <include layout="@layout/titlebar"/>
+    <include layout="@layout/titlebar" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -68,6 +69,26 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/fishing_form_gps_on"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/gps" />
+
+                <ImageButton
+                    android:id="@+id/fishing_form_map_on"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/map" />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -92,14 +113,26 @@
                 android:layout_height="wrap_content"
                 android:lines="5" />
 
-            <Button
-                android:id="@+id/fishing_date"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_margin="10dp" />
+                android:orientation="horizontal" >
 
-            
+                <Button
+                    android:id="@+id/fishing_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp" />
+
+                <Button
+                    android:id="@+id/fishing_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp" />
+                
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

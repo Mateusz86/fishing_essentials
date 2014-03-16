@@ -6,11 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
-import java.util.List;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import pl.mateusz.drozdz.fishing_essentials.dao.Bait;
 import pl.mateusz.drozdz.fishing_essentials.dao.BaitDao;
@@ -27,7 +23,6 @@ import pl.mateusz.drozdz.fishing_essentials.dao.Methods;
 import pl.mateusz.drozdz.fishing_essentials.dao.MethodsDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.Places;
 import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao;
-import pl.mateusz.drozdz.fishing_essentials.dao.factory.FishingFactory;
 import android.content.Context;
 
 public class Bootstrap {

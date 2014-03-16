@@ -8,7 +8,7 @@ import android.widget.Button;
 
 
 
-public class RegulationsActivity extends Activity{
+public class RegulationsActivity extends Activity implements View.OnClickListener{
     
 	private static final String[] htmlFiles= {"rapr.html"};
     private int i;
@@ -18,13 +18,12 @@ public class RegulationsActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_regulations);
 
-		Button button = (Button) findViewById(R.id.rapr);
-		button.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startHtmlView("rapr.html");
-			}
-		});
+		findViewById(R.id.regulations_rapr).setOnClickListener(this);
+		findViewById(R.id.regulations_pw).setOnClickListener(this);
+		findViewById(R.id.regulations_rapr_sea).setOnClickListener(this);
+		findViewById(R.id.regulations_uor).setOnClickListener(this);
+	
+		
 	}
 
 	private void startHtmlView(String fileName){
@@ -32,4 +31,21 @@ public class RegulationsActivity extends Activity{
 		intent.putExtra("fileName", fileName);
 		startActivity(intent);
 	}
+
+	@Override
+	public void onClick(View v) {
+		switch(v.getId()) {
+		case R.id.regulations_rapr:
+			startHtmlView("rapr.html");
+		case R.id.regulations_pw:
+			startHtmlView("prawo_wodne.html");
+		case R.id.regulations_uor:
+			startHtmlView("ustawa_o_rybactwie.html");
+		case R.id.regulations_rapr_sea:
+			startHtmlView("rapr_na_morzu.html");
+		}
+		
+	}
+	
+	
 }

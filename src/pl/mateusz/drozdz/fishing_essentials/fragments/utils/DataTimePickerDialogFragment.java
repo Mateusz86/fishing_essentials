@@ -1,6 +1,7 @@
 package pl.mateusz.drozdz.fishing_essentials.fragments.utils;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
+import android.R.style;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -42,7 +43,7 @@ public class DataTimePickerDialogFragment extends DialogFragment  {
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	     super.onCreate(savedInstanceState); 
-		 setStyle(DialogFragment.STYLE_NO_TITLE,0);
+		 setStyle(DialogFragment.STYLE_NO_TITLE, 0);
 	    }
 	 
 	 @Override
@@ -66,19 +67,6 @@ public class DataTimePickerDialogFragment extends DialogFragment  {
 				
 			}
 		});
-         
-//         View tv = v.findViewById(R.id.text);
-//         ((TextView)tv).setText("Dialog #" + mNum + ": using style "
-//                 + getNameForNum(mNum));
-//
-//         // Watch for button clicks.
-//         Button button = (Button)v.findViewById(R.id.show);
-//         button.setOnClickListener(new OnClickListener() {
-//             public void onClick(View v) {
-//                 // When button is clicked, call up to owning activity.
-//                 ((FragmentDialog)getActivity()).showDialog();
-//             }
-//         });
 
          return v;
      }

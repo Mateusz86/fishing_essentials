@@ -1,5 +1,6 @@
 package pl.mateusz.drozdz.fishing_essentials.core;
 
+import pl.mateusz.drozdz.fishing_essentials.R;
 import android.app.Activity;
 import android.content.Context;
 import android.location.Criteria;
@@ -18,14 +19,38 @@ public class LocationHelper implements LocationListener{
 	public LocationHelper(Activity activity){
 		this.activity=activity;
 		
+
+	    // Get the location manager
+	    locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
+	    // Define the criteria how to select the locatioin provider -> use
+	    // default
+	    Criteria criteria = new Criteria();
+	    provider = locationManager.getBestProvider(criteria, false);
+	    location = locationManager.getLastKnownLocation(provider);
+
+	    // Initialize the location fields
+	    if (location != null) {
+	      System.out.println("Provider " + provider + " has been selected.");
+	      onLocationChanged(location);
+	    } else {
+	      System.out.println("Location not available");
+	    }
+		
 	}
 	
-	public Location getLocation(){
+	public Location getLocation1(){
 		
 		locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
 
-		Criteria criteria = new Criteria();
-		provider = locationManager.getBestProvider(criteria, false);
+		
+		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+			provider = LocationManager.GPS_PROVIDER;
+		} else {
+			Criteria criteria = new Criteria();
+		    provider = locationManager.getBestProvider(criteria, false);
+		}
+		
+		
 		location = locationManager.getLastKnownLocation(provider);
 		
 		
@@ -44,29 +69,37 @@ public class LocationHelper implements LocationListener{
 			return null;
 		}
 	}
+	
+	public Location getLocation(){
+		locationManager.requestLocationUpdates(provider, 400, 1, this);
+		System.out.println(location.toString());
+		return location;
+	}
+	
 
 	@Override
 	public void onLocationChanged(android.location.Location location) {
-		// TODO Auto-generated method stub
-		
+		this.location= location;
+		System.out.println("change location");
+		System.out.println(location.toString());
 	}
 
 	@Override
 	public void onProviderDisabled(String provider) {
-		// TODO Auto-generated method stub
+		System.out.println("Disabled "+provider);
 		
 	}
 
 	@Override
 	public void onProviderEnabled(String provider) {
-		// TODO Auto-generated method stub
+		System.out.println("Enable "+provider);
 		
 	}
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Status change "+provider);
 	}
 
 }
