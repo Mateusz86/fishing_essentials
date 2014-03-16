@@ -1,9 +1,6 @@
 package pl.mateusz.drozdz.fishing_essentials.fragments.utils;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
-import android.R.style;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;

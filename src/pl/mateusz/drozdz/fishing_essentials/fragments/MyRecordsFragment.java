@@ -3,11 +3,8 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 import java.util.List;
 
 import de.greenrobot.dao.query.Query;
-import de.greenrobot.dao.query.QueryBuilder;
-import de.greenrobot.dao.query.WhereCondition;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
-import pl.mateusz.drozdz.fishing_essentials.core.Property;
 import pl.mateusz.drozdz.fishing_essentials.dao.CaughtFish;
 import pl.mateusz.drozdz.fishing_essentials.dao.CaughtFishDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.CaughtFishDao.Properties;

@@ -1,6 +1,5 @@
 package pl.mateusz.drozdz.fishing_essentials.core;
 
-import pl.mateusz.drozdz.fishing_essentials.R;
 import android.app.Activity;
 import android.content.Context;
 import android.location.Criteria;

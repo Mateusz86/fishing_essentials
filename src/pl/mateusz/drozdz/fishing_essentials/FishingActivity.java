@@ -1,17 +1,13 @@
 package pl.mateusz.drozdz.fishing_essentials;
 
 
-import com.google.android.gms.maps.MapFragment;
-
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_Form;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_List;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_List.ChangeFragment;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_List.OnExpedytionSelected;
 import pl.mateusz.drozdz.fishing_essentials.fragments.OneExpedytionFragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 public class FishingActivity extends FragmentActivity  implements ChangeFragment,FishingFragment_Form.ChangeFragmenOnFragmentMap, OnExpedytionSelected {
@@ -51,6 +47,7 @@ public class FishingActivity extends FragmentActivity  implements ChangeFragment
 	}
 	
 
+	@Override
 	public void changeFragmentOnFragmentMap() {
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		ft.replace(R.id.fragmentContainerFishing, new pl.mateusz.drozdz.fishing_essentials.fragments.MapFragment());

@@ -2,6 +2,7 @@ package pl.mateusz.drozdz.fishing_essentials.dao.utils;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.view.View;
@@ -29,7 +30,7 @@ public class GpsSwitcher implements OnClickListener {
 
 	private void checkGpsStatus() {
 		LocationManager locationManager = (LocationManager) activity
-				.getSystemService(activity.LOCATION_SERVICE);
+				.getSystemService(Context.LOCATION_SERVICE);
 		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			button.setImageResource(R.drawable.gps_on);
 			gps_enabled = true;

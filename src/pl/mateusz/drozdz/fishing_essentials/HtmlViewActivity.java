@@ -3,7 +3,6 @@ package pl.mateusz.drozdz.fishing_essentials;
 import pl.mateusz.drozdz.fishing_essentials.core.AnsyncHtmlLoader;
 import android.app.Activity;
 import android.os.Bundle;
-import android.webkit.WebView;
 
 public class HtmlViewActivity extends Activity {
 

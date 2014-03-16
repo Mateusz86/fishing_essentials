@@ -1,23 +1,12 @@
 package pl.mateusz.drozdz.fishing_essentials;
 
-import java.util.HashMap;
-import java.util.concurrent.ExecutionException;
-
-import pl.mateusz.drozdz.fishing_essentials.core.Property;
 import pl.mateusz.drozdz.fishing_essentials.core.Weather;
 import pl.mateusz.drozdz.fishing_essentials.core.WeatherInterface;
 import android.app.Activity;
 import android.content.Context;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class WeatherActivity extends Activity implements WeatherInterface {
 
