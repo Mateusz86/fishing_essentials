@@ -1,9 +1,6 @@
 package pl.mateusz.drozdz.fishing_essentials.fragments.utils;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
-import android.R.style;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -43,7 +40,7 @@ public class DataTimePickerDialogFragment extends DialogFragment  {
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	     super.onCreate(savedInstanceState); 
-		 setStyle(DialogFragment.STYLE_NO_TITLE, 0);
+		 setStyle(DialogFragment.STYLE_NO_TITLE, android.R.style.Theme_Holo_Dialog);
 	    }
 	 
 	 @Override

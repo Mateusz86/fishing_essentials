@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="10"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="14" />
     
     
 
@@ -33,6 +33,11 @@
       <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDa-PAnRMH6smyYawDVvZy-AhcxHrN-Mqk" />
+      
+      <meta-data
+    android:name="com.google.android.gms.version"
+    android:value="3136110" />
+
         <uses-library android:name="com.google.android.maps" /> 
         
  

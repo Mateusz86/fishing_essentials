@@ -8,8 +8,6 @@ import java.util.List;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.Property;
 import pl.mateusz.drozdz.fishing_essentials.dao.CaughtFish;
-import pl.mateusz.drozdz.fishing_essentials.dao.Fishes;
-import pl.mateusz.drozdz.fishing_essentials.list_adapter.FishesListAdapter.ViewHolder;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
