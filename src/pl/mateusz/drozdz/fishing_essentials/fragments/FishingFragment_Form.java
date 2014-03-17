@@ -172,7 +172,8 @@ public class FishingFragment_Form extends Fragment implements
 					}
 					Fishing fishing = new Fishing();
 					fishing.setPlaces(place);
-					fishing.setWeather(weather.toString());
+					System.out.println(weatherText.toString());
+					fishing.setWeather(weatherText.toString());
 					fishing.setDate(new Date());
 					daoSession.getFishingDao().insert(fishing);
 
