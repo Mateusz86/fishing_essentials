@@ -1,17 +1,21 @@
 package pl.mateusz.drozdz.fishing_essentials.core;
 
 import java.util.concurrent.ExecutionException;
-
 import org.apache.http.client.HttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import pl.mateusz.drozdz.fishing_essentials.R;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 import android.os.AsyncTask;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Weather extends AsyncTask<String, Void, String> {
@@ -277,6 +281,102 @@ public class Weather extends AsyncTask<String, Void, String> {
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
+	
+	
+	@SuppressLint("NewApi")
+	private void generateWeatherOutput(LinearLayout l){
+		
+//		if(fragment.getActivity().findViewById(1234)!= null){
+			l.removeAllViews();
+//		}
+	
+//		LinearLayout l = new LinearLayout(context,null,R.style.textWrappwe);
+//		l.setId(1234);
+		
+		Context context = fragment.getContext();
+		LinearLayout l1 = new LinearLayout(context);
+		l1.setOrientation(LinearLayout.HORIZONTAL);
+		
+		
+		ImageView icon = new ImageView(context);
+		icon.setImageResource(Property.WEATHER_ICONS.get(getIcon()));
+		
+		l1.addView(icon);
+		l.addView(l1);
+		
+		TextView t1, t2;
+		
+		t1 = new TextView(context);
+		t1.setText("Temperatura: ");
+		t1.setTextAppearance(context, R.style.labelText);
+		
+		t2 = new TextView(context);
+		t2.setText(getTempD());
+		t2.setTextAppearance(context, R.style.normalText);
+		
+		l1 = new LinearLayout(context);
+		l1.addView(t1);
+		l1.addView(t2);
+		l.addView(l1);
+		
+		
+		t1 = new TextView(context);
+		t1.setText("Ciœnieie: ");
+		t1.setTextAppearance(context, R.style.labelText);
+		
+		t2 = new TextView(context);
+		t2.setText(getPressureD());
+		t2.setTextAppearance(context, R.style.normalText);
+		
+		l1 = new LinearLayout(context);
+		l1.addView(t1);
+		l1.addView(t2);
+		l.addView(l1);
+		
+		
+		t1 = new TextView(context);
+		t1.setText("Wiatr: ");
+		t1.setTextAppearance(context, R.style.labelText);
+		
+		t2 = new TextView(context);
+		t2.setText(getWindDegD());
+		t2.setTextAppearance(context, R.style.normalText);
+		
+		l1 = new LinearLayout(context);
+		l1.addView(t1);
+		l1.addView(t2);
+		l.addView(l1);
+		
+		
+		t1 = new TextView(context);
+		t1.setText("Wilgotnoœæ: ");
+		t1.setTextAppearance(context, R.style.labelText);
+		
+		t2 = new TextView(context);
+		t2.setText(getHumidityD());
+		t2.setTextAppearance(context, R.style.normalText);
+		
+		l1 = new LinearLayout(context);
+		l1.addView(t1);
+		l1.addView(t2);
+		l.addView(l1);
+		
+		
+		t1 = new TextView(context);
+		t1.setText("Opis: ");
+		t1.setTextAppearance(context, R.style.labelText);
+		
+		t2 = new TextView(context);
+		t2.setText(getDescription());
+		t2.setTextAppearance(context, R.style.normalText);
+		
+		l1 = new LinearLayout(context);
+		l1.addView(t1);
+		l1.addView(t2);
+        l.addView(l1);
+        
+//        layout.addView(l);
+	}
 
 	@Override
 	protected void onPreExecute() {
@@ -293,12 +393,17 @@ public class Weather extends AsyncTask<String, Void, String> {
 		} else {
 			super.onPostExecute(result);
 			getWeather();
-			EditText w = fragment.getWeaterContener();
+			LinearLayout l = fragment.getWeaterContener();
 			String pogoda = (new StringBuilder("Temperatura: " + getTempD()
 					+ "\nCiœnieie: " + getPressureD() + "\nWiatr: "
 					+ getWindDegD() + " " + getWindSpeedD() + "\nWilgotnoœæ: "
 					+ getHumidityD() + "\n" + getDescription())).toString();
-			w.setText(pogoda);
+			
+			
+			generateWeatherOutput(l);
+			
+			
+//			w.setText(pogoda);
 		}
 		 fragment.getProgressBar().setVisibility(View.GONE);
 	}
@@ -312,5 +417,8 @@ public class Weather extends AsyncTask<String, Void, String> {
 		String textRetrieved = r.getResponseText();
 		return textRetrieved;
 	}
+	
+	
+	
 
 }

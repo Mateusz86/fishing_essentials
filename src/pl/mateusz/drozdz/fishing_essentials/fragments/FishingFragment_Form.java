@@ -3,6 +3,7 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 import pl.mateusz.drozdz.fishing_essentials.FishingActivity;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
@@ -34,6 +35,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -93,7 +95,7 @@ public class FishingFragment_Form extends Fragment implements
 					.findViewById(R.id.fishing_places_longitude);
 			description = (EditText) view
 					.findViewById(R.id.fishing_places_description);
-			weatherText = (EditText) view.findViewById(R.id.fishing_weather);
+			weatherText = (EditText) view.findViewById(R.id.fishing_weather_text);
 			date = (Button) view.findViewById(R.id.fishing_date);
 			form_submit = (Button) view.findViewById(R.id.show_form_submit);
 
@@ -137,7 +139,6 @@ public class FishingFragment_Form extends Fragment implements
 
 			Date d = new Date();
 			date.setText(day+"-"+month+"-"+year);
-//			date.setText(Property.DATE_FORMAT.format(d));
 
 			date.setOnClickListener(new View.OnClickListener() {
 
@@ -160,9 +161,9 @@ public class FishingFragment_Form extends Fragment implements
 					if (place_id == null) {
 						place = new Places();
 						place.setName(places_name.getText().toString());
-						place.setDescription(description.toString());
-						place.setLatitude(latitude.toString());
-						place.setLongitude(longitude.toString());
+						place.setDescription(description.getText().toString());
+						place.setLatitude(latitude.getText().toString());
+						place.setLongitude(longitude.getText().toString());
 						place.setDate(new Date());
 						PlacesDao pd = daoSession.getPlacesDao();
 						pd.insert(place);
@@ -172,8 +173,10 @@ public class FishingFragment_Form extends Fragment implements
 					}
 					Fishing fishing = new Fishing();
 					fishing.setPlaces(place);
+					
+					System.out.println("POGODA!!");
 					System.out.println(weatherText.toString());
-					fishing.setWeather(weatherText.toString());
+					fishing.setWeather(weatherText.getText().toString());
 					fishing.setDate(new Date());
 					daoSession.getFishingDao().insert(fishing);
 
@@ -262,9 +265,8 @@ public class FishingFragment_Form extends Fragment implements
 	}
 
 	@Override
-	public EditText getWeaterContener() {
-		return (EditText) (this.weatherText == null ? view
-				.findViewById(R.id.fishing_weather) : this.weatherText);
+	public LinearLayout getWeaterContener() {
+		return (LinearLayout) view.findViewById(R.id.fishing_weather_wrapper);
 	}
 
 	@Override

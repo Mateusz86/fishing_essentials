@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 public class WeatherActivity extends Activity implements WeatherInterface {
@@ -92,8 +93,8 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 
 
 	@Override
-	public EditText getWeaterContener() {
-		return (EditText) findViewById(R.id.weather_wrapper);
+	public LinearLayout getWeaterContener() {
+		return null; // (EditText) findViewById(R.id.weather_wrapper);
 	}
 
 
