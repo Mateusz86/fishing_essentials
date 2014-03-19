@@ -11,16 +11,16 @@ import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.Base64;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.core.LocationHelper;
-import pl.mateusz.drozdz.fishing_essentials.core.Weather;
+import pl.mateusz.drozdz.fishing_essentials.core.WeatherAsyncTask;
 import pl.mateusz.drozdz.fishing_essentials.core.WeatherInterface;
 import pl.mateusz.drozdz.fishing_essentials.dao.DaoSession;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishing;
 import pl.mateusz.drozdz.fishing_essentials.dao.Places;
 import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao.Properties;
-import pl.mateusz.drozdz.fishing_essentials.dao.utils.GpsCallbackEvent;
-import pl.mateusz.drozdz.fishing_essentials.dao.utils.GpsSwitcher;
-import pl.mateusz.drozdz.fishing_essentials.dao.utils.MyLinearLayout;
+import pl.mateusz.drozdz.fishing_essentials.utils.GpsCallbackEvent;
+import pl.mateusz.drozdz.fishing_essentials.utils.GpsSwitcher;
+import pl.mateusz.drozdz.fishing_essentials.utils.MyLinearLayout;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -42,26 +42,26 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-
 public class FishingFragment_Form extends Fragment implements
 		OnItemClickListener, WeatherInterface, GpsCallbackEvent {
 
 	ChangeFragmenOnFragmentMap changeFragmentOnFragmentMap;
-	
+
 	public interface ChangeFragmenOnFragmentMap {
-	  void changeFragmentOnFragmentMap();	
+		void changeFragmentOnFragmentMap();
 	}
-	public void setChangeFragmentOnFragmentMap(ChangeFragmenOnFragmentMap listner) {
-		 this.changeFragmentOnFragmentMap=listner;
-	 }
-	
-	
+
+	public void setChangeFragmentOnFragmentMap(
+			ChangeFragmenOnFragmentMap listner) {
+		this.changeFragmentOnFragmentMap = listner;
+	}
+
 	private View view;
 
 	static final int DATE_PICKER_ID = 01;
 	static final int TIME_PICKER_ID = 02;
 
-	private Weather weather;
+	private WeatherAsyncTask weatherAsync;
 
 	private EditText latitude, longitude, description, weatherText;
 	private Button date, form_submit;
@@ -99,7 +99,8 @@ public class FishingFragment_Form extends Fragment implements
 					.findViewById(R.id.fishing_places_longitude);
 			description = (EditText) view
 					.findViewById(R.id.fishing_places_description);
-//			weatherText = (EditText) view.findViewById(R.id.fishing_weather_text);
+			// weatherText = (EditText)
+			// view.findViewById(R.id.fishing_weather_text);
 			date = (Button) view.findViewById(R.id.fishing_date);
 			form_submit = (Button) view.findViewById(R.id.show_form_submit);
 
@@ -142,7 +143,7 @@ public class FishingFragment_Form extends Fragment implements
 			day = c.get(Calendar.DAY_OF_MONTH);
 
 			Date d = new Date();
-			date.setText(day+"-"+month+"-"+year);
+			date.setText(day + "-" + month + "-" + year);
 
 			date.setOnClickListener(new View.OnClickListener() {
 
@@ -177,13 +178,17 @@ public class FishingFragment_Form extends Fragment implements
 					}
 					Fishing fishing = new Fishing();
 					fishing.setPlaces(place);
-					
+
 					System.out.println("POGODA!!");
-					
-					MyLinearLayout mly = (MyLinearLayout) view.findViewById(R.id.fishing_weather_wrapper);
-					System.out.println(mly.toString());
+
+					// MyLinearLayout mly = (MyLinearLayout)
+					// view.findViewById(R.id.fishing_weather_wrapper);
+
 					try {
-						fishing.setWeather(pl.mateusz.drozdz.fishing_essentials.core.Base64.encodeObject(mly));
+						String s = Base64.encodeObject(weatherAsync
+								.getWeather());
+						System.out.println(s);
+						fishing.setWeather(s);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -214,16 +219,17 @@ public class FishingFragment_Form extends Fragment implements
 			gpsCalbackEvent(null);
 		}
 		setNewPlace(null);
-		
-		ImageButton mapButton = (ImageButton) view.findViewById(R.id.fishing_form_map_on);
+
+		ImageButton mapButton = (ImageButton) view
+				.findViewById(R.id.fishing_form_map_on);
 		mapButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				changeFragmentOnFragmentMap.changeFragmentOnFragmentMap();
 			}
 		});
-		
+
 	}
 
 	@Override
@@ -232,9 +238,9 @@ public class FishingFragment_Form extends Fragment implements
 	}
 
 	private void setNewPlace(Location location) {
-		
-		if(location == null) 
-		   location = locationHelper.getLocation();
+
+		if (location == null)
+			location = locationHelper.getLocation();
 
 		if (location != null) {
 			latitude.setText(String.valueOf(location.getLatitude()));
@@ -246,8 +252,8 @@ public class FishingFragment_Form extends Fragment implements
 	}
 
 	private void setWeather(Location location) {
-		weather = new Weather(this, location);
-		weather.execute();
+		weatherAsync = new WeatherAsyncTask(this, location);
+		weatherAsync.execute();
 	}
 
 	@Override
@@ -297,7 +303,5 @@ public class FishingFragment_Form extends Fragment implements
 	public ProgressBar getProgressBar() {
 		return (ProgressBar) view.findViewById(R.id.progressBar);
 	}
-	
-	
 
 }

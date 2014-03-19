@@ -1,10 +1,11 @@
-package pl.mateusz.drozdz.fishing_essentials.dao.utils;
+package pl.mateusz.drozdz.fishing_essentials.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import pl.mateusz.drozdz.fishing_essentials.core.Property;
 import android.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -26,7 +27,7 @@ public class MyLinearLayout extends LinearLayout implements Serializable {
 	}
 	
 	public MyLinearLayout() {
-		super(null);
+		super(Property.getContext());
 
 	}
 
@@ -62,7 +63,7 @@ public class MyLinearLayout extends LinearLayout implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return encoded;
+		return "vvv";
 	}
 
 }

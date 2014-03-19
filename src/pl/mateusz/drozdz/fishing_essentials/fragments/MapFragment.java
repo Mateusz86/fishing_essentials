@@ -3,7 +3,7 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.LocationHelper;
-import pl.mateusz.drozdz.fishing_essentials.dao.utils.GpsCallbackEvent;
+import pl.mateusz.drozdz.fishing_essentials.utils.GpsCallbackEvent;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;

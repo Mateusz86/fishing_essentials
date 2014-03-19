@@ -35,7 +35,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="HOME"
-                    android:orientation="vertical" >
+                    android:orientation="vertical" 
+                    android:padding="20dp">
 
                     <TextView
                         android:id="@+id/one_expedition_data"
@@ -58,18 +59,12 @@
                         android:paddingLeft="10dp"
                         android:text="name" />
 
-                    <TextView
-                        android:id="@+id/one_expedition_weather"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:text="pogoda" />
-
                     <LinearLayout
-                        android:id="@+id/xyz"
+                        android:id="@+id/one_expedition_weather"
+                        style="@style/textWrappwe"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal" >
+                        android:orientation="vertical" >
                     </LinearLayout>
                 </LinearLayout>
 

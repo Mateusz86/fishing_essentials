@@ -1,8 +1,8 @@
 package pl.mateusz.drozdz.fishing_essentials;
 
-import pl.mateusz.drozdz.fishing_essentials.core.Weather;
+import pl.mateusz.drozdz.fishing_essentials.core.WeatherAsyncTask;
 import pl.mateusz.drozdz.fishing_essentials.core.WeatherInterface;
-import pl.mateusz.drozdz.fishing_essentials.dao.utils.MyLinearLayout;
+import pl.mateusz.drozdz.fishing_essentials.utils.MyLinearLayout;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_weather);
 
-			Weather weather = new Weather(this,null);
+			WeatherAsyncTask weather = new WeatherAsyncTask(this,null);
 			weather.execute();
 
 //			try {

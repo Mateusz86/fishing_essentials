@@ -1,4 +1,4 @@
-package pl.mateusz.drozdz.fishing_essentials.dao.utils;
+package pl.mateusz.drozdz.fishing_essentials.utils;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
 import android.app.Activity;

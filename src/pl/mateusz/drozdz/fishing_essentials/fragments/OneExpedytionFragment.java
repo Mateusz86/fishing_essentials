@@ -2,15 +2,17 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 
 
 import java.io.IOException;
+
 import pl.mateusz.drozdz.fishing_essentials.FishesActivity;
 import pl.mateusz.drozdz.fishing_essentials.FishingActivity;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.Base64;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.core.Property;
+import pl.mateusz.drozdz.fishing_essentials.core.Weather;
 import pl.mateusz.drozdz.fishing_essentials.dao.DaoSession;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishing;
-import pl.mateusz.drozdz.fishing_essentials.dao.utils.MyLinearLayout;
+import pl.mateusz.drozdz.fishing_essentials.utils.MyLinearLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
@@ -49,16 +51,15 @@ public class OneExpedytionFragment extends Fragment {
 			((TextView) view.findViewById(R.id.one_expedition_data)).setText(Property.DATE_FORMAT.format(fishing.getDate()));
 			((TextView) view.findViewById(R.id.one_expedition_name)).setText(fishing.getPlaces().getName());
 			((TextView) view.findViewById(R.id.one_expedition_description)).setText(fishing.getPlaces().getDescription());
-//			((TextView) view.findViewById(R.id.one_expedition_weather)).setText(fishing.getWeather());
-			
+
 			try {
 				String s = fishing.getWeather();
 				System.out.println(s);
 				Object o = Base64.decodeToObject(s);
 				System.out.println(0);
-				MyLinearLayout l = (MyLinearLayout) o;
-				LinearLayout ly = (LinearLayout) view.findViewById(R.id.xyz);
-				l.addView(l);
+				Weather w = (Weather) o;
+				LinearLayout l = (LinearLayout) view.findViewById(R.id.one_expedition_weather);
+				w.generateWeatherOutput(l);
 			} catch (IOException e) {
 				System.out.println("erro" + e.getMessage());
 				e.printStackTrace();

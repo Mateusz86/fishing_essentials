@@ -1,9 +1,9 @@
 package pl.mateusz.drozdz.fishing_essentials.core;
 
 
-import pl.mateusz.drozdz.fishing_essentials.dao.utils.MyLinearLayout;
 
 
+import pl.mateusz.drozdz.fishing_essentials.utils.MyLinearLayout;
 import android.app.Activity;
 import android.content.Context;
 import android.widget.LinearLayout;

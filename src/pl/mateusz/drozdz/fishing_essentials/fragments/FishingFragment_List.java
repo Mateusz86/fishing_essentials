@@ -6,6 +6,7 @@ import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishing;
 import pl.mateusz.drozdz.fishing_essentials.dao.FishingDao;
+import pl.mateusz.drozdz.fishing_essentials.dao.FishingDao.Properties;
 import pl.mateusz.drozdz.fishing_essentials.list_adapter.MyExpeditionAdapter;
 import android.app.Activity;
 import android.os.Bundle;
@@ -46,7 +47,7 @@ public class FishingFragment_List extends Fragment {
 			ListView myExpenditionList = (ListView) view.findViewById(R.id.mojeWyprawyList);
 			
 			FishingDao fishingDao = DataBase.getInstance(getActivity()).getDaoSession().getFishingDao();			
-			final List<Fishing> fishing = fishingDao.queryBuilder().list();
+			final List<Fishing> fishing = fishingDao.queryBuilder().orderDesc(Properties.Date).list();
 			Log.d("size fishes",fishing.size()+"");
 			myExpenditionList.setAdapter(new MyExpeditionAdapter(getActivity(), fishing));
 			

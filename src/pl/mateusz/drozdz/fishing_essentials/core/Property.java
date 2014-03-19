@@ -3,6 +3,7 @@ package pl.mateusz.drozdz.fishing_essentials.core;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
+import android.content.Context;
 import pl.mateusz.drozdz.fishing_essentials.R;
 
 public class Property {
@@ -33,4 +34,14 @@ public class Property {
 			put("50n", R.drawable.p50n);
 		}
 	};
+	private static Context context;
+	
+	public static Context getContext() {
+		return context;
+	}
+	public static void setContext(Context context) {
+		Property.context = context;
+	}
+	
+	
 }
