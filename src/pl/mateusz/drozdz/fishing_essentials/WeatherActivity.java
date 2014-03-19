@@ -2,6 +2,12 @@ package pl.mateusz.drozdz.fishing_essentials;
 
 import pl.mateusz.drozdz.fishing_essentials.core.Weather;
 import pl.mateusz.drozdz.fishing_essentials.core.WeatherInterface;
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 public class WeatherActivity extends Activity implements WeatherInterface {
 
@@ -87,15 +93,13 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 
 
 	@Override
-	@Override
-	public EditText getWeaterContener() {
-		return (EditText) findViewById(R.id.weather_wrapper);
+	public LinearLayout getWeaterContener() {
+		return null;
 	}
 
 
 
 
-	@Override
 	@Override
 	public Context getContext() {
 		return this;
@@ -104,7 +108,6 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 
 
 
-	@Override
 	@Override
 	public Activity getActivity() {
 		// TODO Auto-generated method stub
@@ -115,7 +118,6 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 
 
 	@Override
-	@Override
 	public int getWeatherType() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -123,14 +125,11 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 
 
 
-
-	@Override
 	@Override
 	public ProgressBar getProgressBar() {
 		// TODO Auto-generated method stub
 		return (ProgressBar)findViewById(R.id.progressBar);
 	}
-	
 	
 	
 }

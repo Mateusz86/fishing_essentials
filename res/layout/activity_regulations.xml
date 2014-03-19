@@ -26,19 +26,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Regulamin amatorskiego Połowu ryb" />
-
-            <View
-                android:id="@+id/view1"
+            
+ <View android:id="@+id/regulations_view1"
                 android:layout_width="1dp"
                 android:layout_height="45dp"
                 android:layout_marginRight="7dp"
                 android:layout_toRightOf="@id/regulations_rapr"
                 android:background="#40a8ae" />
-
+            
+           
             <ImageView
                 style="@style/imageViewRegulation"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/view1" />
+                android:layout_toRightOf="@+id/regulations_view1" />
+            
         </RelativeLayout>
         
         <RelativeLayout
@@ -54,8 +55,7 @@
                 android:layout_height="wrap_content"
                 android:text="Ustawa o rybactwie" />
 
-            <View
-                android:id="@+id/view1"
+            <View android:id="@+id/regulations_view2"
                 android:layout_width="1dp"
                 android:layout_height="45dp"
                 android:layout_marginRight="7dp"
@@ -65,7 +65,7 @@
             <ImageView
                 style="@style/imageViewRegulation"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/view1" />
+                android:layout_toRightOf="@+id/regulations_view2" />
         </RelativeLayout>
         
         <RelativeLayout
@@ -81,8 +81,7 @@
                 android:layout_height="wrap_content"
                 android:text="Prawo wodne" />
 
-            <View
-                android:id="@+id/view1"
+            <View android:id="@+id/regulations_view3"
                 android:layout_width="1dp"
                 android:layout_height="45dp"
                 android:layout_marginRight="7dp"
@@ -92,7 +91,7 @@
             <ImageView
                 style="@style/imageViewRegulation"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/view1" />
+                android:layout_toRightOf="@+id/regulations_view3" />
         </RelativeLayout>
         
         <RelativeLayout
@@ -108,8 +107,8 @@
                 android:layout_height="wrap_content"
                 android:text="RAPR na morzu" />
 
-            <View
-                android:id="@+id/view1"
+            <View 
+                android:id="@+id/regulations_view4"
                 android:layout_width="1dp"
                 android:layout_height="45dp"
                 android:layout_marginRight="7dp"
@@ -119,7 +118,7 @@
             <ImageView
                 style="@style/imageViewRegulation"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/view1" />
+                android:layout_toRightOf="@+id/regulations_view4" />
         </RelativeLayout>
         
         

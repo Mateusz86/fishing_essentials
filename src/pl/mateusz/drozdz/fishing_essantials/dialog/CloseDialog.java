@@ -3,6 +3,12 @@ package pl.mateusz.drozdz.fishing_essantials.dialog;
 
 
 import pl.mateusz.drozdz.fishing_essentials.R;
+import android.app.Activity;
+import android.app.Dialog;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 public class CloseDialog extends Dialog {

@@ -1,6 +1,13 @@
 package pl.mateusz.drozdz.fishing_essentials.dao.utils;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.location.LocationManager;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 
 public class GpsSwitcher implements OnClickListener {
 
@@ -31,7 +38,7 @@ public class GpsSwitcher implements OnClickListener {
 			button.setImageResource(R.drawable.gps);
 			gps_enabled = false;
 		}
-		e.gpsCalbackEvent();
+		e.gpsCalbackEvent(null);
 	}
 
 	@Override

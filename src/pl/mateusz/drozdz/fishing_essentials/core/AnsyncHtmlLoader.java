@@ -1,6 +1,10 @@
 package pl.mateusz.drozdz.fishing_essentials.core;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
+import android.app.Activity;
+import android.os.AsyncTask;
+import android.view.View;
+import android.webkit.WebView;
 
 public class AnsyncHtmlLoader extends AsyncTask<String, Void, Void> {
 	

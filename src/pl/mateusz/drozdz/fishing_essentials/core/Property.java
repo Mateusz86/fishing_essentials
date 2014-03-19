@@ -1,5 +1,8 @@
 package pl.mateusz.drozdz.fishing_essentials.core;
 
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+
 import pl.mateusz.drozdz.fishing_essentials.R;
 
 public class Property {

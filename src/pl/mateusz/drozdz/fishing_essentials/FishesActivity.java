@@ -4,6 +4,10 @@ import pl.mateusz.drozdz.fishing_essentials.fragments.FishesFragment_List;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishesFragment_List.OnFishesSelectedListener;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishesFragment_View;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishesFragment_View.CallFragmentListClickedBack;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 
 public class FishesActivity extends FragmentActivity implements OnFishesSelectedListener,CallFragmentListClickedBack{
 	
@@ -39,7 +43,6 @@ public class FishesActivity extends FragmentActivity implements OnFishesSelected
 	    ft.commit();
 	}
 
-	@Override
 	@Override
 	public void refreshFishesFragmentList() {
 		Log.d("Update List","update position = "+position);
