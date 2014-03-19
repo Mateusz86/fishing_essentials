@@ -1,11 +1,14 @@
 package pl.mateusz.drozdz.fishing_essentials.fragments;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import pl.mateusz.drozdz.fishing_essantials.dialog.DataTimePickerDialogFragment;
 import pl.mateusz.drozdz.fishing_essentials.FishingActivity;
 import pl.mateusz.drozdz.fishing_essentials.R;
+import pl.mateusz.drozdz.fishing_essentials.core.Base64;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.core.LocationHelper;
 import pl.mateusz.drozdz.fishing_essentials.core.Weather;
@@ -17,7 +20,7 @@ import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao.Properties;
 import pl.mateusz.drozdz.fishing_essentials.dao.utils.GpsCallbackEvent;
 import pl.mateusz.drozdz.fishing_essentials.dao.utils.GpsSwitcher;
-import pl.mateusz.drozdz.fishing_essentials.fragments.utils.DataTimePickerDialogFragment;
+import pl.mateusz.drozdz.fishing_essentials.dao.utils.MyLinearLayout;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -95,7 +98,7 @@ public class FishingFragment_Form extends Fragment implements
 					.findViewById(R.id.fishing_places_longitude);
 			description = (EditText) view
 					.findViewById(R.id.fishing_places_description);
-			weatherText = (EditText) view.findViewById(R.id.fishing_weather_text);
+//			weatherText = (EditText) view.findViewById(R.id.fishing_weather_text);
 			date = (Button) view.findViewById(R.id.fishing_date);
 			form_submit = (Button) view.findViewById(R.id.show_form_submit);
 
@@ -175,8 +178,15 @@ public class FishingFragment_Form extends Fragment implements
 					fishing.setPlaces(place);
 					
 					System.out.println("POGODA!!");
-					System.out.println(weatherText.toString());
-					fishing.setWeather(weatherText.getText().toString());
+					
+					MyLinearLayout mly = (MyLinearLayout) view.findViewById(R.id.fishing_weather_wrapper);
+					System.out.println(mly.toString());
+					try {
+						fishing.setWeather(pl.mateusz.drozdz.fishing_essentials.core.Base64.encodeObject(mly));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					fishing.setDate(new Date());
 					daoSession.getFishingDao().insert(fishing);
 
@@ -265,8 +275,8 @@ public class FishingFragment_Form extends Fragment implements
 	}
 
 	@Override
-	public LinearLayout getWeaterContener() {
-		return (LinearLayout) view.findViewById(R.id.fishing_weather_wrapper);
+	public MyLinearLayout getWeaterContener() {
+		return (MyLinearLayout) view.findViewById(R.id.fishing_weather_wrapper);
 	}
 
 	@Override

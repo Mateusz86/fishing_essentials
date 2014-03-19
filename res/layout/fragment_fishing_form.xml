@@ -107,19 +107,21 @@
                 android:text="Pogoda"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <EditText
+<!--             <EditText
                 android:id="@+id/fishing_weather_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="5" />
-            <LinearLayout
+             -->
+            <pl.mateusz.drozdz.fishing_essentials.dao.utils.MyLinearLayout
                 android:id="@+id/fishing_weather_wrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                style="@style/textWrappwe">"
+                style="@style/textWrappwe">
            
-           </LinearLayout>
+           </pl.mateusz.drozdz.fishing_essentials.dao.utils.MyLinearLayout>
+           
 
             <LinearLayout
                 android:layout_width="match_parent"

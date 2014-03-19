@@ -1,10 +1,13 @@
 package pl.mateusz.drozdz.fishing_essentials.core;
 
 import java.util.concurrent.ExecutionException;
+
 import org.apache.http.client.HttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import pl.mateusz.drozdz.fishing_essentials.R;
+import pl.mateusz.drozdz.fishing_essentials.dao.utils.MyLinearLayout;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -393,17 +396,8 @@ public class Weather extends AsyncTask<String, Void, String> {
 		} else {
 			super.onPostExecute(result);
 			getWeather();
-			LinearLayout l = fragment.getWeaterContener();
-			String pogoda = (new StringBuilder("Temperatura: " + getTempD()
-					+ "\nCiœnieie: " + getPressureD() + "\nWiatr: "
-					+ getWindDegD() + " " + getWindSpeedD() + "\nWilgotnoœæ: "
-					+ getHumidityD() + "\n" + getDescription())).toString();
-			
-			
+			MyLinearLayout l = fragment.getWeaterContener();			
 			generateWeatherOutput(l);
-			
-			
-//			w.setText(pogoda);
 		}
 		 fragment.getProgressBar().setVisibility(View.GONE);
 	}

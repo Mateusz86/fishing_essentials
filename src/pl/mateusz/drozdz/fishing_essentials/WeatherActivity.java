@@ -2,6 +2,7 @@ package pl.mateusz.drozdz.fishing_essentials;
 
 import pl.mateusz.drozdz.fishing_essentials.core.Weather;
 import pl.mateusz.drozdz.fishing_essentials.core.WeatherInterface;
+import pl.mateusz.drozdz.fishing_essentials.dao.utils.MyLinearLayout;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -93,7 +94,7 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 
 
 	@Override
-	public LinearLayout getWeaterContener() {
+	public MyLinearLayout getWeaterContener() {
 		return null; // (EditText) findViewById(R.id.weather_wrapper);
 	}
 
