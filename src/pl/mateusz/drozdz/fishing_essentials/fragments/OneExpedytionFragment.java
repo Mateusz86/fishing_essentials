@@ -1,7 +1,7 @@
 package pl.mateusz.drozdz.fishing_essentials.fragments;
 
-import java.io.IOException;
 
+import java.io.IOException;
 import pl.mateusz.drozdz.fishing_essentials.FishesActivity;
 import pl.mateusz.drozdz.fishing_essentials.FishingActivity;
 import pl.mateusz.drozdz.fishing_essentials.R;

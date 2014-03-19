@@ -42,6 +42,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+
 public class FishingFragment_Form extends Fragment implements
 		OnItemClickListener, WeatherInterface, GpsCallbackEvent {
 
@@ -210,9 +211,9 @@ public class FishingFragment_Form extends Fragment implements
 					.findViewById(R.id.fishing_form_gps_on);
 			gps_swicher.setOnClickListener(new GpsSwitcher(getActivity(),
 					gps_swicher, this));
-			gpsCalbackEvent();
+			gpsCalbackEvent(null);
 		}
-		setNewPlace();
+		setNewPlace(null);
 		
 		ImageButton mapButton = (ImageButton) view.findViewById(R.id.fishing_form_map_on);
 		mapButton.setOnClickListener(new OnClickListener() {
@@ -226,12 +227,14 @@ public class FishingFragment_Form extends Fragment implements
 	}
 
 	@Override
-	public void gpsCalbackEvent() {
-		setNewPlace();
+	public void gpsCalbackEvent(Location location) {
+		this.setNewPlace(location);
 	}
 
-	private void setNewPlace() {
-		Location location = locationHelper.getLocation();
+	private void setNewPlace(Location location) {
+		
+		if(location == null) 
+		   location = locationHelper.getLocation();
 
 		if (location != null) {
 			latitude.setText(String.valueOf(location.getLatitude()));
@@ -277,6 +280,7 @@ public class FishingFragment_Form extends Fragment implements
 	@Override
 	public MyLinearLayout getWeaterContener() {
 		return (MyLinearLayout) view.findViewById(R.id.fishing_weather_wrapper);
+
 	}
 
 	@Override

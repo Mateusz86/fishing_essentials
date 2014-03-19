@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
 
-
 import pl.mateusz.drozdz.fishing_essentials.dao.Bait;
 import pl.mateusz.drozdz.fishing_essentials.dao.BaitDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.CaughtFish;
@@ -24,6 +23,8 @@ import pl.mateusz.drozdz.fishing_essentials.dao.MethodsDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.Places;
 import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao;
 import android.content.Context;
+
+
 
 public class Bootstrap {
 

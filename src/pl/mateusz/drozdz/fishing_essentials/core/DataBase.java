@@ -1,10 +1,10 @@
 package pl.mateusz.drozdz.fishing_essentials.core;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import pl.mateusz.drozdz.fishing_essentials.dao.DaoMaster;
 import pl.mateusz.drozdz.fishing_essentials.dao.DaoMaster.DevOpenHelper;
 import pl.mateusz.drozdz.fishing_essentials.dao.DaoSession;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 public final class DataBase {
 

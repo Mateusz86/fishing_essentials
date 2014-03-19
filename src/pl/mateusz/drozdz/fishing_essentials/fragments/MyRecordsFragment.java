@@ -2,7 +2,6 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 
 import java.util.List;
 
-import de.greenrobot.dao.query.Query;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.dao.CaughtFish;
@@ -16,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import de.greenrobot.dao.query.Query;
 
 public class MyRecordsFragment extends Fragment {
 	List<CaughtFish> coughtFishes;

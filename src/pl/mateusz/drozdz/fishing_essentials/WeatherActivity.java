@@ -126,13 +126,11 @@ public class WeatherActivity extends Activity implements WeatherInterface {
 
 
 
-
 	@Override
 	public ProgressBar getProgressBar() {
 		// TODO Auto-generated method stub
 		return (ProgressBar)findViewById(R.id.progressBar);
 	}
-	
 	
 	
 }
