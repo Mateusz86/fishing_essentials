@@ -6,9 +6,6 @@ import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_List;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_List.ChangeFragment;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_List.OnExpedytionSelected;
 import pl.mateusz.drozdz.fishing_essentials.fragments.OneExpedytionFragment;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 
 public class FishingActivity extends FragmentActivity  implements ChangeFragment,FishingFragment_Form.ChangeFragmenOnFragmentMap, OnExpedytionSelected {
 
@@ -26,6 +23,7 @@ public class FishingActivity extends FragmentActivity  implements ChangeFragment
 	
 	}
 
+	@Override
 	@Override
 	public void changeFragment() {
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -47,6 +45,7 @@ public class FishingActivity extends FragmentActivity  implements ChangeFragment
 	}
 	
 
+	@Override
 	@Override
 	public void changeFragmentOnFragmentMap() {
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

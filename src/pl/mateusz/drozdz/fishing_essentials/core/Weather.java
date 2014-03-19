@@ -1,19 +1,5 @@
 package pl.mateusz.drozdz.fishing_essentials.core;
 
-import java.util.concurrent.ExecutionException;
-
-import org.apache.http.client.HttpClient;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.Activity;
-import android.content.Context;
-import android.location.Location;
-import android.os.AsyncTask;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
-
 public class Weather extends AsyncTask<String, Void, String> {
 	private Context context;
 	private HttpClient httpClient;

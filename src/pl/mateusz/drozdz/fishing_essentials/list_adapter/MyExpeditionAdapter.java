@@ -1,16 +1,7 @@
 package pl.mateusz.drozdz.fishing_essentials.list_adapter;
 
-import java.text.SimpleDateFormat;
-import java.util.List;
-
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishing;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 public class MyExpeditionAdapter extends BaseAdapter {
 

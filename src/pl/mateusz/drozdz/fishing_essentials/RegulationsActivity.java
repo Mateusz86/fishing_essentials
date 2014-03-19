@@ -1,10 +1,5 @@
 package pl.mateusz.drozdz.fishing_essentials;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-
 
 
 public class RegulationsActivity extends Activity implements View.OnClickListener{

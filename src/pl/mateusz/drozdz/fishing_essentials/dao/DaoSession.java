@@ -1,14 +1,5 @@
 package pl.mateusz.drozdz.fishing_essentials.dao;
 
-import android.database.sqlite.SQLiteDatabase;
-
-import java.util.Map;
-
-import de.greenrobot.dao.AbstractDao;
-import de.greenrobot.dao.AbstractDaoSession;
-import de.greenrobot.dao.identityscope.IdentityScopeType;
-import de.greenrobot.dao.internal.DaoConfig;
-
 import pl.mateusz.drozdz.fishing_essentials.dao.Bait;
 import pl.mateusz.drozdz.fishing_essentials.dao.GroundBait;
 import pl.mateusz.drozdz.fishing_essentials.dao.Methods;

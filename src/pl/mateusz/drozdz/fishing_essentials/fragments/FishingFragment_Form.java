@@ -1,8 +1,5 @@
 package pl.mateusz.drozdz.fishing_essentials.fragments;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import pl.mateusz.drozdz.fishing_essentials.FishingActivity;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
@@ -17,25 +14,6 @@ import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao.Properties;
 import pl.mateusz.drozdz.fishing_essentials.dao.utils.GpsCallbackEvent;
 import pl.mateusz.drozdz.fishing_essentials.dao.utils.GpsSwitcher;
 import pl.mateusz.drozdz.fishing_essentials.fragments.utils.DataTimePickerDialogFragment;
-import android.content.Context;
-import android.content.Intent;
-import android.location.Location;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 public class FishingFragment_Form extends Fragment implements
 		OnItemClickListener, WeatherInterface, GpsCallbackEvent {
@@ -212,6 +190,7 @@ public class FishingFragment_Form extends Fragment implements
 	}
 
 	@Override
+	@Override
 	public void gpsCalbackEvent() {
 		setNewPlace();
 	}
@@ -261,21 +240,25 @@ public class FishingFragment_Form extends Fragment implements
 	}
 
 	@Override
+	@Override
 	public EditText getWeaterContener() {
 		return (EditText) (this.weatherText == null ? view
 				.findViewById(R.id.fishing_weather) : this.weatherText);
 	}
 
 	@Override
+	@Override
 	public Context getContext() {
 		return getActivity();
 	}
 
 	@Override
+	@Override
 	public int getWeatherType() {
 		return 0;
 	}
 
+	@Override
 	@Override
 	public ProgressBar getProgressBar() {
 		return (ProgressBar) view.findViewById(R.id.progressBar);

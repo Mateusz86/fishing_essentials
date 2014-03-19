@@ -1,8 +1,5 @@
 package pl.mateusz.drozdz.fishing_essentials.fragments;
 
-import java.util.List;
-
-import de.greenrobot.dao.query.Query;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.dao.CaughtFish;
@@ -10,12 +7,6 @@ import pl.mateusz.drozdz.fishing_essentials.dao.CaughtFishDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.CaughtFishDao.Properties;
 import pl.mateusz.drozdz.fishing_essentials.dao.DaoSession;
 import pl.mateusz.drozdz.fishing_essentials.list_adapter.MyFishesRecordAdapter;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
 
 public class MyRecordsFragment extends Fragment {
 	List<CaughtFish> coughtFishes;

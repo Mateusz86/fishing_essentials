@@ -1,20 +1,8 @@
 package pl.mateusz.drozdz.fishing_essentials.list_adapter;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.Property;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishes;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class FishesListAdapter extends BaseAdapter {
 

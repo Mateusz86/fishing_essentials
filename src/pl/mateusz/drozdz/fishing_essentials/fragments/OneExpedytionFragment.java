@@ -1,13 +1,6 @@
 package pl.mateusz.drozdz.fishing_essentials.fragments;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
 
 public class OneExpedytionFragment extends Fragment {
 

@@ -1,24 +1,10 @@
 package pl.mateusz.drozdz.fishing_essentials.fragments;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import pl.mateusz.drozdz.fishing_essentials.FishesActivity;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishes;
 import pl.mateusz.drozdz.fishing_essentials.dao.FishesDao;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class FishesFragment_View extends Fragment {
 

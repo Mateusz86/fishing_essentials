@@ -3,13 +3,6 @@ package pl.mateusz.drozdz.fishing_essentials;
 
 import pl.mateusz.drozdz.fishing_essantials.dialog.CloseDialog;
 import pl.mateusz.drozdz.fishing_essentials.core.Bootstrap;
-import android.os.Bundle;
-import android.app.Activity;
-
-import android.content.Intent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.RelativeLayout;
 
 public class MainActivity extends Activity implements OnClickListener {
 

@@ -2,20 +2,6 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 
 
 import pl.mateusz.drozdz.fishing_essentials.R;
-import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.Marker;
 
 public class MapFragment extends SupportMapFragment {
 	
