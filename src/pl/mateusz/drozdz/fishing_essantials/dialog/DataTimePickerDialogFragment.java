@@ -1,4 +1,4 @@
-package pl.mateusz.drozdz.fishing_essentials.fragments.utils;
+package pl.mateusz.drozdz.fishing_essantials.dialog;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
 import android.content.Context;

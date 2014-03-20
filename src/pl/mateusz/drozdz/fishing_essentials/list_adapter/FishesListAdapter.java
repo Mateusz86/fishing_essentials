@@ -33,6 +33,7 @@ public class FishesListAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		return listData.size();
+		
 	}
 
 	@Override

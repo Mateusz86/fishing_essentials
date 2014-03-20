@@ -1,30 +1,21 @@
 package pl.mateusz.drozdz.fishing_essentials.core;
 
-import java.util.concurrent.ExecutionException;
-import org.apache.http.client.HttpClient;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.io.Serializable;
+
 import pl.mateusz.drozdz.fishing_essentials.R;
+import pl.mateusz.drozdz.fishing_essentials.utils.MyLinearLayout;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.location.Location;
-import android.os.AsyncTask;
-import android.view.TextureView;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class Weather extends AsyncTask<String, Void, String> {
-	private Context context;
-	private HttpClient httpClient;
-	private Activity activity;
-	private JSONObject result;
-	private RestConnector connector;
+public class Weather implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String city;
 	private String sunrise; // wschód s³oñca
 	private String sunset; // zachód s³oñca
@@ -39,81 +30,18 @@ public class Weather extends AsyncTask<String, Void, String> {
 
 	private String icon;
 	private String description;
+	
+	
+	
 
-	private String latitude, longitude;
-	private String urls;
-	private Location location;
-	private WeatherInterface fragment;
-
-	public Weather(WeatherInterface fragment, Location location) {
-		super();
-		this.activity = fragment.getActivity();
-
-		this.context = fragment.getContext();
-		if (location == null)
-			this.location = new LocationHelper(activity).getLocation();
-		else
-			this.location = location;
-		latitude = String.valueOf(this.location.getLatitude());
-		longitude = String.valueOf(this.location.getLongitude());
-		urls = Property.WEATHER_API_URL.replace("{0}", latitude).replace("{1}",
-				longitude);
-
-		this.fragment = fragment;
-	}
-
-	public void getWeather() {
-
-		// String url = Property.WEATHER_API_URL.replace("{0}",
-		// latitude).replace(
-		// "{1}", longitude);
-
-		connector = new RestConnector();
-		connector.execute(urls);
-		try {
-			result = connector.get();
-			if (result != null) {
-				setCity(result.getString("name"));
-				setTemp((float) result.getJSONObject("main").getDouble("temp"));
-				setTempMax((float) result.getJSONObject("main").getDouble(
-						"temp_max"));
-				setTempMin((float) result.getJSONObject("main").getDouble(
-						"temp_min"));
-				setPressure(result.getJSONObject("main").getInt("pressure"));
-				setHumidity(result.getJSONObject("main").getInt("humidity"));
-
-				setWindSpeed((float) result.getJSONObject("wind").getDouble(
-						"speed"));
-				setWindDeg((float) result.getJSONObject("wind")
-						.getDouble("deg"));
-
-				setClouds(result.getJSONObject("clouds").getInt("all"));
-
-				setIcon(result.getJSONArray("weather").getJSONObject(0)
-						.getString("icon"));
-				System.out.println(result.getJSONArray("weather")
-						.getJSONObject(0).getString("icon"));
-
-				setDescription(result.getJSONArray("weather").getJSONObject(0)
-						.getString("description"));
-			}
-
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ExecutionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public Weather() {
 	}
 
 	public String getCity() {
 		return city;
 	}
 
-	private void setCity(String city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 
@@ -121,7 +49,7 @@ public class Weather extends AsyncTask<String, Void, String> {
 		return sunrise;
 	}
 
-	private void setSunrise(String sunrise) {
+	public void setSunrise(String sunrise) {
 		this.sunrise = sunrise;
 	}
 
@@ -129,7 +57,7 @@ public class Weather extends AsyncTask<String, Void, String> {
 		return sunset;
 	}
 
-	private void setSunset(String sunset) {
+	public void setSunset(String sunset) {
 		this.sunset = sunset;
 	}
 
@@ -141,7 +69,7 @@ public class Weather extends AsyncTask<String, Void, String> {
 		return String.valueOf(temp) + "°C";
 	}
 
-	private void setTemp(Float temp) {
+	public void setTemp(Float temp) {
 		this.temp = temp - (float) 273.15;
 	}
 
@@ -153,7 +81,7 @@ public class Weather extends AsyncTask<String, Void, String> {
 		return String.valueOf(tempMin) + "°C";
 	}
 
-	private void setTempMin(Float tempMin) {
+	public void setTempMin(Float tempMin) {
 		this.tempMin = tempMin - (float) 273.15;
 	}
 
@@ -165,7 +93,7 @@ public class Weather extends AsyncTask<String, Void, String> {
 		return String.valueOf(tempMax) + "°C";
 	}
 
-	private void setTempMax(Float tempMax) {
+	public void setTempMax(Float tempMax) {
 		this.tempMax = tempMax - (float) 273.15;
 	}
 
@@ -177,7 +105,7 @@ public class Weather extends AsyncTask<String, Void, String> {
 		return String.valueOf(pressure) + "hPa";
 	}
 
-	private void setPressure(Integer pressure) {
+	public void setPressure(Integer pressure) {
 		this.pressure = pressure;
 	}
 
@@ -189,7 +117,7 @@ public class Weather extends AsyncTask<String, Void, String> {
 		return String.valueOf(humidity) + "%";
 	}
 
-	private void setHumidity(Integer humidity) {
+	public void setHumidity(Integer humidity) {
 		this.humidity = humidity;
 	}
 
@@ -201,7 +129,7 @@ public class Weather extends AsyncTask<String, Void, String> {
 		return String.valueOf(windSpeed) + " m/s";
 	}
 
-	private void setWindSpeed(Float windSpeed) {
+	public void setWindSpeed(Float windSpeed) {
 		this.windSpeed = windSpeed;
 	}
 
@@ -234,7 +162,7 @@ public class Weather extends AsyncTask<String, Void, String> {
 		return wiatr;
 	}
 
-	private void setWindDeg(Float windDeg) {
+	public void setWindDeg(Float windDeg) {
 		this.windDeg = windDeg;
 	}
 
@@ -246,7 +174,7 @@ public class Weather extends AsyncTask<String, Void, String> {
 		return String.valueOf(clouds) + "%";
 	}
 
-	private void setClouds(Integer clouds) {
+	public void setClouds(Integer clouds) {
 		this.clouds = clouds;
 	}
 
@@ -254,7 +182,7 @@ public class Weather extends AsyncTask<String, Void, String> {
 		return icon;
 	}
 
-	private void setIcon(String icon) {
+	public void setIcon(String icon) {
 		this.icon = icon;
 	}
 
@@ -266,159 +194,88 @@ public class Weather extends AsyncTask<String, Void, String> {
 		this.description = description;
 	}
 
-	public String getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-
-	public String getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
-	
-	
 	@SuppressLint("NewApi")
-	private void generateWeatherOutput(LinearLayout l){
-		
-//		if(fragment.getActivity().findViewById(1234)!= null){
-			l.removeAllViews();
-//		}
+	public void generateWeatherOutput(LinearLayout l) {
+
 	
-//		LinearLayout l = new LinearLayout(context,null,R.style.textWrappwe);
-//		l.setId(1234);
-		
-		Context context = fragment.getContext();
+		l.removeAllViews();
+
+		Context context = Property.getContext();
 		LinearLayout l1 = new LinearLayout(context);
 		l1.setOrientation(LinearLayout.HORIZONTAL);
-		
-		
+
 		ImageView icon = new ImageView(context);
 		icon.setImageResource(Property.WEATHER_ICONS.get(getIcon()));
-		
+
 		l1.addView(icon);
 		l.addView(l1);
-		
+
 		TextView t1, t2;
-		
+
 		t1 = new TextView(context);
 		t1.setText("Temperatura: ");
 		t1.setTextAppearance(context, R.style.labelText);
-		
+
 		t2 = new TextView(context);
 		t2.setText(getTempD());
 		t2.setTextAppearance(context, R.style.normalText);
-		
+
 		l1 = new LinearLayout(context);
 		l1.addView(t1);
 		l1.addView(t2);
 		l.addView(l1);
-		
-		
+
 		t1 = new TextView(context);
 		t1.setText("Ciœnieie: ");
 		t1.setTextAppearance(context, R.style.labelText);
-		
+
 		t2 = new TextView(context);
 		t2.setText(getPressureD());
 		t2.setTextAppearance(context, R.style.normalText);
-		
+
 		l1 = new LinearLayout(context);
 		l1.addView(t1);
 		l1.addView(t2);
 		l.addView(l1);
-		
-		
+
 		t1 = new TextView(context);
 		t1.setText("Wiatr: ");
 		t1.setTextAppearance(context, R.style.labelText);
-		
+
 		t2 = new TextView(context);
 		t2.setText(getWindDegD());
 		t2.setTextAppearance(context, R.style.normalText);
-		
+
 		l1 = new LinearLayout(context);
 		l1.addView(t1);
 		l1.addView(t2);
 		l.addView(l1);
-		
-		
+
 		t1 = new TextView(context);
 		t1.setText("Wilgotnoœæ: ");
 		t1.setTextAppearance(context, R.style.labelText);
-		
+
 		t2 = new TextView(context);
 		t2.setText(getHumidityD());
 		t2.setTextAppearance(context, R.style.normalText);
-		
+
 		l1 = new LinearLayout(context);
 		l1.addView(t1);
 		l1.addView(t2);
 		l.addView(l1);
-		
-		
+
 		t1 = new TextView(context);
 		t1.setText("Opis: ");
 		t1.setTextAppearance(context, R.style.labelText);
-		
+
 		t2 = new TextView(context);
 		t2.setText(getDescription());
 		t2.setTextAppearance(context, R.style.normalText);
-		
+
 		l1 = new LinearLayout(context);
 		l1.addView(t1);
 		l1.addView(t2);
-        l.addView(l1);
-        
-//        layout.addView(l);
+		l.addView(l1);
 	}
-
-	@Override
-	protected void onPreExecute() {
-		super.onPreExecute();
-        fragment.getProgressBar().setVisibility(View.VISIBLE);
-	}
-
-	@Override
-	protected void onPostExecute(String result) {
-		if (result == null && context != null) {
-			Toast.makeText(context, "sprawdz polaczenie internetowe",
-					Toast.LENGTH_SHORT).show();
-			
-		} else {
-			super.onPostExecute(result);
-			getWeather();
-			LinearLayout l = fragment.getWeaterContener();
-			String pogoda = (new StringBuilder("Temperatura: " + getTempD()
-					+ "\nCiœnieie: " + getPressureD() + "\nWiatr: "
-					+ getWindDegD() + " " + getWindSpeedD() + "\nWilgotnoœæ: "
-					+ getHumidityD() + "\n" + getDescription())).toString();
-			
-			
-			generateWeatherOutput(l);
-			
-			
-//			w.setText(pogoda);
-		}
-		 fragment.getProgressBar().setVisibility(View.GONE);
-	}
-
-	@Override
-	protected String doInBackground(String... params) {
-		Rest r = new Rest();
-		// System.out.println(params[0]);
-		r.get(urls);
-		r.getResponseString();
-		String textRetrieved = r.getResponseText();
-		return textRetrieved;
-	}
-	
-	
-	
 
 }

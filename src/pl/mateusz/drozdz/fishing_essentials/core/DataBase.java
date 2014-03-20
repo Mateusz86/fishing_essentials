@@ -29,6 +29,7 @@ public final class DataBase {
  
 
     private DataBase(Context context) {
+    	Property.setContext(context);
     	helper = new DaoMaster.DevOpenHelper(context, Property.DB_NAME, null);
     	db = helper.getWritableDatabase();
     	daoMaster= new DaoMaster(db);

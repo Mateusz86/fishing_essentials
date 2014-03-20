@@ -29,7 +29,7 @@
             android:value="AIzaSyA3XKKh4M_hTQPcW2om1hOZqUwoJcbk5Sg" />
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="3136110" />
+            android:value="4132500" />
 
         <uses-library android:name="com.google.android.maps" />
 
