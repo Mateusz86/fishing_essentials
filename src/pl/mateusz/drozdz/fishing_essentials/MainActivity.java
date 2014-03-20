@@ -63,6 +63,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		fishes.setOnClickListener(this);
 		RelativeLayout close = (RelativeLayout) findViewById(R.id.closeId);
 		close.setOnClickListener(this);
+		RelativeLayout settings = (RelativeLayout) findViewById(R.id.settingsId);
+		settings.setOnClickListener(this);
 		
 	}
 
@@ -97,12 +99,18 @@ public class MainActivity extends Activity implements OnClickListener {
 						 FishesActivity.class);
 						 startActivity(intent);
 			break;
+			
+		case R.id.settingsId:
+			intent = new Intent(MainActivity.this,SettingsActivity.class);
+			startActivity(intent);
+			break;
 		case R.id.closeId:
 			CloseDialog dialog = new CloseDialog(
 					MainActivity.this, "Czy na pewno chcesz zamknaæ aplikacjê?",MainActivity.this);
 			dialog.show();
 			
 	    break;	
+	    
 		}
 	}
 }

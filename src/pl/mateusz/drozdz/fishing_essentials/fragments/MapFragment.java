@@ -1,6 +1,5 @@
 package pl.mateusz.drozdz.fishing_essentials.fragments;
 
-
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.LocationHelper;
 import pl.mateusz.drozdz.fishing_essentials.dao.utils.GpsCallbackEvent;
@@ -145,7 +144,6 @@ public class MapFragment extends SupportMapFragment implements OnMarkerDragListe
 	}
 
 
-
 	private void initMap() {
 		googleMap=getMap();
 		if(googleMap!=null) {
@@ -173,15 +171,11 @@ public class MapFragment extends SupportMapFragment implements OnMarkerDragListe
 		this.callback = callback;
 	}
 
-
-
 	@Override
 	public void onMarkerDrag(Marker arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 	@Override
 	public void onMarkerDragEnd(Marker m) {
@@ -190,20 +184,15 @@ public class MapFragment extends SupportMapFragment implements OnMarkerDragListe
 		location.setLongitude(latLng.longitude);
 	}
 
-
-
 	@Override
 	public void onMarkerDragStart(Marker arg0) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
-
 
 	@Override
 	public void onClick(View v) {
 	 Log.e("lokalizacja zapisz", location.getLatitude()+"");	
      callback.gpsCalbackEvent(location);
 	}
-
 	
 }
