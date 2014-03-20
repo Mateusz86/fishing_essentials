@@ -38,7 +38,7 @@ public class GpsSwitcher implements OnClickListener {
 			button.setImageResource(R.drawable.gps);
 			gps_enabled = false;
 		}
-		e.gpsCalbackEvent(null);
+		//e.gpsCalbackEvent(null);
 	}
 
 	@Override

@@ -42,7 +42,7 @@ public class WeatherAsyncTask extends AsyncTask<String, Void, String> {
 
 		this.context = fragment.getContext();
 		if (location == null)
-			this.location = new LocationHelper(activity).getLocation();
+			this.location = Property.getLocation();
 		else
 			this.location = location;
 		latitude = String.valueOf(this.location.getLatitude());

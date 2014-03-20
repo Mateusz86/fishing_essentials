@@ -47,6 +47,7 @@ public class Rest {
 
 	public void post(String url, ArrayList data){
 		this.httpPost = new HttpPost(url);
+		System.out.println(url);
 		this.httpClient.getParams().setParameter("http.socket.timeout", this.timeout);
 		try {
 			this.data = data;

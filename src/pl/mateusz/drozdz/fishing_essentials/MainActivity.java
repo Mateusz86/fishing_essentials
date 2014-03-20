@@ -3,6 +3,7 @@ package pl.mateusz.drozdz.fishing_essentials;
 
 import pl.mateusz.drozdz.fishing_essantials.dialog.CloseDialog;
 import pl.mateusz.drozdz.fishing_essentials.core.Bootstrap;
+import pl.mateusz.drozdz.fishing_essentials.core.LocationHelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,6 +46,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		baitDao.insert(bait);
 		Log.e("bait"," "+bait.getId());*/
 		
+		
+		
+		/*
+		 *  start Location helper
+		 */
+		
+		new LocationHelper(this);
 
 		/*
 		 * Regulations btn

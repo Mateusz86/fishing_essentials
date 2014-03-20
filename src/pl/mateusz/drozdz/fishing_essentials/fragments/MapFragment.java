@@ -3,6 +3,8 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.LocationHelper;
+import pl.mateusz.drozdz.fishing_essentials.core.Property;
+import pl.mateusz.drozdz.fishing_essentials.dao.FishingDao.Properties;
 import pl.mateusz.drozdz.fishing_essentials.utils.GpsCallbackEvent;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -63,7 +65,7 @@ public class MapFragment extends SupportMapFragment implements OnMarkerDragListe
 		if (services&& v!=null) {
 			v = super.onCreateView(inflater, container, savedInstanceState);
 			
-			this.location =new LocationHelper(getActivity()).getLocation();
+			this.location = Property.getLocation();
 
 			this.latitude = location.getLatitude();
 			this.longitude = location.getLongitude();
@@ -201,7 +203,7 @@ public class MapFragment extends SupportMapFragment implements OnMarkerDragListe
 
 	@Override
 	public void onClick(View v) {
-	 Log.e("lokalizacja zapisz", location.getLatitude()+"");	
+	 Log.e("http: lokalizacja zapisz", location.getLatitude()+"");	
      callback.gpsCalbackEvent(location);
 	}
 
