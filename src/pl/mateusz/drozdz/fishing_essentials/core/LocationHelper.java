@@ -18,6 +18,7 @@ public class LocationHelper implements LocationListener{
 	public LocationHelper(Activity activity){
 		this.activity=activity;
 		
+		   System.out.println("Provider  has been selected.");
 
 	    // Get the location manager
 	    locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
@@ -25,8 +26,14 @@ public class LocationHelper implements LocationListener{
 	    // default
 	    Criteria criteria = new Criteria();
 	    provider = locationManager.getBestProvider(criteria, false);
-	    location = locationManager.getLastKnownLocation(provider);
+	    
+	     location= locationManager.getLastKnownLocation(provider);
 
+	    Property.setLocation(location); 
+	    
+	    location = Property.location;
+	    
+	   
 	    // Initialize the location fields
 	    if (location != null) {
 	      System.out.println("Provider " + provider + " has been selected.");
@@ -36,45 +43,7 @@ public class LocationHelper implements LocationListener{
 	    }
 		
 	}
-	
-	public Location getLocation1(){
 		
-		locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
-
-		
-		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-			provider = LocationManager.GPS_PROVIDER;
-		} else {
-			Criteria criteria = new Criteria();
-		    provider = locationManager.getBestProvider(criteria, false);
-		}
-		
-		
-		location = locationManager.getLastKnownLocation(provider);
-		
-		
-		// TODO  - cos tu jest hujowo wiec ustawiam dla debuug domyœlnie
-//		location = new Location("dummyprovider");
-//		location.setLatitude(50.054315);
-//		location.setLongitude(20.001876);
-		
-		if (location != null) {
-			System.out.println("Provider " + provider + " has been selected.");
-			onLocationChanged(location);
-			locationManager.requestLocationUpdates(provider, 400, 1, this);
-
-			return location;        
-		}else{
-			return null;
-		}
-	}
-	
-	public Location getLocation(){
-		locationManager.requestLocationUpdates(provider, 400, 1, this);
-		System.out.println(location.toString());
-		return location;
-	}
-	
 
 	@Override
 	public void onLocationChanged(android.location.Location location) {

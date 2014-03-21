@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import android.content.Context;
+import android.location.Location;
 import pl.mateusz.drozdz.fishing_essentials.R;
 
 public class Property {
@@ -35,6 +36,29 @@ public class Property {
 		}
 	};
 	private static Context context;
+	
+	public static Location location;
+
+	public static Location getLocation() {
+		return location;
+	}
+	public static void setLocation(Location location) {
+		Property.location = location;
+	}
+	
+//	public static void setLocation(String latitude, String longitude){
+//		location.setLatitude(Double.valueOf(latitude));
+//		location.setLongitude(Double.valueOf(longitude));
+//	}
+//	
+//	public static Double getLatitude(){
+//		return location.getLatitude();
+//	}
+//	public static Double getLongitude(){
+//		return location.getLongitude();
+//	}
+//	
+//	
 	
 	public static Context getContext() {
 		return context;

@@ -11,6 +11,7 @@ import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.Base64;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.core.LocationHelper;
+import pl.mateusz.drozdz.fishing_essentials.core.Property;
 import pl.mateusz.drozdz.fishing_essentials.core.WeatherAsyncTask;
 import pl.mateusz.drozdz.fishing_essentials.core.WeatherInterface;
 import pl.mateusz.drozdz.fishing_essentials.dao.DaoSession;
@@ -39,6 +40,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class FishingFragment_Form extends Fragment implements
@@ -62,7 +64,8 @@ public class FishingFragment_Form extends Fragment implements
 
 	private WeatherAsyncTask weatherAsync;
 
-	private EditText latitude, longitude, description, weatherText;
+	private EditText description;
+	private TextView latitude, longitude;
 	private Button date, form_submit;
 	private ArrayAdapter<String> adapter;
 	private String[] existing_places_name;
@@ -70,8 +73,6 @@ public class FishingFragment_Form extends Fragment implements
 	private DaoSession daoSession;
 
 	private Long place_id = null;
-
-	private LocationHelper locationHelper;
 
 	private int year;
 	private int month;
@@ -85,16 +86,14 @@ public class FishingFragment_Form extends Fragment implements
 				false);
 		if (view != null) {
 
-			locationHelper = new LocationHelper(getActivity());
-
 			/*
 			 * prepare
 			 */
 			daoSession = DataBase.getInstance(getActivity()).getDaoSession();
 
-			latitude = (EditText) view
+			latitude = (TextView) view
 					.findViewById(R.id.fishing_places_latidude);
-			longitude = (EditText) view
+			longitude = (TextView) view
 					.findViewById(R.id.fishing_places_longitude);
 			description = (EditText) view
 					.findViewById(R.id.fishing_places_description);
@@ -102,6 +101,11 @@ public class FishingFragment_Form extends Fragment implements
 			// view.findViewById(R.id.fishing_weather_text);
 			date = (Button) view.findViewById(R.id.fishing_date);
 			form_submit = (Button) view.findViewById(R.id.show_form_submit);
+			
+			
+			Location location = Property.getLocation();
+			latitude.setText(String.valueOf(location.getLatitude()));
+			longitude.setText(String.valueOf(location.getLongitude()));
 
 			/*
 			 * prepare Autocomplete
@@ -153,6 +157,9 @@ public class FishingFragment_Form extends Fragment implements
 							getFragmentManager(), "ss");
 				}
 			});
+			
+			
+			
 
 			/*
 			 * submit form
@@ -178,11 +185,6 @@ public class FishingFragment_Form extends Fragment implements
 					Fishing fishing = new Fishing();
 					fishing.setPlaces(place);
 
-					System.out.println("POGODA!!");
-
-					// MyLinearLayout mly = (MyLinearLayout)
-					// view.findViewById(R.id.fishing_weather_wrapper);
-
 					try {
 						String s = Base64.encodeObject(weatherAsync
 								.getWeather());
@@ -202,8 +204,11 @@ public class FishingFragment_Form extends Fragment implements
 			});
 
 		}
+		
+		System.out.println("restum");
 
 		return view;
+		
 	}
 
 	@Override
@@ -215,9 +220,12 @@ public class FishingFragment_Form extends Fragment implements
 					.findViewById(R.id.fishing_form_gps_on);
 			gps_swicher.setOnClickListener(new GpsSwitcher(getActivity(),
 					gps_swicher, this));
-			gpsCalbackEvent(null);
+			//gpsCalbackEvent(null);
 		}
-		setNewPlace(null);
+		
+		
+		//gpsCalbackEvent(null);
+		setLocation();
 
 		ImageButton mapButton = (ImageButton) view
 				.findViewById(R.id.fishing_form_map_on);
@@ -233,24 +241,29 @@ public class FishingFragment_Form extends Fragment implements
 
 	@Override
 	public void gpsCalbackEvent(Location location) {
-		this.setNewPlace(location);
-	}
-
-	private void setNewPlace(Location location) {
-
-		if (location == null)
-			location = locationHelper.getLocation();
-
-		if (location != null) {
+		if(location == null){
+			location = Property.getLocation();
 			latitude.setText(String.valueOf(location.getLatitude()));
 			longitude.setText(String.valueOf(location.getLongitude()));
-
-			setWeather(location);
+		}else{
+			latitude.setText(String.valueOf(location.getLatitude()));
+			longitude.setText(String.valueOf(location.getLongitude()));
 		}
-
+		
+		setLocation();
+		//this.setNewPlace(location);
+	}
+	
+	private void setLocation(){
+		Location tmp_location = new Location("null");
+		tmp_location.setLatitude(Double.valueOf(latitude.getText().toString()));
+		tmp_location.setLongitude(Double.valueOf(longitude.getText().toString()));
+		setWeather(tmp_location);
 	}
 
+
 	private void setWeather(Location location) {
+		System.out.println("http:    pobieranie pogody    ");
 		weatherAsync = new WeatherAsyncTask(this, location);
 		weatherAsync.execute();
 	}
@@ -270,7 +283,6 @@ public class FishingFragment_Form extends Fragment implements
 		Location l = new Location("");
 		l.setLatitude(Double.valueOf(places.getLatitude()));
 		l.setLongitude(Double.valueOf(places.getLongitude()));
-
 		setWeather(l);
 
 		InputMethodManager imm = (InputMethodManager) getActivity()
