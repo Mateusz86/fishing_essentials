@@ -3,7 +3,6 @@ package pl.mateusz.drozdz.fishing_essentials.core;
 import java.io.Serializable;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
-import pl.mateusz.drozdz.fishing_essentials.utils.MyLinearLayout;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.ImageView;

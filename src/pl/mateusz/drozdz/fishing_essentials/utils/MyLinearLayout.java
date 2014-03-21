@@ -1,17 +1,12 @@
 package pl.mateusz.drozdz.fishing_essentials.utils;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 import pl.mateusz.drozdz.fishing_essentials.core.Property;
-import android.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Base64;
-import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 @SuppressLint("NewApi")

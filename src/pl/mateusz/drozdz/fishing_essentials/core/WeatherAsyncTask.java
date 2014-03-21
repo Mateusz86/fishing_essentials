@@ -6,19 +6,12 @@ import org.apache.http.client.HttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.utils.MyLinearLayout;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 import android.os.AsyncTask;
-import android.view.TextureView;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class WeatherAsyncTask extends AsyncTask<String, Void, String> {

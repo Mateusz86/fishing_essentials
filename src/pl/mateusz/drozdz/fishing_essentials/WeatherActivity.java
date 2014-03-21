@@ -6,8 +6,6 @@ import pl.mateusz.drozdz.fishing_essentials.utils.MyLinearLayout;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 public class WeatherActivity extends Activity implements WeatherInterface {

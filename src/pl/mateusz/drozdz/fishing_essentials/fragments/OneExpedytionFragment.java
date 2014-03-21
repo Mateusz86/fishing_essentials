@@ -3,7 +3,6 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 
 import java.io.IOException;
 
-import pl.mateusz.drozdz.fishing_essentials.FishesActivity;
 import pl.mateusz.drozdz.fishing_essentials.FishingActivity;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.Base64;
@@ -12,7 +11,6 @@ import pl.mateusz.drozdz.fishing_essentials.core.Property;
 import pl.mateusz.drozdz.fishing_essentials.core.Weather;
 import pl.mateusz.drozdz.fishing_essentials.dao.DaoSession;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishing;
-import pl.mateusz.drozdz.fishing_essentials.utils.MyLinearLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
