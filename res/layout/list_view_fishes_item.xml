@@ -4,7 +4,7 @@
     android:layout_height="80dp"
     android:orientation="horizontal"
     android:padding="5dip" 
-    android:background="#ffffff">
+    android:background="@color/transparentWhite">
     
     <ImageView 
         android:id="@+id/fish_item_photo"

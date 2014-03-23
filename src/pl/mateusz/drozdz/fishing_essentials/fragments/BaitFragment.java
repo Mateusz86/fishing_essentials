@@ -11,6 +11,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 
@@ -19,6 +21,8 @@ public class BaitFragment extends Fragment {
 	private ListView baitList;
 	private BaitAdapter baitAdapter;
 	private List<Bait> baits;
+	private ImageButton delete;
+	private ImageButton update;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,6 +37,14 @@ public class BaitFragment extends Fragment {
 			this.baitList = (ListView) view.findViewById(R.id.baitList);
 			baitAdapter = new BaitAdapter(getActivity(),baits);
 			baitList.setAdapter(baitAdapter);
+			
+			OnClickListener buttonsListener = new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					
+				}
+			};
 			
 		}
 		

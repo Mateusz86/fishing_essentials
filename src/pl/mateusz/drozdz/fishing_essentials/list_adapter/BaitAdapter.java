@@ -9,6 +9,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ public class BaitAdapter extends BaseAdapter {
 	private List<Bait> baitList;
     private LayoutInflater layoutInflater;
     private Context context;
+    private OnClickListener listener;
 	
 	public BaitAdapter(Context context,List<Bait> baitList) {
 		this.context=context;
@@ -72,6 +74,15 @@ public class BaitAdapter extends BaseAdapter {
 		this.baitList = baitList;
 	}
 
+	public OnClickListener getListener() {
+		return listener;
+	}
+
+	public void setListener(OnClickListener listener) {
+		this.listener = listener;
+	}
+	
+	
 	
 	
 }
