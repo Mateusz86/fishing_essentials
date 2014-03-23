@@ -17,11 +17,11 @@ public class TabPagerAdapter extends FragmentPagerAdapter  {
 	        case 0:
 	            return new BaitFragment();
 	        case 1:
-	            return new BaitFragment();
+	            return new GroundBaitFragment();
 	        case 2:
-	            return new BaitFragment();
+	            return new MethodsFragment();
 	        case 3: 
-	            return new BaitFragment();  
+	            return new PlacesFragment();  
 	        }
 	 
 	        return null;

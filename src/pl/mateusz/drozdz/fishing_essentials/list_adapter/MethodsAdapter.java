@@ -61,7 +61,7 @@ public class MethodsAdapter extends BaseAdapter{
 		holder.holderName.setText(methodsList.get(position).getName()+"");
 		holder.holderDescription.setText(methodsList.get(position).getDescription()+"");
 		
-		InputStream ims;
+/*		InputStream ims;
 		String[] f = methodsList.get(position).getPhotos().split("#");
 		if(f.length>=1) {
 			try {
@@ -73,7 +73,7 @@ public class MethodsAdapter extends BaseAdapter{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	    	}
+	    	}*/
 		}
 		
 		

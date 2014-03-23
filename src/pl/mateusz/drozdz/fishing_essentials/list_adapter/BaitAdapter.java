@@ -18,7 +18,7 @@ public class BaitAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     private Context context;
 	
-	BaitAdapter(Context context,List<Bait> baitList) {
+	public BaitAdapter(Context context,List<Bait> baitList) {
 		this.context=context;
 		this.baitList=baitList;
 		this.layoutInflater=LayoutInflater.from(context);

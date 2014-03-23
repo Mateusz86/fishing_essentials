@@ -4,16 +4,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical" >
-
  
  <ListView 
-   android:id="@+id/baitList"  
+   android:id="@+id/groundbaitList"  
    android:layout_width="match_parent"
    android:layout_height="match_parent"
    android:footerDividersEnabled="true"
    android:headerDividersEnabled="true"
    android:cacheColorHint="@android:color/transparent"
    android:dividerHeight="1dp"
-   android:divider="@drawable/item_selector_bait_divider"
+   android:divider="@drawable/item_selector_groundbait_divider"
      ></ListView>
 </LinearLayout>
+
