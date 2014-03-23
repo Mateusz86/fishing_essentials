@@ -46,9 +46,9 @@ public class MethodsAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder;
+		ViewHolderMethods holder;
 		if (convertView == null) {
-			holder = new ViewHolder();
+			holder = new ViewHolderMethods();
 			convertView = layoutInflater.inflate(
 					R.layout.list_view_method_item, null);
 			holder.holderName = (TextView) convertView.findViewById(R.id.name);
@@ -58,7 +58,7 @@ public class MethodsAdapter extends BaseAdapter {
 					.findViewById(R.id.photo);
 			convertView.setTag(holder);
 		} else {
-			holder = (ViewHolder) convertView.getTag();
+			holder = (ViewHolderMethods) convertView.getTag();
 		}
 		if (methodsList.size() != 0) {
 			holder.holderName.setText(methodsList.get(position).getName() + "");
@@ -67,14 +67,13 @@ public class MethodsAdapter extends BaseAdapter {
 
 			InputStream ims;
 			String photos = methodsList.get(position).getPhotos();
-			
 			if (photos != null) {
-				Log.i("Photos",photos);
 				String[] f = photos.split("#");
 				if (f.length >= 1) {
 					try {
+						System.out.println("ph"+Property.METHODS_PHOTO_DIR + f[0]);
 						ims = this.context.getAssets().open(
-								Property.FISH_PHOTO_DIR + f[0]);
+								Property.METHODS_PHOTO_DIR + f[0]);
 						Drawable d = Drawable.createFromStream(ims, null);
 						holder.holderPhoto.setImageDrawable(d);
 						f[0] = null;
@@ -89,7 +88,7 @@ public class MethodsAdapter extends BaseAdapter {
 		return convertView;
 	}
 
-	static class ViewHolder {
+	static class ViewHolderMethods {
 		TextView holderName;
 		TextView holderDescription;
 		ImageView holderPhoto;
