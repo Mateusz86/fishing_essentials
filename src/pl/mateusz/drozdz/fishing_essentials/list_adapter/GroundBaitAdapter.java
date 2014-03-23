@@ -41,17 +41,17 @@ public class GroundBaitAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder;
+		ViewHolderGrounds holder;
 		
 		if(convertView==null) {
-		holder = new ViewHolder();
+		holder = new ViewHolderGrounds();
 		convertView= layoutInflater.inflate(R.layout.list_view_ground_bait_item, null);	
 		holder.holderName=(TextView) convertView.findViewById(R.id.name);
 		holder.holderDescription=(TextView) convertView.findViewById(R.id.description);
 		convertView.setTag(holder);
 		}
 		else {
-		holder= (ViewHolder) convertView.getTag();	
+		holder= (ViewHolderGrounds) convertView.getTag();	
 		}
 		if(groundList.size()!=0) {
 		holder.holderDescription.setText(groundList.get(position).getName()+"");
@@ -60,7 +60,7 @@ public class GroundBaitAdapter extends BaseAdapter {
 		return convertView;
 	}
 
-	static class  ViewHolder {
+	static class  ViewHolderGrounds {
 		TextView holderName;
 		TextView holderDescription;
 	}
