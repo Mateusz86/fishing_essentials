@@ -3,6 +3,6 @@
          <item name="white" type="color">#FFFFFF</item>
          <item name="black" type="color">#000000</item>
          <item name="label" type="color">#8e8870</item>
-    
+         <item name="transparentWhite" type="color">#ddffffff</item>
 
 </resources>

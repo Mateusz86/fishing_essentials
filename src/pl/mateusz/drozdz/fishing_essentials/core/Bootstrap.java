@@ -161,6 +161,7 @@ public class Bootstrap {
 		
 		Methods methods1 = new Methods();
 		methods1.setName("Spining");
+		methods1.setPhotos("images.jpg");
 		methodsDao.insert(methods1);
 		
 		
