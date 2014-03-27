@@ -15,6 +15,8 @@ public class SettingsActivity extends ActionBarActivity  implements TabListener{
    private TabPagerAdapter mAdapter;
    private android.support.v7.app.ActionBar actionBar;
    private String[] tabs = { "Przynêty", "Zanêty", "Metody","Miejsca" };
+   
+   
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

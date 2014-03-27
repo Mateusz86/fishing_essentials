@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
+import pl.mateusz.drozdz.fishing_essentials.core.ObjectHelperPositionList;
 import pl.mateusz.drozdz.fishing_essentials.dao.Bait;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class BaitAdapter extends BaseAdapter {
@@ -49,6 +51,8 @@ public class BaitAdapter extends BaseAdapter {
 		   holder = new ViewHolder();
 		   holder.nameHolder= (TextView) convertView.findViewById(R.id.name);
 		   holder.descriptionHolder=(TextView) convertView.findViewById(R.id.description);
+		   holder.updateImgHolder= (ImageButton) convertView.findViewById(R.id.update);
+		   holder.deleteImgHolder = (ImageButton) convertView.findViewById(R.id.delete);
 		   convertView.setTag(holder);
 		}
 		else {
@@ -57,14 +61,24 @@ public class BaitAdapter extends BaseAdapter {
 		if(baitList.size()!=0) {
 		holder.nameHolder.setText(baitList.get(position).getName()+"");
 		holder.descriptionHolder.setText(baitList.get(position).getDescription()+"");
+		holder.updateImgHolder.setOnClickListener(listener);
+		holder.deleteImgHolder.setOnClickListener(listener);
+		
+		ObjectHelperPositionList helper = new ObjectHelperPositionList();
+		helper.setPosition(position);
+		holder.updateImgHolder.setTag(helper);
+		holder.deleteImgHolder.setTag(helper);
 	    }
 		
+
 		return convertView;
 	}
 	
-	static class ViewHolder {
+	public static class ViewHolder {
 		TextView nameHolder;
 		TextView descriptionHolder;
+		ImageButton updateImgHolder;
+		ImageButton deleteImgHolder;
 	}
 	
 	public List<Bait> getBaitList() {
