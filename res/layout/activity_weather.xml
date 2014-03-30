@@ -1,0 +1,76 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WeatherActivity" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/city"
+            style="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/city"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/windSpeed"
+            style="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/icon"
+            android:layout_marginTop="10dp"  />
+
+        <TextView
+            android:id="@+id/windDeg"
+            style="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/windSpeed" 
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/clouds"
+            style="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/windDeg"
+            android:layout_marginTop="10dp"  />
+
+        <TextView
+            android:id="@+id/humidity"
+            style="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/clouds"
+            android:layout_marginTop="10dp"  />
+
+        <TextView
+            android:id="@+id/pressure"
+            style="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/humidity" 
+            android:layout_marginTop="10dp"
+             />
+
+        <TextView
+            android:id="@+id/temperature"
+            style="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pressure" 
+            android:layout_marginTop="10dp" />
+    </RelativeLayout>
+
+</FrameLayout>

@@ -9,7 +9,6 @@ import de.greenrobot.dao.AbstractDaoSession;
 import de.greenrobot.dao.identityscope.IdentityScopeType;
 import de.greenrobot.dao.internal.DaoConfig;
 
-import pl.mateusz.drozdz.fishing_essentials.dao.Photos;
 import pl.mateusz.drozdz.fishing_essentials.dao.Bait;
 import pl.mateusz.drozdz.fishing_essentials.dao.GroundBait;
 import pl.mateusz.drozdz.fishing_essentials.dao.Methods;
@@ -18,7 +17,6 @@ import pl.mateusz.drozdz.fishing_essentials.dao.Places;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishing;
 import pl.mateusz.drozdz.fishing_essentials.dao.CaughtFish;
 
-import pl.mateusz.drozdz.fishing_essentials.dao.PhotosDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.BaitDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.GroundBaitDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.MethodsDao;
@@ -36,7 +34,6 @@ import pl.mateusz.drozdz.fishing_essentials.dao.CaughtFishDao;
  */
 public class DaoSession extends AbstractDaoSession {
 
-    private final DaoConfig photosDaoConfig;
     private final DaoConfig baitDaoConfig;
     private final DaoConfig groundBaitDaoConfig;
     private final DaoConfig methodsDaoConfig;
@@ -45,7 +42,6 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig fishingDaoConfig;
     private final DaoConfig caughtFishDaoConfig;
 
-    private final PhotosDao photosDao;
     private final BaitDao baitDao;
     private final GroundBaitDao groundBaitDao;
     private final MethodsDao methodsDao;
@@ -57,9 +53,6 @@ public class DaoSession extends AbstractDaoSession {
     public DaoSession(SQLiteDatabase db, IdentityScopeType type, Map<Class<? extends AbstractDao<?, ?>>, DaoConfig>
             daoConfigMap) {
         super(db);
-
-        photosDaoConfig = daoConfigMap.get(PhotosDao.class).clone();
-        photosDaoConfig.initIdentityScope(type);
 
         baitDaoConfig = daoConfigMap.get(BaitDao.class).clone();
         baitDaoConfig.initIdentityScope(type);
@@ -82,7 +75,6 @@ public class DaoSession extends AbstractDaoSession {
         caughtFishDaoConfig = daoConfigMap.get(CaughtFishDao.class).clone();
         caughtFishDaoConfig.initIdentityScope(type);
 
-        photosDao = new PhotosDao(photosDaoConfig, this);
         baitDao = new BaitDao(baitDaoConfig, this);
         groundBaitDao = new GroundBaitDao(groundBaitDaoConfig, this);
         methodsDao = new MethodsDao(methodsDaoConfig, this);
@@ -91,7 +83,6 @@ public class DaoSession extends AbstractDaoSession {
         fishingDao = new FishingDao(fishingDaoConfig, this);
         caughtFishDao = new CaughtFishDao(caughtFishDaoConfig, this);
 
-        registerDao(Photos.class, photosDao);
         registerDao(Bait.class, baitDao);
         registerDao(GroundBait.class, groundBaitDao);
         registerDao(Methods.class, methodsDao);
@@ -102,7 +93,6 @@ public class DaoSession extends AbstractDaoSession {
     }
     
     public void clear() {
-        photosDaoConfig.getIdentityScope().clear();
         baitDaoConfig.getIdentityScope().clear();
         groundBaitDaoConfig.getIdentityScope().clear();
         methodsDaoConfig.getIdentityScope().clear();
@@ -110,10 +100,6 @@ public class DaoSession extends AbstractDaoSession {
         placesDaoConfig.getIdentityScope().clear();
         fishingDaoConfig.getIdentityScope().clear();
         caughtFishDaoConfig.getIdentityScope().clear();
-    }
-
-    public PhotosDao getPhotosDao() {
-        return photosDao;
     }
 
     public BaitDao getBaitDao() {

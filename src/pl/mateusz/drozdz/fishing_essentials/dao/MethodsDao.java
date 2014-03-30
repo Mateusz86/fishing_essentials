@@ -26,9 +26,8 @@ public class MethodsDao extends AbstractDao<Methods, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property Description = new Property(2, String.class, "description", false, "DESCRIPTION");
+        public final static Property Photos = new Property(3, String.class, "photos", false, "PHOTOS");
     };
-
-    private DaoSession daoSession;
 
 
     public MethodsDao(DaoConfig config) {
@@ -37,7 +36,6 @@ public class MethodsDao extends AbstractDao<Methods, Long> {
     
     public MethodsDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
-        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -46,7 +44,8 @@ public class MethodsDao extends AbstractDao<Methods, Long> {
         db.execSQL("CREATE TABLE " + constraint + "'METHODS' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
                 "'NAME' TEXT NOT NULL ," + // 1: name
-                "'DESCRIPTION' TEXT);"); // 2: description
+                "'DESCRIPTION' TEXT," + // 2: description
+                "'PHOTOS' TEXT);"); // 3: photos
     }
 
     /** Drops the underlying database table. */
@@ -70,12 +69,11 @@ public class MethodsDao extends AbstractDao<Methods, Long> {
         if (description != null) {
             stmt.bindString(3, description);
         }
-    }
-
-    @Override
-    protected void attachEntity(Methods entity) {
-        super.attachEntity(entity);
-        entity.__setDaoSession(daoSession);
+ 
+        String photos = entity.getPhotos();
+        if (photos != null) {
+            stmt.bindString(4, photos);
+        }
     }
 
     /** @inheritdoc */
@@ -90,7 +88,8 @@ public class MethodsDao extends AbstractDao<Methods, Long> {
         Methods entity = new Methods( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getString(offset + 1), // name
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // description
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // description
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // photos
         );
         return entity;
     }
@@ -101,6 +100,7 @@ public class MethodsDao extends AbstractDao<Methods, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.getString(offset + 1));
         entity.setDescription(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setPhotos(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
      }
     
     /** @inheritdoc */

@@ -8,7 +8,6 @@ import android.util.Log;
 import de.greenrobot.dao.AbstractDaoMaster;
 import de.greenrobot.dao.identityscope.IdentityScopeType;
 
-import pl.mateusz.drozdz.fishing_essentials.dao.PhotosDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.BaitDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.GroundBaitDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.MethodsDao;
@@ -26,7 +25,6 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(SQLiteDatabase db, boolean ifNotExists) {
-        PhotosDao.createTable(db, ifNotExists);
         BaitDao.createTable(db, ifNotExists);
         GroundBaitDao.createTable(db, ifNotExists);
         MethodsDao.createTable(db, ifNotExists);
@@ -38,7 +36,6 @@ public class DaoMaster extends AbstractDaoMaster {
     
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(SQLiteDatabase db, boolean ifExists) {
-        PhotosDao.dropTable(db, ifExists);
         BaitDao.dropTable(db, ifExists);
         GroundBaitDao.dropTable(db, ifExists);
         MethodsDao.dropTable(db, ifExists);
@@ -77,7 +74,6 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(SQLiteDatabase db) {
         super(db, SCHEMA_VERSION);
-        registerDaoClass(PhotosDao.class);
         registerDaoClass(BaitDao.class);
         registerDaoClass(GroundBaitDao.class);
         registerDaoClass(MethodsDao.class);
@@ -87,11 +83,13 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(CaughtFishDao.class);
     }
     
-    public DaoSession newSession() {
+    @Override
+	public DaoSession newSession() {
         return new DaoSession(db, IdentityScopeType.Session, daoConfigMap);
     }
     
-    public DaoSession newSession(IdentityScopeType type) {
+    @Override
+	public DaoSession newSession(IdentityScopeType type) {
         return new DaoSession(db, type, daoConfigMap);
     }
     

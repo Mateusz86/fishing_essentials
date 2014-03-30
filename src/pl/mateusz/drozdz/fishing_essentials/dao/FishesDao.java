@@ -30,9 +30,8 @@ public class FishesDao extends AbstractDao<Fishes, Long> {
         public final static Property Foot = new Property(4, String.class, "foot", false, "FOOT");
         public final static Property Tips = new Property(5, String.class, "tips", false, "TIPS");
         public final static Property Law = new Property(6, String.class, "law", false, "LAW");
+        public final static Property Photos = new Property(7, String.class, "photos", false, "PHOTOS");
     };
-
-    private DaoSession daoSession;
 
 
     public FishesDao(DaoConfig config) {
@@ -41,7 +40,6 @@ public class FishesDao extends AbstractDao<Fishes, Long> {
     
     public FishesDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
-        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -54,7 +52,8 @@ public class FishesDao extends AbstractDao<Fishes, Long> {
                 "'DESCRIPTION' TEXT," + // 3: description
                 "'FOOT' TEXT," + // 4: foot
                 "'TIPS' TEXT," + // 5: tips
-                "'LAW' TEXT);"); // 6: law
+                "'LAW' TEXT," + // 6: law
+                "'PHOTOS' TEXT);"); // 7: photos
     }
 
     /** Drops the underlying database table. */
@@ -98,12 +97,11 @@ public class FishesDao extends AbstractDao<Fishes, Long> {
         if (law != null) {
             stmt.bindString(7, law);
         }
-    }
-
-    @Override
-    protected void attachEntity(Fishes entity) {
-        super.attachEntity(entity);
-        entity.__setDaoSession(daoSession);
+ 
+        String photos = entity.getPhotos();
+        if (photos != null) {
+            stmt.bindString(8, photos);
+        }
     }
 
     /** @inheritdoc */
@@ -122,7 +120,8 @@ public class FishesDao extends AbstractDao<Fishes, Long> {
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // description
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // foot
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // tips
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // law
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // law
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // photos
         );
         return entity;
     }
@@ -137,6 +136,7 @@ public class FishesDao extends AbstractDao<Fishes, Long> {
         entity.setFoot(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setTips(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setLaw(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setPhotos(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
      }
     
     /** @inheritdoc */
