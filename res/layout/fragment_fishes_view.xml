@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <include layout="@layout/titlebar"/>
+    
     <TextView
         android:id="@+id/fish_view_name"
         android:layout_width="wrap_content"

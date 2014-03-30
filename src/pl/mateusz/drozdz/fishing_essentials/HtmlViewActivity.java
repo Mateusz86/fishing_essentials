@@ -1,8 +1,8 @@
 package pl.mateusz.drozdz.fishing_essentials;
 
+import pl.mateusz.drozdz.fishing_essentials.core.AnsyncHtmlLoader;
 import android.app.Activity;
 import android.os.Bundle;
-import android.webkit.WebView;
 
 public class HtmlViewActivity extends Activity {
 
@@ -14,8 +14,8 @@ public class HtmlViewActivity extends Activity {
 		Bundle bundle = getIntent().getExtras();
 		String fileName= bundle.getString("fileName");
 
-		WebView webView = (WebView) findViewById(R.id.htmlView);
-		webView.loadUrl("file:///android_asset/regulations/"+fileName);
+		AnsyncHtmlLoader ahl = new AnsyncHtmlLoader(this);
+		ahl.execute(fileName);
 
 	}
 }

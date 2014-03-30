@@ -1,12 +1,24 @@
 package pl.mateusz.drozdz.fishing_essentials.fragments;
 
+import java.util.List;
+
 import pl.mateusz.drozdz.fishing_essentials.R;
+import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
+import pl.mateusz.drozdz.fishing_essentials.dao.Fishing;
+import pl.mateusz.drozdz.fishing_essentials.dao.FishingDao;
+import pl.mateusz.drozdz.fishing_essentials.dao.FishingDao.Properties;
+import pl.mateusz.drozdz.fishing_essentials.list_adapter.MyExpeditionAdapter;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ListView;
 
 public class FishingFragment_List extends Fragment {
 	
@@ -16,6 +28,12 @@ public class FishingFragment_List extends Fragment {
 		public void changeFragment();
 	}
 	
+	public interface OnExpedytionSelected{
+		public void onExpedytionSelected(Long id);
+	}
+	
+	
+	private OnExpedytionSelected onExpedytionSelected;
 	private ChangeFragment changeFragmentListener;
 	
 	@Override
@@ -26,6 +44,27 @@ public class FishingFragment_List extends Fragment {
 				false);
 		if (view != null) {
 			Button show_form = (Button) view.findViewById(R.id.show_form);
+			ListView myExpenditionList = (ListView) view.findViewById(R.id.mojeWyprawyList);
+			
+			FishingDao fishingDao = DataBase.getInstance(getActivity()).getDaoSession().getFishingDao();			
+			final List<Fishing> fishing = fishingDao.queryBuilder().orderDesc(Properties.Date).list();
+			Log.d("size fishes",fishing.size()+"");
+			myExpenditionList.setAdapter(new MyExpeditionAdapter(getActivity(), fishing));
+			
+			myExpenditionList.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					System.out.println(arg2);
+					Long id = fishing.get(arg2).getId();
+					onExpedytionSelected.onExpedytionSelected(id);
+					
+				}
+				
+			});
+
+			
 			show_form.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -39,7 +78,19 @@ public class FishingFragment_List extends Fragment {
 	}
 
 	public void setChangeFragmentListener(ChangeFragment changeFragmentListener) {
+		System.out.println("klik111");
 		this.changeFragmentListener = changeFragmentListener;
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			onExpedytionSelected = (OnExpedytionSelected) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString()
+					+ " must implement OnFishesSelectedListener");
+		}
 	}
 
 	

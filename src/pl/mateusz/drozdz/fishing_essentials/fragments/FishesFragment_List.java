@@ -10,6 +10,7 @@ import pl.mateusz.drozdz.fishing_essentials.list_adapter.FishesListAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,19 +20,15 @@ import android.widget.ListView;
 
 public class FishesFragment_List extends Fragment {
 
-	public interface ChangeFragment {
-
-		public void changeFragment();
-	}
-
+	int position =0;
+	
 	public interface OnFishesSelectedListener {
-		public void onFishSelected(Long pk);
+		public void onFishSelected(Long pk,int position);
 	}
 
 	private Long pk;
 
 	private OnFishesSelectedListener callback;
-	private ChangeFragment changeFragmentListener;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,15 +44,15 @@ public class FishesFragment_List extends Fragment {
 			ListView fishesList = (ListView) view
 					.findViewById(R.id.fishes_list_view);
 			fishesList.setAdapter(new FishesListAdapter(getActivity(), fishes));
-
+			Log.d("Position",position+"");
+			fishesList.setSelection(position);
 			fishesList.setOnItemClickListener(new OnItemClickListener() {
 
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1,
 						int arg2, long arg3) {
 					System.out.println(arg2 + " " + arg3);
-					callback.onFishSelected(fishes.get(arg2).getId());
-					//changeFragmentListener.changeFragment();
+					callback.onFishSelected(fishes.get(arg2).getId(),arg2);
 				}
 			});
 
@@ -75,8 +72,13 @@ public class FishesFragment_List extends Fragment {
 		}
 	}
 
-	public void setChangeFragmentListener(ChangeFragment changeFragmentListener) {
-		this.changeFragmentListener = changeFragmentListener;
+	public int getPosition() {
+		return position;
 	}
 
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+	
 }

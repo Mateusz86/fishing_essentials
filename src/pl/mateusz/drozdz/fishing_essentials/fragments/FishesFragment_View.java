@@ -11,15 +11,25 @@ import pl.mateusz.drozdz.fishing_essentials.dao.FishesDao;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class FishesFragment_View extends Fragment {
 
+	
+//	 jakby dalej gdy beda istniec zdiecia sie nie ladowaly to trzeba lisntnera ktory updotowal liste
+	public interface CallFragmentListClickedBack {
+		void refreshFishesFragmentList();
+	}
+	
+	public CallFragmentListClickedBack callFragmentListClickedBackListener;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -86,8 +96,30 @@ public class FishesFragment_View extends Fragment {
 				// +"<h2>Porady</h2><article>"+fish.getTips()+"</article>";
 				// fish_content.loadData(content, "text/html", null);
 			}
+			
+			view.setFocusableInTouchMode(true);
+			view.requestFocus();
+			view.setOnKeyListener(new View.OnKeyListener() {
+			        @Override
+			        public boolean onKey(View v, int keyCode, KeyEvent event) {
+			            Log.e("back NO", "keyCode: " + keyCode);
+			            if( keyCode == KeyEvent.KEYCODE_BACK ) {
+		                getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		                //jak widoki nie beda chcialy sie odswiezac jesli beda zdiecia istniej w bazie to odkomentowac	
+		        //        if(callFragmentListClickedBackListener!=null)
+		        //        callFragmentListClickedBackListener.refreshFishesFragmentList();
+		                return true;
+		            } else {
+		                return false;
+		            }
+			        }
+			    });	
 		}
 		return view;
 	}
-
+	
+	public void setCallFragmentListClickedBackListener(CallFragmentListClickedBack l) {
+		this.callFragmentListClickedBackListener=l;
+	}
+	
 }

@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
     <Button 
         android:id="@+id/mojeRekordyId"
@@ -33,46 +34,16 @@
         
     </RelativeLayout>
     
+=======
+
+    <include layout="@layout/titlebar" />
+
+>>>>>>> 080fb43371b3e78462ae76e3b6640668d506a84f
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center" >
-    <RelativeLayout
-        android:id="@+id/mojeRekordyId"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
         android:gravity="center"
-        style="@style/layout">
-
-        <Button
-            android:id="@+id/mojeRekordyButton"
-            android:layout_width="120dp"
-            android:layout_centerVertical="true"
-            android:layout_height="wrap_content"     
-            android:text="Moje rekordy" />
-			
-        	<View 
-        	    android:id="@+id/view1"
-        	    android:layout_toRightOf="@+id/mojeRekordyButton"
-        	    android:layout_height="45dp"
-        	    android:layout_width="1dp"
-        	    android:layout_marginRight="7dp"
-        	    android:background="#40a8ae"
-        	    />	
-        
-        <ImageView
-            android:layout_centerVertical="true"
-        	style="@style/imageViewRecords"
-            android:layout_toRightOf="@+id/view1"
-            />
-    </RelativeLayout>
-
-  <RelativeLayout
-        android:id="@+id/fishing"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+<<<<<<< HEAD
         android:layout_marginTop="15dp"
         style="@style/layout"
       
@@ -248,3 +219,211 @@
  </LinearLayout>
 </LinearLayout>
 >>>>>>> 2e93ccc4da8ff9c00c9ba69de956a1b7e2f50425
+=======
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/mojeRekordyId"
+            style="@style/layout"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/mojeRekordyButton"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Moje rekordy" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="7dp"
+                android:layout_toRightOf="@+id/mojeRekordyButton"
+                android:background="#40a8ae" />
+
+            <ImageView
+                style="@style/imageViewRecords"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/view1" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fishing"
+            style="@style/layout"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/fishingButton"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Moje polowy" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="7dp"
+                android:layout_toRightOf="@+id/fishingButton"
+                android:background="#40a8ae" />
+
+            <ImageView
+                style="@style/imageViewhook"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/view2" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fishes"
+            style="@style/layout"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/fishesButton"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Atlas ryb" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="7dp"
+                android:layout_toRightOf="@+id/fishesButton"
+                android:background="#40a8ae" />
+
+            <ImageView
+                style="@style/imageViewNote"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/view3" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/regulations"
+            style="@style/layout"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/regulationsButton"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Regulaminy" />
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="7dp"
+                android:layout_toRightOf="@+id/regulationsButton"
+                android:background="#40a8ae" />
+
+            <ImageView
+                style="@style/imageViewRegulation"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/view4" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/weather"
+            style="@style/layout"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/weatherButton"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Pogoda" />
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="7dp"
+                android:layout_toRightOf="@+id/weatherButton"
+                android:background="#40a8ae" />
+
+            <ImageView
+                style="@style/imageViewWeather"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/view5" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/settingsId"
+            style="@style/layout"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/settingsButton"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Ustawienia" />
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="7dp"
+                android:layout_toRightOf="@+id/settingsButton"
+                android:background="#40a8ae" />
+
+            <ImageView
+                style="@style/imageViewSettings"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/view6" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/closeId"
+            style="@style/layout"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/closeButton"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Zamknij" />
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="7dp"
+                android:layout_toRightOf="@+id/closeButton"
+                android:background="#40a8ae" />
+
+            <ImageView
+                style="@style/imageViewClose"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/view7" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
+>>>>>>> 080fb43371b3e78462ae76e3b6640668d506a84f

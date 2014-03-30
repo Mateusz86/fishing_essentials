@@ -46,6 +46,7 @@ public class RestConnector extends AsyncTask<String,Void,JSONObject> {
 	}
 
 	private void get(String url){
+		System.out.println(url);
 		this.httpGet = new HttpGet(url);
 		this.httpClient.getParams().setParameter("http.socket.timeout", this.timeout);
 		try {

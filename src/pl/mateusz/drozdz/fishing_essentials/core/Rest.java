@@ -1,4 +1,5 @@
 package pl.mateusz.drozdz.fishing_essentials.core;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,6 +47,7 @@ public class Rest {
 
 	public void post(String url, ArrayList data){
 		this.httpPost = new HttpPost(url);
+		System.out.println(url);
 		this.httpClient.getParams().setParameter("http.socket.timeout", this.timeout);
 		try {
 			this.data = data;
