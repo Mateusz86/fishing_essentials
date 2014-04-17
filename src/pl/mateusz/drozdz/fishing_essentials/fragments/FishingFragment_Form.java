@@ -10,7 +10,6 @@ import pl.mateusz.drozdz.fishing_essentials.FishingActivity;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.Base64;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
-import pl.mateusz.drozdz.fishing_essentials.core.LocationHelper;
 import pl.mateusz.drozdz.fishing_essentials.core.Property;
 import pl.mateusz.drozdz.fishing_essentials.core.WeatherAsyncTask;
 import pl.mateusz.drozdz.fishing_essentials.core.WeatherInterface;

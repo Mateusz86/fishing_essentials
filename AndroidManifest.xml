@@ -72,6 +72,16 @@
             android:theme="@style/ActivityThemeFull" >
         </activity>
         <activity
+            android:name="pl.mateusz.drozdz.fishing_essentials.DeleteActivity"
+            android:label="@string/app_name"
+            android:theme="@style/ActivityThemeFull" >
+        </activity>
+        <activity
+            android:name="pl.mateusz.drozdz.fishing_essentials.UpdateActivity"
+            android:label="@string/app_name"
+            android:theme="@style/ActivityThemeFull" >
+        </activity>
+        <activity
             android:name="pl.mateusz.drozdz.fishing_essentials.FishesActivity"
             android:label="@string/app_name"
             android:theme="@style/ActivityThemeFull" >

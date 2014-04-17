@@ -121,6 +121,13 @@ public class MainActivity extends Activity implements OnClickListener {
 	    
 		}
 	}
+	
+	@Override
+	public void onBackPressed() {
+		CloseDialog dialog = new CloseDialog(
+				MainActivity.this, "Czy na pewno chcesz zamknaæ aplikacjê?",MainActivity.this);
+		dialog.show();
+	}
 }
 
 

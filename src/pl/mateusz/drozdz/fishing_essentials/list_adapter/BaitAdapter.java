@@ -1,6 +1,5 @@
 package pl.mateusz.drozdz.fishing_essentials.list_adapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
@@ -59,10 +58,13 @@ public class BaitAdapter extends BaseAdapter {
 			holder=(ViewHolder) convertView.getTag();
 		}
 		if(baitList.size()!=0) {
-		holder.nameHolder.setText(baitList.get(position).getName()+"");
+		holder.nameHolder.setText(baitList.get(position).getName()+" bait");
 		holder.descriptionHolder.setText(baitList.get(position).getDescription()+"");
-		holder.updateImgHolder.setOnClickListener(listener);
-		holder.deleteImgHolder.setOnClickListener(listener);
+		
+	//	holder.updateImgHolder.setOnClickListener(listener);
+	//	holder.deleteImgHolder.setOnClickListener(listener);
+		holder.deleteImgHolder.setOnClickListener(ImgButtonListner);
+		holder.updateImgHolder.setOnClickListener(ImgButtonListner);
 		
 		ObjectHelperPositionList helper = new ObjectHelperPositionList();
 		helper.setPosition(position);
@@ -96,7 +98,13 @@ public class BaitAdapter extends BaseAdapter {
 		this.listener = listener;
 	}
 	
-	
+	OnClickListener ImgButtonListner = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+				listener.onClick(v);
+		}
+	};
 	
 	
 }
