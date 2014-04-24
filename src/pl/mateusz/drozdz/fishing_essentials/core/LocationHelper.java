@@ -28,9 +28,7 @@ public class LocationHelper implements LocationListener{
 	    provider = locationManager.getBestProvider(criteria, false);
 	    
 	     location= locationManager.getLastKnownLocation(provider);
-
 	    Property.setLocation(location); 
-	    
 	    location = Property.location;
 	    
 	   

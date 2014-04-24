@@ -4,16 +4,19 @@ import java.util.List;
 
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
-import pl.mateusz.drozdz.fishing_essentials.dao.Bait;
+import pl.mateusz.drozdz.fishing_essentials.core.ObjectHelperPositionList;
+import pl.mateusz.drozdz.fishing_essentials.core.WhichFragmentClick;
 import pl.mateusz.drozdz.fishing_essentials.dao.Places;
 import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao;
-import pl.mateusz.drozdz.fishing_essentials.list_adapter.BaitAdapter;
 import pl.mateusz.drozdz.fishing_essentials.list_adapter.PlacesAdapter;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ListView;
 
 public class PlacesFragment extends Fragment {
@@ -21,6 +24,9 @@ public class PlacesFragment extends Fragment {
 	private ListView placesList;
 	private PlacesAdapter placesAdapter;
 	private List<Places> places;
+	WhichFragmentClick whichFragmentClickListener;
+	public static String NAME_FRAGMENT="PlacesFragment";
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,11 +41,48 @@ public class PlacesFragment extends Fragment {
 			
 			this.placesList = (ListView) view.findViewById(R.id.placesList);
 			placesAdapter = new PlacesAdapter(getActivity(),places);
-			placesList.setAdapter(placesAdapter);	
+			placesList.setAdapter(placesAdapter);
+
+			
+			OnClickListener buttonsListener = new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					ObjectHelperPositionList helper = (ObjectHelperPositionList) v.getTag();
+					
+					if(helper!=null) {
+					switch(v.getId()) {
+					case R.id.delete:
+						Log.e("click","delete "+helper.getPosition()+"");
+						whichFragmentClickListener.startDeleteActivity();
+					break;	
+					case R.id.update:
+						Log.e("click ","update "+helper.getPosition()+"");
+						whichFragmentClickListener.startUpdateActivity();
+
+					break;	
+					
+			    		}
+					}
+
+				}
+			};
+			placesAdapter.setListener(buttonsListener);
+
 		}
 		
 		return view;
 
 	}
-
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try{
+		whichFragmentClickListener=(WhichFragmentClick) activity;
+		}
+		catch(Exception e) {
+			
+		}
+	}
 }

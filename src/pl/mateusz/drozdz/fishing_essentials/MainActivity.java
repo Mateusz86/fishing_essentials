@@ -20,7 +20,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		// load data from file
 		bootsrap = new Bootstrap(this);
 //		bootsrap.run();
@@ -45,6 +45,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		bait.setDescription("Opis");
 		baitDao.insert(bait);
 		Log.e("bait"," "+bait.getId());*/
+
 		
 		
 		
@@ -113,13 +114,21 @@ public class MainActivity extends Activity implements OnClickListener {
 			startActivity(intent);
 			break;
 		case R.id.closeId:
-			CloseDialog dialog = new CloseDialog(
-					MainActivity.this, "Czy na pewno chcesz zamknaæ aplikacjê?",MainActivity.this);
-			dialog.show();
-			
+			showDialog();			
 	    break;	
 	    
 		}
+	}
+	
+	@Override
+	public void onBackPressed() {
+		showDialog();
+	}
+	
+	private void showDialog() {
+		CloseDialog dialog = new CloseDialog(
+				MainActivity.this, "Czy na pewno chcesz zamknaæ aplikacjê?",MainActivity.this);
+		dialog.show();
 	}
 }
 
