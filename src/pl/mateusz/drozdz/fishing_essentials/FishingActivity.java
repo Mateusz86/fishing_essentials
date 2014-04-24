@@ -6,6 +6,7 @@ import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_List.Chang
 import pl.mateusz.drozdz.fishing_essentials.fragments.FishingFragment_List.OnExpedytionSelected;
 import pl.mateusz.drozdz.fishing_essentials.fragments.MapFragment;
 import pl.mateusz.drozdz.fishing_essentials.fragments.OneExpedytionFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -44,17 +45,25 @@ public class FishingActivity extends FragmentActivity  implements ChangeFragment
 	@Override
 	public void onExpedytionSelected(Long id) {
 		System.out.println("Expedytion "+id);
-		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-		OneExpedytionFragment fragment = new OneExpedytionFragment();
-
-		Bundle args = new Bundle();
-        args.putLong(FishesActivity.ARG_PK,id);
-        
-        fragment.setArguments(args);
 		
-		ft.replace(R.id.fragmentContainerFishing, fragment);
-		ft.addToBackStack(null);
-		ft.commit();
+//		Bundle args = new Bundle();
+//        args.putLong(FishesActivity.ARG_PK,id);
+        
+        Intent intent= new Intent(FishingActivity.this,
+        		OneExpedytionActivity.class);
+        intent.putExtra(FishesActivity.ARG_PK,id);
+				 startActivity(intent);
+        
+//		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//		OneExpedytionFragment fragment = new OneExpedytionFragment();
+//
+//		
+//        
+//        fragment.setArguments(args);
+//		
+//		ft.replace(R.id.fragmentContainerFishing, fragment);
+//		ft.addToBackStack(null);
+//		ft.commit();
 	}
 	
 

@@ -35,12 +35,15 @@ public class OneExpedytionFragment extends Fragment {
 		view = inflater.inflate(R.layout.fragment_one_expedytion, container,
 				false);
 		if(view != null){
-			createTabs();
+
 			
 			Bundle args = getArguments();
 			Long pk = args.getLong(FishingActivity.ARG_PK);
 			
 			System.out.println(pk);
+			
+			
+			
 			daoSessioon = DataBase.getInstance(getActivity())
 			.getDaoSession();
 			
@@ -73,20 +76,6 @@ public class OneExpedytionFragment extends Fragment {
 
 	}
 	
-	private void createTabs(){
-		tab = (TabHost) view.findViewById(R.id.tabHost);
-			tab.setup();
-			
-			TabSpec tab1 = tab.newTabSpec("Moja wyprawa");
-			tab1.setContent(R.id.tab1);
-			tab1.setIndicator("Moja wyprawa");
-			
-			TabSpec tab2 = tab.newTabSpec("Z³owione Ryby");
-			tab2.setContent(R.id.tab2);
-			tab2.setIndicator("Z³owione Ryby");
-			
-			tab.addTab(tab1);
-			tab.addTab(tab2);
-	}
+
 
 }

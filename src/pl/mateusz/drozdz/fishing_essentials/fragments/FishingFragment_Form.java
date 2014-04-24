@@ -243,19 +243,21 @@ public class FishingFragment_Form extends Fragment implements
 	public void gpsCalbackEvent(Location location) {
 		if(location == null){
 			location = Property.getLocation();
-			latitude.setText(String.valueOf(location.getLatitude()));
-			longitude.setText(String.valueOf(location.getLongitude()));
+			latitude.setText(String.format("%.6f%n",(Double)location.getLatitude()));
+			longitude.setText(String.format("%.6f%n",(Double)location.getLongitude()));
 		}else{
-			latitude.setText(String.valueOf(location.getLatitude()));
-			longitude.setText(String.valueOf(location.getLongitude()));
+			latitude.setText(String.format("%.6f%n",(Double)location.getLatitude()));
+			longitude.setText(String.format("%.6f%n",(Double)location.getLongitude()));
 		}
-		
-		setLocation();
+//		latitude.setText(String.valueOf(location.getLatitude()));
+//		longitude.setText(String.valueOf(location.getLongitude()));
+//		setLocation();
 		//this.setNewPlace(location);
 	}
 	
 	private void setLocation(){
 		Location tmp_location = new Location("null");
+//		tmp_location.setLatitude(String.format("%.6f", latitude.getText().toString()));
 		tmp_location.setLatitude(Double.valueOf(latitude.getText().toString()));
 		tmp_location.setLongitude(Double.valueOf(longitude.getText().toString()));
 		setWeather(tmp_location);
