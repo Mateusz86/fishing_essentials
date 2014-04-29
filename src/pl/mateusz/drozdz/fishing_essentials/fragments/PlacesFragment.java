@@ -2,10 +2,12 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 
 import java.util.List;
 
+import pl.mateusz.drozdz.fishing_essantials.interfaces.WhichFragmentClick;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.core.ObjectHelperPositionList;
-import pl.mateusz.drozdz.fishing_essentials.core.WhichFragmentClick;
+import pl.mateusz.drozdz.fishing_essentials.dao.Methods;
+import pl.mateusz.drozdz.fishing_essentials.dao.MethodsDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.Places;
 import pl.mateusz.drozdz.fishing_essentials.dao.PlacesDao;
 import pl.mateusz.drozdz.fishing_essentials.list_adapter.PlacesAdapter;
@@ -54,6 +56,7 @@ public class PlacesFragment extends Fragment {
 					switch(v.getId()) {
 					case R.id.delete:
 						Log.e("click","delete "+helper.getPosition()+"");
+						FragmentBoxName.setPosition(helper.getPosition());
 						whichFragmentClickListener.startDeleteActivity();
 					break;	
 					case R.id.update:
@@ -84,5 +87,15 @@ public class PlacesFragment extends Fragment {
 		catch(Exception e) {
 			
 		}
+	}
+	
+	public void notifyAdapter() {		
+		Places placeDelete = (Places) placesAdapter.getItem(FragmentBoxName.getPosition());
+		PlacesDao placesDao = DataBase.getInstance(getActivity()).getDaoSession().getPlacesDao();
+		placesDao.delete(placeDelete);
+		places=placesDao.queryBuilder().list();
+		placesAdapter.setPlacesList(places);
+		placesAdapter.notifyDataSetChanged();
+
 	}
 }

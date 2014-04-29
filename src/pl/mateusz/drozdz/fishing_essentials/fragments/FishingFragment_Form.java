@@ -6,13 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 import pl.mateusz.drozdz.fishing_essantials.dialog.DataTimePickerDialogFragment;
+import pl.mateusz.drozdz.fishing_essantials.interfaces.WeatherInterface;
 import pl.mateusz.drozdz.fishing_essentials.FishingActivity;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.Base64;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.core.Property;
 import pl.mateusz.drozdz.fishing_essentials.core.WeatherAsyncTask;
-import pl.mateusz.drozdz.fishing_essentials.core.WeatherInterface;
 import pl.mateusz.drozdz.fishing_essentials.dao.DaoSession;
 import pl.mateusz.drozdz.fishing_essentials.dao.Fishing;
 import pl.mateusz.drozdz.fishing_essentials.dao.Places;

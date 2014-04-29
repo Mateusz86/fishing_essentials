@@ -2,10 +2,12 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 
 import java.util.List;
 
+import pl.mateusz.drozdz.fishing_essantials.interfaces.WhichFragmentClick;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.core.ObjectHelperPositionList;
-import pl.mateusz.drozdz.fishing_essentials.core.WhichFragmentClick;
+import pl.mateusz.drozdz.fishing_essentials.dao.GroundBait;
+import pl.mateusz.drozdz.fishing_essentials.dao.GroundBaitDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.Methods;
 import pl.mateusz.drozdz.fishing_essentials.dao.MethodsDao;
 import pl.mateusz.drozdz.fishing_essentials.list_adapter.MethodsAdapter;
@@ -51,6 +53,7 @@ public class MethodsFragment extends Fragment {
 					switch(v.getId()) {
 					case R.id.delete:
 						Log.e("click ","delete "+helper.getPosition()+"");
+						FragmentBoxName.setPosition(helper.getPosition());
 						whichFragmentClickListener.startDeleteActivity();
 					break;	
 					case R.id.update:
@@ -82,6 +85,16 @@ public class MethodsFragment extends Fragment {
 		catch(Exception e) {
 			
 		}
+	}
+	
+	public void notifyAdapter() {		
+		Methods methodDelete = (Methods) methodsAdapter.getItem(FragmentBoxName.getPosition());
+		MethodsDao methodsDao = DataBase.getInstance(getActivity()).getDaoSession().getMethodsDao();
+		methodsDao.delete(methodDelete);
+		methods=methodsDao.queryBuilder().list();
+		methodsAdapter.setMethodsList(methods);
+		methodsAdapter.notifyDataSetChanged();
+
 	}
 
 }

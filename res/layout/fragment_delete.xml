@@ -9,9 +9,7 @@
        android:id="@+id/tempID" 
        android:text="delete fargment"
        android:layout_width="100dp"
-       android:layout_height="30dp"
-       android:background="@drawable/shap"
-       
+       android:layout_height="30dp"       
         />
     
 </LinearLayout>
