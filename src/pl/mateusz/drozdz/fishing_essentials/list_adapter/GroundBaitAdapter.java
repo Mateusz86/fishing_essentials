@@ -2,9 +2,9 @@ package pl.mateusz.drozdz.fishing_essentials.list_adapter;
 
 import java.util.List;
 
+import pl.mateusz.drozdz.fishing_essantials.interfaces.WhichFragmentClick;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.ObjectHelperPositionList;
-import pl.mateusz.drozdz.fishing_essentials.core.WhichFragmentClick;
 import pl.mateusz.drozdz.fishing_essentials.dao.GroundBait;
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -2,10 +2,12 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 
 import java.util.List;
 
+import pl.mateusz.drozdz.fishing_essantials.interfaces.WhichFragmentClick;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.core.ObjectHelperPositionList;
-import pl.mateusz.drozdz.fishing_essentials.core.WhichFragmentClick;
+import pl.mateusz.drozdz.fishing_essentials.dao.Bait;
+import pl.mateusz.drozdz.fishing_essentials.dao.BaitDao;
 import pl.mateusz.drozdz.fishing_essentials.dao.GroundBait;
 import pl.mateusz.drozdz.fishing_essentials.dao.GroundBaitDao;
 import pl.mateusz.drozdz.fishing_essentials.list_adapter.GroundBaitAdapter;
@@ -54,6 +56,7 @@ public class GroundBaitFragment extends Fragment  {
 				switch(v.getId()) {
 				case R.id.delete:
 					Log.e("click","delete "+helper.getPosition()+"");
+					FragmentBoxName.setPosition(helper.getPosition());
 					whichFragmentClickListener.startDeleteActivity();
 				break;	
 				case R.id.update:
@@ -85,5 +88,16 @@ public class GroundBaitFragment extends Fragment  {
 		catch(Exception e) {
 			
 		}
+	}
+	
+	public void notifyAdapter() {
+		
+		GroundBait groundBaitDelete = (GroundBait) groundBaitAdapter.getItem(FragmentBoxName.getPosition());
+		GroundBaitDao groundBaitDao = DataBase.getInstance(getActivity()).getDaoSession().getGroundBaitDao();
+		groundBaitDao.delete(groundBaitDelete);
+		grounds=groundBaitDao.queryBuilder().list();
+		groundBaitAdapter.setGroundList(grounds);
+		groundBaitAdapter.notifyDataSetChanged();
+
 	}
 }

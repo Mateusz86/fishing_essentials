@@ -2,10 +2,10 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 import java.io.Serializable;
 import java.util.List;
 
+import pl.mateusz.drozdz.fishing_essantials.interfaces.WhichFragmentClick;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.DataBase;
 import pl.mateusz.drozdz.fishing_essentials.core.ObjectHelperPositionList;
-import pl.mateusz.drozdz.fishing_essentials.core.WhichFragmentClick;
 import pl.mateusz.drozdz.fishing_essentials.dao.Bait;
 import pl.mateusz.drozdz.fishing_essentials.dao.BaitDao;
 import pl.mateusz.drozdz.fishing_essentials.list_adapter.BaitAdapter;
@@ -26,8 +26,6 @@ public class BaitFragment extends Fragment implements Serializable{
 	private ListView baitList;
 	private BaitAdapter baitAdapter;
 	private List<Bait> baits;
-	private ImageButton delete;
-	private ImageButton update;
 	public static String NAME_FRAGMENT="BaitFragment";
 	
 	WhichFragmentClick whichFragmentClickListener;
@@ -55,10 +53,12 @@ public class BaitFragment extends Fragment implements Serializable{
 					switch(v.getId()) {
 					case R.id.delete:
 						Log.e("click","delete "+helper.getPosition()+"");
+						FragmentBoxName.setPosition(helper.getPosition());
 						whichFragmentClickListener.startDeleteActivity();
 					break;	
 					case R.id.update:
 						Log.e("click ","update "+helper.getPosition()+"");
+						FragmentBoxName.setPosition(helper.getPosition());
 						whichFragmentClickListener.startUpdateActivity();
 
 					break;	
@@ -85,6 +85,17 @@ public class BaitFragment extends Fragment implements Serializable{
 		catch(Exception e) {
 			
 		}
+	}
+	
+	public void notifyAdapter() {
+		
+		Bait baitDelete = (Bait) baitAdapter.getItem(FragmentBoxName.getPosition());
+		BaitDao baitDao = DataBase.getInstance(getActivity()).getDaoSession().getBaitDao();
+		baitDao.delete(baitDelete);
+		baits=baitDao.queryBuilder().list();
+		baitAdapter.setBaitList(baits);
+		baitAdapter.notifyDataSetChanged();
+
 	}
 
 }

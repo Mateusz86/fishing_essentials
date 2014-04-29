@@ -1,7 +1,7 @@
 package pl.mateusz.drozdz.fishing_essentials;
 
+import pl.mateusz.drozdz.fishing_essantials.interfaces.WeatherInterface;
 import pl.mateusz.drozdz.fishing_essentials.core.WeatherAsyncTask;
-import pl.mateusz.drozdz.fishing_essentials.core.WeatherInterface;
 import pl.mateusz.drozdz.fishing_essentials.utils.MyLinearLayout;
 import android.app.Activity;
 import android.content.Context;

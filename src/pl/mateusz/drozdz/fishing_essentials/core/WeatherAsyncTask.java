@@ -6,6 +6,7 @@ import org.apache.http.client.HttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import pl.mateusz.drozdz.fishing_essantials.interfaces.WeatherInterface;
 import pl.mateusz.drozdz.fishing_essentials.utils.MyLinearLayout;
 import android.app.Activity;
 import android.content.Context;

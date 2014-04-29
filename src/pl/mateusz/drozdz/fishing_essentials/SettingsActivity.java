@@ -1,6 +1,10 @@
 package pl.mateusz.drozdz.fishing_essentials;
 
-import pl.mateusz.drozdz.fishing_essentials.core.WhichFragmentClick;
+import pl.mateusz.drozdz.fishing_essantials.dialog.CallFragmentToUpdateList;
+import pl.mateusz.drozdz.fishing_essantials.dialog.CloseDialog;
+import pl.mateusz.drozdz.fishing_essantials.dialog.DeleteDataFromDatabaseDialog;
+import pl.mateusz.drozdz.fishing_essantials.interfaces.UpdateAdapterListInterface;
+import pl.mateusz.drozdz.fishing_essantials.interfaces.WhichFragmentClick;
 import pl.mateusz.drozdz.fishing_essentials.fragments.BaitFragment;
 import pl.mateusz.drozdz.fishing_essentials.fragments.FragmentBoxName;
 import pl.mateusz.drozdz.fishing_essentials.fragments.GroundBaitFragment;
@@ -14,13 +18,15 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
 
-public class SettingsActivity extends ActionBarActivity  implements TabListener,WhichFragmentClick{
+public class SettingsActivity extends ActionBarActivity  implements TabListener,WhichFragmentClick,UpdateAdapterListInterface{
 		
    private ViewPager viewPager;
    private TabPagerAdapter mAdapter;
    private android.support.v7.app.ActionBar actionBar;
    private String[] tabs = { "Przynêty", "Zanêty", "Metody","Miejsca" };
    private Intent intent;
+   private CallFragmentToUpdateList L;
+   private static int pos;
       
    
 	@Override
@@ -51,6 +57,7 @@ public class SettingsActivity extends ActionBarActivity  implements TabListener,
     	    @Override
     	    public void onPageSelected(int position) {
     	        actionBar.setSelectedNavigationItem(position);
+    	        pos=position;
     			switch (position) {
 				case 0:
 	    			FragmentBoxName.setName(BaitFragment.NAME_FRAGMENT);
@@ -107,9 +114,11 @@ public class SettingsActivity extends ActionBarActivity  implements TabListener,
 
 	@Override
 	public void startDeleteActivity() {
-	    intent= new Intent(SettingsActivity.this,
-	    		DeleteActivity.class);
-			    startActivity(intent);		
+		DeleteDataFromDatabaseDialog dialog = new DeleteDataFromDatabaseDialog(
+				SettingsActivity.this, "Czy na pewno chcesz usun¹æ element z bazydanych",SettingsActivity.this,SettingsActivity.this);
+		dialog.show();
+		
+	
 	}
 
 
@@ -119,6 +128,13 @@ public class SettingsActivity extends ActionBarActivity  implements TabListener,
 		  intent= new Intent(SettingsActivity.this,
 		    		UpdateActivity.class);
 				    startActivity(intent);		
+	}
+
+
+
+	@Override
+	public void updateAdapterList() {
+		mAdapter.update();
 	}
 
 }
