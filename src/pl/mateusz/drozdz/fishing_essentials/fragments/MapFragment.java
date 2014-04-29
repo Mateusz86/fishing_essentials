@@ -3,11 +3,13 @@ package pl.mateusz.drozdz.fishing_essentials.fragments;
 import pl.mateusz.drozdz.fishing_essentials.R;
 import pl.mateusz.drozdz.fishing_essentials.core.Property;
 import pl.mateusz.drozdz.fishing_essentials.utils.GpsCallbackEvent;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -62,6 +64,8 @@ public class MapFragment extends SupportMapFragment implements OnMarkerDragListe
 		if (services&& v!=null) {
 			v = super.onCreateView(inflater, container, savedInstanceState);
 			
+			getActivity().setTheme(R.style.Theme_Base_AppCompat_Light_DarkActionBar);
+			
 			this.location = Property.getLocation();
 
 			this.latitude = location.getLatitude();
@@ -73,8 +77,8 @@ public class MapFragment extends SupportMapFragment implements OnMarkerDragListe
 		            LayoutParams.FILL_PARENT,
 		            LayoutParams.WRAP_CONTENT));
 			b.setText("Zapisz");
-			b.setTextColor(getResources().getColor(R.color.black));
-			b.setTextAppearance(getActivity(), R.style.button_save_style);
+//			b.setTextColor(getResources().getColor(R.color.black));
+//			b.setTextAppearance(getActivity(), R.style.button_save_style);
 			b.setOnClickListener(this);
 			FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) v.getLayoutParams();
 			if(params!=null) {

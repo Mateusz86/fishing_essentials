@@ -5,84 +5,35 @@
     android:background="@drawable/background"
     android:orientation="vertical" >
 
-    <include layout="@layout/titlebar" />
 
-    <TabHost
-        android:id="@+id/tabHost"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_x="0dp"
-        android:layout_y="0dp" >
+        <TextView
+            android:id="@+id/one_expedition_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="data" />
+
+        <TextView
+            android:id="@+id/one_expedition_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="name" />
+
+        <TextView
+            android:id="@+id/one_expedition_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="name" />
 
         <LinearLayout
+            android:id="@+id/one_expedition_weather"
+            style="@style/textWrappwe"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
-
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-            </TabWidget>
-
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <LinearLayout
-                    android:id="@+id/tab1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="HOME"
-                    android:orientation="vertical" 
-                    android:padding="20dp">
-
-                    <TextView
-                        android:id="@+id/one_expedition_data"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:text="data" />
-
-                    <TextView
-                        android:id="@+id/one_expedition_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:text="name" />
-
-                    <TextView
-                        android:id="@+id/one_expedition_description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:text="name" />
-
-                    <LinearLayout
-                        android:id="@+id/one_expedition_weather"
-                        style="@style/textWrappwe"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" >
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/tab2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="HOME" >
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="204dp"
-                        android:layout_height="match_parent"
-                        android:paddingLeft="10dp"
-                        android:text="TAB 2" />
-                </LinearLayout>
-            </FrameLayout>
         </LinearLayout>
-    </TabHost>
+
 
 </LinearLayout>
