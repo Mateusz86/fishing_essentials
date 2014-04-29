@@ -36,16 +36,16 @@ public class OneExpedytionFragment extends Fragment {
 				false);
 		if(view != null){
 
+			if (daoSessioon == null) {
+				daoSessioon = DataBase.getInstance(getActivity())
+						.getDaoSession();
+			}
 			
 			Bundle args = getArguments();
 			Long pk = args.getLong(FishingActivity.ARG_PK);
 			
-			System.out.println(pk);
 			
-			
-			
-			daoSessioon = DataBase.getInstance(getActivity())
-			.getDaoSession();
+			System.out.println("console id "+pk);
 			
 			DateFormat df = new DateFormat();
 			Fishing fishing = daoSessioon.getFishingDao().loadByRowId(pk);

@@ -16,18 +16,15 @@ public class OneExpedytionActivity extends ActionBarActivity implements
 	private ViewPager viewPager;
 	private ExpedytionTabPagerAdapter mAdapter;
 	private android.support.v7.app.ActionBar actionBar;
-	private String[] tabs = { "Wyprawa", "Z³owione ryby" };
+	private final String[] tabs = { "Wyprawa", "Z³owione ryby","+" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setTheme(android.R.style.Theme_Holo);
-		setContentView(R.layout.activity_settings);
+		setContentView(R.layout.activity_one_expedytion);
 		
 		Bundle extras = getIntent().getExtras();
 		Long pk = extras.getLong(FishingActivity.ARG_PK);
-		
-		System.out.println("Get exp "+pk);
 
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		actionBar = getSupportActionBar();
@@ -35,7 +32,7 @@ public class OneExpedytionActivity extends ActionBarActivity implements
 		mAdapter = new ExpedytionTabPagerAdapter(getSupportFragmentManager());
         mAdapter.setExpedytionId(pk);
 		viewPager.setAdapter(mAdapter);
-		actionBar.setHomeButtonEnabled(false);
+//		actionBar.setHomeButtonEnabled(false);
 		// actionBar.setDisplayShowTitleEnabled(false);
 		// actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -48,6 +45,7 @@ public class OneExpedytionActivity extends ActionBarActivity implements
 
 			@Override
 			public void onPageSelected(int position) {
+				System.out.println("posytion "+position);
 				actionBar.setSelectedNavigationItem(position);
 			}
 
@@ -59,6 +57,7 @@ public class OneExpedytionActivity extends ActionBarActivity implements
 			public void onPageScrollStateChanged(int arg0) {
 			}
 		});
+	
 	}
 
 	@Override

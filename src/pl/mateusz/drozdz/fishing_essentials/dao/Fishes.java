@@ -100,4 +100,8 @@ public class Fishes {
         this.photos = photos;
     }
 
+    @Override
+    public String toString(){
+    	return name;
+    }
 }
